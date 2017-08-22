@@ -1,0 +1,100 @@
+<?php
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+?>
+<?php
+/* @var $this KtmCore_Widget_Block_Widget */
+$id         = $this->getConfig('id');
+$title      = $this->getConfig('widget_title');
+$tabs       = $this->getTabs();
+$template   = 'ktmcore/widget/collection/tab-collection.phtml';
+$t          = microtime();
+$layout = $this->getConfig("layout_type");
+if ($layout == 'box')	{
+	$box = true;
+} else {
+	$box=false;
+}
+?>
+<?php if ($box) : ?>
+<div class="container">
+<div class="main-container-inner">
+<?php else: ?>
+<div class="clearfix">
+<?php endif ?>
+
+<div class="<?php echo $this->getConfig('classes') ?>" id="<?php echo $id ?>">
+    <div class="tabs-collection">
+        <?php if ($title): ?>
+        <div class="main-heading">
+            <div class="heading-title style2"> 
+                <h3><span><?php echo $this->__($title) ?></span></h3>
+            </div>
+        </div>
+		<?php if ($this->getConfig('widget_description')): ?>
+		<div class="widget-description">
+			<?php echo $this->getConfig('widget_description');	?>
+		</div>
+		<?php endif; ?>
+        <?php endif ?>
+        <ul class="widget-tabs nav nav-tabs">
+            <?php foreach ($tabs as $index => $tab): ?>
+                <li class="<?php echo $index==0 ? 'active' : '' ?>">
+                    <a href="#<?php echo $id . '-' . $tab['id'] ?>"
+                        data-value="<?php echo $tab['value'] ?>"
+                        data-type="<?php echo $tab['type'] ?>"
+                        data-limit="<?php echo $this->getLimit() ?>"
+                        data-column="<?php echo $this->getConfig('column') ?>"
+                        data-row="<?php echo $this->getConfig('row') ?>"
+                        data-pricePrefixId="<?php echo $id . '-' . $tab['id'] ?>"
+                        data-cid="<?php echo $this->getData('category_ids') ?>"
+                        data-template="<?php echo $template ?>"
+                        data-carousel="<?php echo $this->getConfig('scroll') ?>">
+                        <?php echo $this->__($tab['label']) ?>
+                    </a>
+                </li>
+            <?php endforeach ?>
+        </ul>
+    </div>
+    <div class="widget-tab-content tab-content">
+        <?php foreach ($tabs as $index => $tab): ?>
+            <div id="<?php echo $id . '-' . $tab['id'] ?>" class="tab-pane<?php echo $index==0 ? ' active' : '' ?>">
+            <?php if ($index > 0): ?>
+                </div>
+                <?php continue ?>
+            <?php endif ?>
+                <?php $pricePrefixId = $id . '-' . $tab['id'] ?>
+                <?php echo $this->renderCollection($tab['type'], $tab['value'], $template, $pricePrefixId) ?>
+            </div>
+        <?php endforeach ?>
+    </div>
+    <script type="text/javascript" src="<?php echo Mage::getBaseUrl('js') ?>ktmcore/widget/ktmwidget.min.js"></script>
+    <script type="text/javascript">
+        new Ktm.Widget('<?php echo $id ?>', {
+            carousel: <?php echo $this->getConfig('carousel') ?>,
+            carouselConfig: null,
+            animation: <?php echo $this->getConfig('animation') ?>,
+            collectionUrl: '<?php echo $this->getUrl('ktmwidget/collection/get', Mage::helper('skstore')->checkSSL()) ?>',
+            collectionCallback: function(){},
+            spinnerClass: 'spinner',
+            spinnerImg: '<?php echo $this->getSkinUrl('images/loader.gif', Mage::helper('skstore')->checkSSL()) ?>',
+            parallax: <?php echo $this->getConfig('parallax') ?>,
+            countdown: <?php echo $this->getConfig('countdown') ?>,
+            countdownConfig: null,
+            kenburns: <?php echo $this->getConfig('kenburns') ?>
+        });
+    </script>
+</div>
+<?php if ($this->getConfig('widget_custom_html_bottom')): ?>
+	<div class="widget-custom-bottom">
+		<?php echo $this->getConfig('widget_custom_html_bottom');	?>	
+	</div>
+	<?php endif; ?>
+<?php //Mage::log(microtime() - $t) ?>
+<?php if ($box) : ?>
+</div>
+</div>
+<?php else: ?>
+</div>
+<?php endif ?>

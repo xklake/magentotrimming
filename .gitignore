@@ -1,0 +1,11 @@
+var/
+test.php
+Skthemepack.zip
+media/catalog/product/cache/*
+app/etc/local.xml
+db25-4.sql
+skin/frontend/skstore/default/css/_generated/*
+skin/frontend/skstore/default/css/_generated/
+media/wysiwyg/.thumbs/
+media/catalog/
+bk2605.sql

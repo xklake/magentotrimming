@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+-->
+<config>
+    <menu>
+        <ktmcore translate="title" module="skstore">
+            <title>SK Store</title>
+            <sort_order>71</sort_order>
+            <children>
+                <skstore translate="title" module="skstore">
+                    <title>SK Store</title>
+                    <children>
+                        <skstore translate="title" module="skstore">
+                            <title>SK Store Settings</title>
+                            <sort_order>10</sort_order>
+                            <action>adminhtml/system_config/edit/section/skstore</action>
+                        </skstore>
+                        <skstore_design translate="title" module="skstore">
+                            <title>SK Store Design</title>
+                            <sort_order>20</sort_order>
+                            <action>adminhtml/system_config/edit/section/skstore_design</action>
+                        </skstore_design>
+                        <!-- <skstore_layout translate="title" module="skstore">
+                            <title>Theme Layout</title>
+                            <sort_order>30</sort_order>
+                            <action>adminhtml/system_config/edit/section/skstore_layout</action>
+                        </skstore_layout> -->
+                        <skstore_restore translate="title" module="skstore">
+                            <title>Ktm Restore</title>
+                            <sort_order>40</sort_order>
+                            <action>skstore/adminhtml_restore</action>
+                        </skstore_restore>
+                        <less translate="title" module="less">
+                            <title>Less Files</title>
+                            <sort_order>50</sort_order>
+                            <action>less/adminhtml_file/index</action>
+                        </less>
+                        <!-- <support translate="title" module="skstore">
+                            <title><![CDATA[Help & Support]]></title>
+                            <sort_order>60</sort_order>
+                            <action>skstore/adminhtml_support</action>
+                        </support> -->
+                    </children>
+                </skstore>
+            </children>
+        </ktmcore>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                    <children>
+                        <config>
+                            <children>
+                                <skstore translate="title" module="skstore">
+                                    <title>Theme Settings</title>
+                                    <sort_order>1</sort_order>
+                                </skstore>
+                                <skstore_design translate="title" module="skstore">
+                                    <title>Theme Design</title>
+                                    <sort_order>1</sort_order>
+                                </skstore_design>
+                                <skstore_layout translate="title" module="skstore">
+                                    <title>Theme Layout</title>
+                                    <sort_order>1</sort_order>
+                                </skstore_layout>
+                            </children>
+                        </config>
+                    </children>
+                    </system>
+                    <ktmcore translate="title" module="skstore">
+                        <title>SK Store</title>
+                        <sort_order>71</sort_order>
+                        <children>
+                            <skstore translate="title" module="skstore">
+                                <title>SK Store</title>
+                                <children>
+                                    <skstore translate="title" module="skstore">
+                                        <title>Theme Settings</title>
+                                        <sort_order>1</sort_order>
+                                        <action>adminhtml/system_config/edit/section/skstore</action>
+                                    </skstore>
+                                    <skstore_design translate="title" module="skstore">
+                                        <title>Theme Design</title>
+                                        <sort_order>2</sort_order>
+                                        <action>adminhtml/system_config/edit/section/skstore_design</action>
+                                    </skstore_design>
+                                    <skstore_layout translate="title" module="skstore">
+                                        <title>Theme Layout</title>
+                                        <sort_order>3</sort_order>
+                                        <action>adminhtml/system_config/edit/section/skstore_layout</action>
+                                    </skstore_layout>
+                                </children>
+                            </skstore>
+                        </children>
+                    </ktmcore>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

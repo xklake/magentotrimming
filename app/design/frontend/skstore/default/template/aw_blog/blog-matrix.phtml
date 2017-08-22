@@ -1,0 +1,89 @@
+<?php
+    $helper = Mage::helper('ktmwidget');
+    $posts = $this->getPosts();
+?>
+<div id="messages_product_view">
+<?php
+    Mage::app()->getLayout()->getMessagesBlock()->setMessages(Mage::getSingleton('customer/session')->getMessages(true));
+    echo Mage::app()->getLayout()->getMessagesBlock()->getGroupedHtml();
+?>
+</div>
+
+<div class="toolbar-top">
+<?php
+    echo $this->getChildHtml('aw_blog_comments_toolbar');
+?>
+</div>
+<div class="postWrapper-blog-matrix mt-30 clearfix">
+<?php
+    $countPost = 0;
+?>
+<?php
+//start foreach posts
+foreach ($posts as $post): 
+    $countPost++;
+    if($countPost % 2) { ?>
+        <div class= "postContent-blog2 clearfix">
+                <div class="col-md-6 blog-left">
+                    <?php
+                    $img = $helper->getImgBlog($post->getShortContent());
+                    if ($img):
+                    ?>
+                        <a href="<?php echo $post->getAddress(); ?>" alt="<?php echo $post->getTitle(); ?>" title="<?php echo $post->getTitle(); ?>"/>
+                            <div class="image-blog2" style="background-image: url(<?php echo $img; ?>)"></div>
+                        </a>
+                    <?php 
+                    endif;
+                    ?>
+                </div>
+                <div class="col-md-6 blog-right">
+                        <h2><a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a></h2>
+                        <p>
+                        <?php
+                            $previousTimeStamp = strtotime($post->getCreatedTime());
+                            echo $this->timeShowing($previousTimeStamp);
+                        ?>
+                        </p>
+                        <p class="postContent">
+                        <?php
+                            $content = $helper->truncate(strip_tags($post->getShortContent()), $length = 600, $etc = '...');
+                            echo $content;
+                        ?>
+                        </p>
+                </div>
+        </div>
+    <?php }else { ?>
+        <div class= "postContent-blog2 clearfix">
+                <div class="col-md-6 blog-right">
+                    <?php $img = $helper->getImgBlog($post->getShortContent()); ?>
+                    <?php if ($img) : ?>
+                        <a href="<?php echo $post->getAddress(); ?>" alt="<?php echo $post->getTitle(); ?>" title="<?php echo $post->getTitle(); ?>"/>
+                            <div class="image-blog2" style="background-image: url(<?php echo $img; ?>)"></div>
+                        </a>
+                    <?php endif; ?>
+                </div>
+                <div class="col-md-6 blog-left">
+                        <h2><a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a></h2>
+                        <p>
+                            <?php
+                                $previousTimeStamp = strtotime($post->getCreatedTime());
+                                echo $this->timeShowing($previousTimeStamp);
+                            ?>
+                        </p>
+                        <p class="postContent">
+                        <?php
+                            $content = $helper->truncate(strip_tags($post->getShortContent()), $length = 600, $etc = '...');
+                            echo $content;
+                        ?>
+                        </p>
+                </div>
+        </div>
+    <!-- endif -->
+    <?php } ?>
+<?php endforeach; ?>
+</div>
+
+<div class="toolbar-bottom">
+<?php echo $this->getChildHtml('aw_blog_comments_toolbar'); ?>
+</div>
+<?php //echo $this->getChildHtml('aw_blog_comments_toolbar'); ?>

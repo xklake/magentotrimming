@@ -1,0 +1,141 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @see Mage_Catalog_Block_Product_List_Toolbar
+ */
+$enable_ajax_filter = Mage::getStoreConfig('ktmcorefilter/catalog/enable');
+?>
+<?php if($this->getCollection()->getSize()): ?>
+<div class="toolbar clearfix">
+    <div class="toolbar-left pull-left">
+        <div class="filter-label pull-left mr-25">
+            <span class="plus">+</span>
+            <span class="text"><?php echo $this->__("Filter");   ?> </span>
+        </div>
+        <?php 
+		if( $this->isEnabledViewSwitcher() )	{ 
+			?>
+            <p class="view-mode pull-left mr-10">
+                <?php $_modes = $this->getModes(); ?>
+                <?php 
+				if($_modes && count($_modes)>1): 
+					foreach ($this->getModes() as $_code=>$_label):
+						if($this->isModeActive($_code)): 
+						?>
+							<a href="javascript:void(0)" title="<?php echo $_label ?>" class="<?php echo strtolower($_code); ?> active inb mr-15"></a>
+								<?php else: ?>
+							<a href="<?php echo $this->getModeUrl($_code) ?>" title="<?php echo $_label ?>" class="<?php echo strtolower($_code); ?> inb mr-15"></a>
+						<?php 
+						endif; 
+					endforeach; 
+				endif; 
+				?>
+            </p>
+			<?php 
+		} 
+			?>
+        <div class="amount hidden-xs pull-left mr-25 fw-6">
+            <?php if($this->getLastPageNum()>1): ?>
+                <?php echo $this->__('Showing %s to %s of %s total', $this->getFirstNum(), $this->getLastNum(), $this->getTotalNum()) ?>
+            <?php else: ?>
+                <strong><?php echo $this->__('%s Item(s)', $this->getTotalNum()) ?></strong>
+            <?php endif; ?>
+        </div>
+		<div class="limiter pull-left mr-5 fw-6">
+            <p class="pull-left ktm-toolbar-label ktm-slabel-1 hidden-md hidden-sm pull-left mr-5"><label><?php echo $this->__('View') ?></label></p>
+            <?php if($enable_ajax_filter):?>
+            <select onchange="ktmcoreFilter.setAjaxLocation(this.value)" class="ktm-sort ktm-sort-by no-display">
+            <?php else: ?>
+            <select onchange="setLocation(this.value)" class="ktm-sort ktm-sort-by">
+            <?php endif;?>
+            <?php foreach ($this->getAvailableLimit() as  $_key=>$_limit): ?>
+                <option value="<?php echo $this->getLimitUrl($_key) ?>"<?php if($this->isLimitCurrent($_key)): ?> selected="selected"<?php endif ?>>
+                    <?php echo $_limit ?>
+                </option>
+            <?php endforeach; ?>
+            </select>
+            
+            <div class="fake-select pull-left">
+                <?php $i=1;foreach ($this->getAvailableLimit() as  $_key=>$_limit): ?>
+					<?php if($enable_ajax_filter):?>
+                    <a onclick="ktmcoreFilter.setAjaxLocation(this.readAttribute('data-href'))" data-href="<?php echo $this->getLimitUrl($_key) ?>" class="<?php echo 'limit-'.$_key ?> pull-left mr-5 <?php if ($this->getLimit() == strtolower($_limit)) echo 'active'?>"><?php echo $_limit ?><?php if (count($this->getAvailableLimit()) > $i): echo '<span>/ </span>' ;endif; ?>     
+                    </a>
+					<?php else: ?>
+					<a onclick="setLocation(this.readAttribute('data-href'))" data-href="<?php echo $this->getLimitUrl($_key) ?>" class="<?php echo 'limit-'.$_key ?> pull-left mr-5 <?php if ($this->getLimit() == strtolower($_limit)) echo 'active'?>"><?php echo $_limit ?><?php if (count($this->getAvailableLimit()) > $i): echo '<span>/ </span>' ;endif; ?>     
+                    </a>
+					<?php endif; ?>
+                <?php $i++;endforeach; ?>    
+            </div>
+			
+        </div>
+    </div>
+    <div class="toolbar-right pull-right">
+        <div class="sorter ">
+            <div class="sort-by">
+                <p class="pull-left ktm-toolbar-label hidden-md hidden-sm"><label><?php echo $this->__('Sort By') ?></label></p>
+                <?php if($enable_ajax_filter):?>
+                <select onchange="ktmcoreFilter.setAjaxLocation(this.value)" class="pull-left ktm-sort ktm-sort-by">
+                <?php else: ?>
+                <select onchange="setLocation(this.value)" class="ktm-sort ktm-sort-by">
+                <?php endif;?>
+                <?php foreach($this->getAvailableOrders() as $_key=>$_order): ?>
+                    <option value="<?php echo $this->getOrderUrl($_key, 'asc') ?>"<?php if($this->isOrderCurrent($_key)): ?> selected="selected"<?php endif; ?>>
+                        <?php echo $this->__($_order) ?>
+                    </option>
+                <?php endforeach; ?>
+                </select>
+                <p class="ktm-sort-arrows pull-left">
+                    <?php if($this->getCurrentDirection() == 'desc'): ?>
+                        <a class="set" href="<?php echo $this->getOrderUrl(null, 'asc') ?>" title="<?php echo $this->__('Set Ascending Direction') ?>"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+                    <?php else: ?>
+                        <a class="set" href="<?php echo $this->getOrderUrl(null, 'desc') ?>" title="<?php echo $this->__('Set Descending Direction') ?>"><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                    <?php endif; ?>
+                </p>
+            </div>
+
+        
+        
+        <?php if( $this->isExpanded() ): ?>
+        </div>
+    </div>
+	<?php endif; ?>
+    <?php if ($getPagerHtml = trim($this->getPagerHtml())): ?>
+        <div class="pager">
+        <?php echo $this->getPagerHtml() ?>
+        </div>
+    <?php endif; ?>
+</div>
+
+<?php endif ?>
+<script type="text/javascript"> 
+    jQuery(".fake-select > div").click(function(){
+        location.href = jQuery(this).attr('data-href');
+    })
+</script>

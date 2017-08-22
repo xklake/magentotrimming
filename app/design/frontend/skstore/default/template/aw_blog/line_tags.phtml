@@ -1,0 +1,9 @@
+<span><i class="fa fa-tags" aria-hidden="true"></i></span>
+<ul class="tags">
+    <?php
+    $tags = explode(',', $this->getPost()->getTags());
+
+    foreach ($tags as $tag): ?>
+        <li><a href="<?php echo Mage::getUrl(Mage::helper('blog')->getRoute() . '/tag/' . urlencode($tag)) ?>"><?php echo $tag ?></a></li>
+    <?php endforeach; ?>
+</ul>

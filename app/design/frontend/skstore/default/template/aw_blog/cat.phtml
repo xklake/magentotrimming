@@ -1,0 +1,50 @@
+<?php
+    $helper = Mage::helper('ktmwidget');
+?>
+<?php $posts = $this->getPosts(); ?>
+<div id="messages_product_view">
+    <?php Mage::app()->getLayout()->getMessagesBlock()->setMessages(Mage::getSingleton('customer/session')->getMessages(true)); ?>
+    <?php echo Mage::app()->getLayout()->getMessagesBlock()->getGroupedHtml(); ?>
+</div>
+
+<div class="toolbar-top">
+<?php echo $this->getChildHtml('aw_blog_comments_toolbar'); ?>
+</div>
+<?php foreach ($posts as $post): ?>
+    <div class="postWrapper">
+        <?php $img = $helper->getImgBlog($post->getShortContent()); ?>
+        <?php if ($img) : ?>
+            <a href="<?php echo $post->getAddress(); ?>" ><img class="img-responsive lazy" data-src="<?php echo $img; ?>" src="<?php echo $this->getSkinUrl('images/loader.gif') ?>" alt="<?php echo $post->getTitle(); ?>"/></a>
+        <?php endif; ?>
+        <div class="title-blog">
+            <h2><a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a></h2>
+        </div>
+        <div class="postDetails">
+            <?php if ($this->getCommentsEnabled()): ?>
+                <?php echo $post->getCommentCount(); ?> <a href="<?php echo $post->getAddress(); ?>#commentBox" > <?php echo Mage::helper('blog')->__('Comments'); ?></a> |
+            <?php endif; ?>
+            <?php $postCats = $post->getCats(); ?>
+            <?php if (!empty($postCats)): ?>
+                <?php echo Mage::helper('blog')->__('Posted in'); ?>
+                <?php foreach ($postCats as $data): ?>
+                    <a href="<?php echo $data['url']; ?>"><?php echo $data['title']; ?></a>
+                <?php endforeach; ?> | 
+            <?php else: ?>
+                <?php echo Mage::helper('blog')->__('Posted'); ?>
+            <?php endif; ?><?php echo $this->__("By"); ?> <?php echo $post->getUser(); ?>
+            <div class="create-time"><?php echo $post->getCreatedTime(); ?></div>
+        </div>
+        <div class="postContent">
+            <?php //echo $post->getPostContent(); ?>
+            <?php $content = $helper->truncate(strip_tags($post->getShortContent()), $length = 300, $etc = '...'); ?>
+            <?php echo $content; ?>
+        </div>
+        <div class="bookmark-blog"><?php echo $this->getBookmarkHtml($post) ?></div>
+        <!-- <div class="tags"><?php //echo $this->getTagsHtml($post) ?></div> -->
+        <div class="readmore"><a class="readmore-post btn-readmore h4" href="<?php echo $post->getAddress(); ?>"><span><?php echo $this->__('Read More'); ?></span></a></div>
+    </div>
+<?php endforeach; ?>
+<div class="toolbar-bottom">
+<?php echo $this->getChildHtml('aw_blog_comments_toolbar'); ?>
+</div>
+<?php //echo $this->getChildHtml('aw_blog_comments_toolbar'); ?>

@@ -1,0 +1,199 @@
+<?php
+    $helper = Mage::helper('ktmwidget');
+    $posts = $this->getPosts();
+?>
+<div id="messages_product_view">
+<?php
+    Mage::app()->getLayout()->getMessagesBlock()->setMessages(Mage::getSingleton('customer/session')->getMessages(true));
+    echo Mage::app()->getLayout()->getMessagesBlock()->getGroupedHtml();
+?>
+</div>
+
+<div class="toolbar-top">
+<?php
+    echo $this->getChildHtml('aw_blog_comments_toolbar');
+
+?>
+</div>
+<div class="postWrapper-blog-masonry clearfix">
+	<div class="blog-masonry-left no-padding-left-right col-md-6">
+<?php
+$countPost = 0;
+//start foreach posts
+$totalPost = count($posts);
+
+foreach ($posts as $post):
+	$countPost++;
+	if($countPost %2 !== 0) {
+?>
+        <div class= "postContent-blog-masonry no-padding-left-right col-md-12 clearfix <?php echo $countPost; ?>">
+                <div class="no-padding-left-right col-md-12">
+                    <?php
+                    $img = $helper->getImgBlog($post->getShortContent());
+                    if ($img):
+                    ?>
+                        <a href="<?php echo $post->getAddress(); ?>" alt="<?php echo $post->getTitle(); ?>" title="<?php echo $post->getTitle(); ?>"/>
+                            <div class="image-blog-masonry<?php if($countPost == 1 || $countPost == $totalPost) {echo "-short";} ?>" style="background-image: url(<?php echo $img; ?>)"></div>
+                        </a>
+                    <?php 
+                    endif;
+                    ?>
+                </div>
+                <div class="wrap-text-blog no-padding-left-right col-md-12">
+                	<div class="blog-masonry-inner pl-30">
+	                    
+	                        <h2>
+	                            <a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a>
+	                        </h2>
+	                    
+	                    
+	                        <p>
+	                        <?php
+	                            $previousTimeStamp = strtotime($post->getCreatedTime());
+	                            echo $this->timeShowing($previousTimeStamp);
+	                        ?>
+	                        </p>
+	                    
+	                    
+	                        <p class="postContent">
+	                        <?php
+	                            $content = $helper->truncate(strip_tags($post->getShortContent()), $length = 600, $etc = '...');
+	                            echo $content;
+	                        ?>
+	                        </p>
+	                    
+	                </div>
+                </div>
+        </div>
+       
+<?php } ?>
+
+<?php endforeach; ?>
+
+	</div>
+<!-- end col left -->
+
+<div class="blog-masonry-right hidden-xs hidden-sm no-padding-left-right col-md-6">
+<?php
+$countPost = 0;
+//start foreach posts
+foreach ($posts as $post):
+	$countPost++;
+	if($countPost %2 == 0) {
+?>
+        <div class= "postContent-blog-masonry no-padding-left-right col-md-12 clearfix <?php echo $countPost; ?>">
+
+        		<div class="wrap-text-blog no-padding-left-right col-md-12">
+                	<div class="blog-masonry-inner pl-30">
+	                    
+	                        <h2>
+	                            <a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a>
+	                        </h2>
+	                    
+	                    
+	                        <p>
+	                        <?php
+	                            $previousTimeStamp = strtotime($post->getCreatedTime());
+	                            echo $this->timeShowing($previousTimeStamp);
+	                        ?>
+	                        </p>
+	                    
+	                    
+	                        <p class="postContent">
+	                        <?php
+	                            $content = $helper->truncate(strip_tags($post->getShortContent()), $length = 600, $etc = '...');
+	                            echo $content;
+	                        ?>
+	                        </p>
+	                   
+	                </div>
+                </div>
+                <div class="no-padding-left-right col-md-12">
+                    <?php
+                    $img = $helper->getImgBlog($post->getShortContent());
+                    if ($img):
+                    ?>
+                        <a href="<?php echo $post->getAddress(); ?>" alt="<?php echo $post->getTitle(); ?>" title="<?php echo $post->getTitle(); ?>"/>
+                            <div class="image-blog-masonry<?php if($totalPost == $countPost) {echo "-short";} ?>" style="background-image: url(<?php echo $img; ?>)"></div>
+                        </a>
+                    <?php 
+                    endif;
+                    ?>
+                </div>
+                
+        </div>
+       
+<?php } ?>
+
+<?php endforeach; ?>
+
+	</div>
+<!-- end col right -->
+
+<div class="blog-masonry-right hidden-md hidden-lg no-padding-left-right col-md-6">
+<?php
+$countPost = 0;
+//start foreach posts
+foreach ($posts as $post):
+	$countPost++;
+	if($countPost %2 == 0) {
+?>
+        <div class= "postContent-blog-masonry no-padding-left-right col-md-12 clearfix <?php echo $countPost; ?>">
+
+        		
+                <div class="no-padding-left-right col-md-12">
+                    <?php
+                    $img = $helper->getImgBlog($post->getShortContent());
+                    if ($img):
+                    ?>
+                        <a href="<?php echo $post->getAddress(); ?>" alt="<?php echo $post->getTitle(); ?>" title="<?php echo $post->getTitle(); ?>"/>
+                            <div class="image-blog-masonry<?php if($totalPost == $countPost) {echo "-short";} ?>" style="background-image: url(<?php echo $img; ?>)"></div>
+                        </a>
+                    <?php 
+                    endif;
+                    ?>
+                </div>
+                <div class="wrap-text-blog no-padding-left-right col-md-12">
+                	<div class="blog-masonry-inner pl-30">
+	                   
+	                        <h2>
+	                            <a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a>
+	                        </h2>
+	                    
+	                   
+	                        <p>
+	                        <?php
+	                            $previousTimeStamp = strtotime($post->getCreatedTime());
+	                            echo $this->timeShowing($previousTimeStamp);
+	                        ?>
+	                        </p>
+	                    
+	                    
+	                        <p class="postContent">
+	                        <?php
+	                            $content = $helper->truncate(strip_tags($post->getShortContent()), $length = 600, $etc = '...');
+	                            echo $content;
+	                        ?>
+	                        </p>
+	                   
+	                </div>
+                </div>
+                
+        </div>
+       
+<?php } ?>
+
+<?php endforeach; ?>
+
+	</div>
+<!-- end col right -->
+
+
+	
+
+</div>
+
+<div class="toolbar-bottom">
+<?php echo $this->getChildHtml('aw_blog_comments_toolbar'); ?>
+</div>
+<?php //echo $this->getChildHtml('aw_blog_comments_toolbar'); ?>

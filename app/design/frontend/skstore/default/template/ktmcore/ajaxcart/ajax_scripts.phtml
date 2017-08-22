@@ -1,0 +1,45 @@
+<?php
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+?> 
+<script type="text/javascript">
+    (function($){
+        <?php if (Mage::getStoreConfig('ajaxcart/ajaxcart_config/enable_ajaxwishlist')) : ?>
+
+        $(document).on('click', '.block-wishlist #wishlist-sidebar a', function(event) {
+            event.preventDefault();
+            if (confirm($(this).attr('data-confirm'))) {
+                removetowishlist($(this));
+            }
+        });
+        $(document).on('click', '.add-to-links a.link-wishlist', function(event) {
+            event.preventDefault();
+            addtowishlist($(this));
+        }); 
+        if($('.product-view').length>0){
+            productAddToCartForm.submitLight = function(button, url){
+                return false; 
+            }.bind(productAddToCartForm);
+        }
+        <?php endif;?>
+        <?php if (Mage::getStoreConfig('ajaxcart/ajaxcart_config/enable_ajaxcompare')) : ?>
+        $(document).on('click', '.add-to-links a.link-compare', function(event) {
+            event.preventDefault();
+            addtocompare($(this));
+        });
+        $(document).on('click', '.block-top-compare a.btn-remove', function(event) {
+            event.preventDefault();
+            if (confirm($(this).attr('data-confirm'))) {
+                removecompare($(this));
+            }
+        });
+        $(document).on('click', '.block-compare .clearall a, .block-compare .actions a, .block-top-compare .clearall a', function(event) {
+            event.preventDefault();
+            if (confirm($(this).attr('data-confirm'))) {
+                clearallcompare($(this));
+            }
+        });
+        <?php endif;?>
+    })($ktm);
+</script>

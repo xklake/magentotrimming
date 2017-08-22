@@ -1,0 +1,112 @@
+<?php
+/**
+ * @copyright    Copyright (C) 2015 skstore. All Rights Reserved.
+ */
+?>
+<?php
+$theme = $this->helper('skstore');
+$compareHeader = $theme->getCfg('header/compare');
+$headerLayout = $theme->getCfg('header/layout');
+$stickyEnable = $theme->getCfg('header/sticky_enable');
+$sticky_logo =	$theme->getCfg('header/sticky_logo');
+$mobileCart = $theme->getCfg('header/hide_on_mobile');
+$logo = $theme->getCfg('header/logo_upload');
+$logoAlt = $theme->getCfg('header/logo_alt');
+$logo_retina = $theme->getCfg('header/logo_retina_upload');
+$mediaUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+$home = $theme->getIsHomePage();
+$class = $mobileCart ? 'hidden-xs' : '';
+require_once 'app/Mage.php';
+umask(0);
+Mage::app('default');
+Mage::getSingleton('core/session', array('name' => 'frontend'));
+$sessionCustomer = Mage::getSingleton("customer/session");
+$enable_vhome_menu = $theme->getCfg('header/enable_vertical_menu_home');
+
+?>
+<header class="header-container header-layout-1 header-layout-default">
+
+        <div class="header">
+		<div class="header-top header-top-layout1 clearfix">
+            <div class="top-bar-left col-md-6 col-sm-6 clearfix no-padding">
+				<?php echo $theme->getCmsBlock('left_top_bar_header_block_layout1'); ?>
+			</div>
+            <div class="btn-group-right col-md-6 col-sm-6 clearfix no-padding">
+				<div class="menu-bar-btn hidden-lg">
+                    <button class="btn-nav"><i class="icon-list icons"></i></button>
+                </div>
+                <div class="quick-top-search">
+                    <i class="icon-magnifier"></i>
+                    <div class="top-search">
+                        <?php echo $this->getChildHtml('topSearch') ?>
+                    </div>
+                </div>
+
+                <?php if ($this->getChildHtml('currency')) : ?>
+                <div class="setting-currency">
+                    <?php echo $this->getChildHtml('currency') ?>
+                </div>
+                <?php endif; ?>
+				
+				<div class="ktm-top-cart <?php echo $class; ?>">
+                    <div class="ktm-maincart">
+                        <?php echo $this->getChildHtml('ajaxcart'); ?>
+                    </div>
+                    <div id="notification"></div>
+                </div>                
+
+				<div class="settings">
+                    <i class="icon-user icons"></i>
+                    <div class="settings-inner">
+                        <div class="setting-content">
+                            <div class="setting-option">
+								<?php echo $this->getChildHtml("header_account"); ?>	
+                            </div>
+							<div class="setting-bottom clearfix">
+								<?php if ($this->getChildHtml('store_language')) : ?>
+								<div class="setting-language pull-left">
+									<div class="title"><?php echo $this->__('Your language') ?></div>
+									<?php echo $this->getChildHtml('store_language'); ?>
+								</div>
+								<?php endif; ?>
+								<div class="social-connect pull-right">	
+									<div class="title">	
+										<?php echo $this->__("Connect with");?>
+									</div>
+									<div class="socials-connect">
+										<div class="connect-ic"><a href="#"><i class="fa fa-facebook"></i></a></div>
+										<div class="connect-ic"><a href="#"><i class="fa fa-twitter"></i></a></div>
+										<div class="connect-ic"><a href="#"><i class="fa fa-google-plus"></i></a></div>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                </div>
+
+			</div>
+		</div>
+    </div>
+	
+    <?php if (!$home || !$enable_vhome_menu)  : ?>
+        <div class="menu-full" id="ktm-sticky-header">
+            <div class="header-menu">
+                <div class="nav-top">
+                    <div class="container box-menu">
+                        <div class="nav-top-inner clearfix">
+                            <?php echo $this->getChildHtml('topMenu') ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif ?>
+
+    <?php if ($stickyEnable) { ?>
+        <script type="text/javascript">
+            $ktm(window).load(function () {
+                $ktm("#ktm-sticky-header").sticky({topSpacing: 0});
+            });
+        </script>
+    <?php } ?>
+</header>

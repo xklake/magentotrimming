@@ -1,0 +1,44 @@
+<?php 
+/**
+ * Bss_Socialfeeds extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Bss
+ * @package        Bss_Socialfeeds
+ * @copyright      Copyright (c) 2015
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * Socialfeed list template
+ *
+ * @category    Bss
+ * @package     Bss_Socialfeeds
+ * @author      Ultimate Module Creator
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php $_socialfeeds = $this->getSocialfeeds(); ?>
+<div class="page-title socialfeed-title">
+    <h1><?php echo Mage::helper('bss_socialfeeds')->__('Socialfeeds') ?></h1>
+</div>
+<?php if ($_socialfeeds->getSize() > 0) :?>
+    <?php echo $this->getPagerHtml(); ?>
+    <div class="socialfeed-list-container">
+    <?php foreach ($_socialfeeds as $_socialfeed) : ?>
+        <div class="socialfeed-list-item">
+            <a href="<?php echo $_socialfeed->getSocialfeedUrl()?>">
+                <?php echo $_socialfeed->getSocialfeedsStatus();?>
+            </a><br />
+        </div>
+    <?php endforeach;?>
+    </div>
+    <?php echo $this->getPagerHtml(); ?>
+<?php else : ?>
+    <?php echo Mage::helper('bss_socialfeeds')->__('There are no socialfeeds at this moment');?>
+<?php endif;?>

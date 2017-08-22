@@ -1,0 +1,363 @@
+/*==========================
+    mobile menu
+==========================*/
+
+.ktm-container {
+  position: relative;
+}
+.ktm-wrapper {
+  position: relative;
+  left: 0;
+  z-index: 99;
+  height: 100%;
+  -webkit-transition: -webkit-transform 0.5s;
+  -o-transition: -o-transform 0.5s;
+  transition: transform 0.5s;
+}
+.sidebar {
+  padding: 0;
+}
+.ktm-nav ul.nav-accordion {
+  min-width: 270px;
+  display: inline-block;
+  margin-left: 20px;
+}
+.ktm-nav ul.nav-accordion li > i.fa-angle-down {
+  display: none;
+}
+.ktm-nav .home a {
+  padding: 11px 0;
+  height: auto;
+}
+.ktm-nav .home a span {
+  font-size: 30px;
+}
+.ktm-nav ul.nav-accordion > li > a {
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+}
+.ktm-nav ul.nav-accordion li a {
+  color: #f2f2f2;
+  font-size: 14px;
+  text-transform: capitalize;
+  padding: 11px 42px 11px 15px;
+  text-transform: capitalize;
+}
+.ktm-nav ul.nav-accordion li span.expand, .ktm-nav ul.nav-accordion li span.collapse {
+  color: #f2f2f2;
+  border-left: none;
+  font-size: 14px;
+}
+.ktm-nav ul.nav-accordion li.last a {
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+}
+.overlay {
+  position: fixed;
+  width: 320px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+  padding-top: 100px;
+}
+.overlay-contentscale {
+  background: rgba(0, 0, 0, 0.9);
+  visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateX(-320px);
+  transform: translateX(-320px);
+  -webkit-transition: -webkit-transform 0.5s, visibility 0s 0.5s;
+  transition: transform 0.5s, visibility 0s 0.5s;
+  overflow: auto;
+}
+.overlay-contentscale.open {
+  visibility: visible;
+  -webkit-transform: translateX(0%);
+  transform: translateX(0%);
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+}
+.overlay .overlay-close {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  overflow: hidden;
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  color: #ccc;
+  outline: none;
+  z-index: 100;
+  background-color: transparent;
+  font-size: 20px;
+  text-align: center;
+}
+.overlay .overlay-close i {
+  line-height: 30px;
+}
+.ktm-wrapper.overlay-open {
+  -webkit-transform: translateX(320px);
+  transform: translateX(320px);
+}
+
+.cmn-toggle-switch {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  font-size: 0;
+  text-indent: -9999px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: background 0.3s;
+  -o-transition: background 0.3s;
+  transition: background 0.3s;
+  float: left;
+}
+.cmn-toggle-switch:focus {
+  outline: none;
+}
+.cmn-toggle-switch span {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 2px;
+  background: white;
+  margin-top: -1px;
+  width: 30px;
+  margin-left: -15px;
+}
+.cmn-toggle-switch span::before, .cmn-toggle-switch span::after {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  content: "";
+}
+.cmn-toggle-switch span::before {
+  top: 10px;
+}
+.cmn-toggle-switch span::after {
+  bottom: 10px;
+}
+.cmn-toggle-switch__htx {
+  background-color: #ff3264;
+}
+.cmn-toggle-switch__htx span {
+  -webkit-transition: background 0s 0.3s;
+  -o-transition: background 0s 0.3s;
+  transition: background 0s 0.3s;
+}
+.cmn-toggle-switch__htx span::before, .cmn-toggle-switch__htx span::after {
+  -webkit-transition-duration: 0.3s, 0.3s;
+  -o-transition-duration: 0.3s, 0.3s;
+  transition-duration: 0.3s, 0.3s;
+  -webkit-transition-delay: 0.3s, 0s;
+  -o-transition-delay: 0.3s, 0s;
+  transition-delay: 0.3s, 0s;
+}
+.cmn-toggle-switch__htx span::before {
+  -webkit-transition-property: top, -webkit-transform;
+  -o-transition-property: top, -o-transform;
+  transition-property: top, transform;
+}
+.cmn-toggle-switch__htx span::after {
+  -webkit-transition-property: bottom, -webkit-transform;
+  -o-transition-property: bottom, -o-transform;
+  transition-property: bottom, transform;
+}
+.cmn-toggle-switch__htx.active {
+  background-color: #cb0032;
+}
+.cmn-toggle-switch__htx.active span {
+  background: none;
+}
+.cmn-toggle-switch__htx.active span::before {
+  top: 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.cmn-toggle-switch__htx.active span::after {
+  bottom: 0;
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.cmn-toggle-switch__htx.active span::before, .cmn-toggle-switch__htx.active span::after {
+  -webkit-transition-delay: 0s, 0.3s;
+  -o-transition-delay: 0s, 0.3s;
+  transition-delay: 0s, 0.3s;
+}
+/* accordion - please don't modify this*/
+
+ul.nav-accordion {
+  line-height: 0.5em;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  transform: translateX(0);
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  -o-transition: -o-transform 0.5s;
+  transition: transform 0.5s;
+}
+ul.nav-accordion ul.level0 > li > a {
+  padding-left: 30px;
+}
+ul.nav-accordion ul.level1 > li > a {
+  padding-left: 40px;
+}
+ul.nav-accordion ul.level2 > li > a {
+  padding-left: 50px;
+}
+ul.nav-accordion li {
+  background: none;
+  position: relative;
+  line-height: 20px;
+}
+ul.nav-accordion > li > a {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+ul.nav-accordion li a {
+  display: block;
+  margin: 0;
+  height: 56px;
+  padding: 18px 42px 18px 0;
+  text-decoration: none;
+  text-shadow: none;
+  -webkit-transition: color 0.3s ease-in-out 0s;
+  -o-transition: color 0.3s ease-in-out 0s;
+  transition: color 0.3s ease-in-out 0s;
+  border-bottom: 1px solid #aaa
+}
+
+ul.nav-accordion li.level1.last a {
+  border: none;
+}
+ul.nav-accordion li a:hover {
+  color: #bbb;
+}
+ul.nav-accordion ul {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+ul.nav-accordion ul li {
+  clear: both;
+  margin: 0;
+  padding: 0;
+}
+ul.nav-accordion ul li a {
+  font-size: 100%;
+  outline: none;
+  padding-left: 15px;
+}
+ul#ktm-accordion li span.collapse {
+  top: 0;
+}
+ul#ktm-accordion li span.expand {
+  top: 0;
+}
+ul.nav-accordion ul ul li a {
+  padding-left: 30px;
+}
+ul.nav-accordion ul ul ul li a {
+  padding-left: 40px;
+}
+ul.nav-accordion li span.expand {
+  background-color: transparent;
+  cursor: pointer;
+  display: block;
+  line-height: 56px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 42px;
+  height: 56px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  text-align: center;
+}
+ul.nav-accordion li span.text {
+  display: none;
+}
+ul.nav-accordion li span.collapse {
+  visibility: visible;
+  background-color: transparent;
+  cursor: pointer;
+  display: block;
+  line-height: 56px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 42px;
+  height: 56px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  text-align: center;
+}
+ul.detail-parent {
+  margin: 0;
+  padding: 0 0 0 17px;
+}
+ul.nav-accordion li.level0 > a > span > .cat-label {
+  position: inherit;
+  display: none;
+}
+ul.nav-accordion li.level0 > a > span > .pin-bottom:before {
+  position: inherit;
+  right: 6px;
+  top: 22px;
+  width: 0;
+  height: 0;
+  content: "";
+  border: 0;
+  display: none;
+}
+/* RTL */
+
+.rtl ul.nav-accordion {
+  padding-left: 0;
+  padding-right: 0;
+}
+.rtl ul#ktm-accordion li span.collapse, .rtl ul#ktm-accordion li span.expand {
+  left: 0;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  border-left: 0;
+  text-align: center;
+}
+.rtl .ktm-menu-active .collapsed-icon {
+  /*margin-left: 0;
+  margin-right: 15px;*/
+}
+.rtl .navbar-inverse .navbar-toggle:hover .icon-bar, .rtl .navbar-inverse .navbar-toggle:focus .icon-bar {
+  background: #fff;
+}

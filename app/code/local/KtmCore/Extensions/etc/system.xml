@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+-->
+<config>
+    <tabs>
+        <ktmext translate="label">
+            <label>Ktm Extensions</label>
+            <sort_order>101</sort_order>
+        </ktmext>
+    </tabs>
+</config>

@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Bss_Socialfeeds extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Bss
+ * @package        Bss_Socialfeeds
+ * @copyright      Copyright (c) 2015
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+    <modules>
+        <Bss_Socialfeeds>
+            <version>1.0.1</version>
+        </Bss_Socialfeeds>
+    </modules>
+    <global>
+        <resources>
+            <bss_socialfeeds_setup>
+                <setup>
+                    <module>Bss_Socialfeeds</module>
+                    <class>Bss_Socialfeeds_Model_Resource_Setup</class>
+                </setup>
+            </bss_socialfeeds_setup>
+        </resources>
+        <blocks>
+            <bss_socialfeeds>
+                <class>Bss_Socialfeeds_Block</class>
+            </bss_socialfeeds>
+        </blocks>
+        <helpers>
+            <bss_socialfeeds>
+                <class>Bss_Socialfeeds_Helper</class>
+            </bss_socialfeeds>
+        </helpers>
+        <models>
+            <bss_socialfeeds>
+                <class>Bss_Socialfeeds_Model</class>
+                <resourceModel>bss_socialfeeds_resource</resourceModel>
+            </bss_socialfeeds>
+            <bss_socialfeeds_resource>
+                <class>Bss_Socialfeeds_Model_Resource</class>
+                <entities>
+                    <socialfeed>
+                        <table>bss_socialfeeds_socialfeed</table>
+                    </socialfeed>
+                </entities>
+            </bss_socialfeeds_resource>
+        </models>
+        <events>
+            <controller_front_init_routers>
+                <observers>
+                    <bss_socialfeeds>
+                        <class>Bss_Socialfeeds_Controller_Router</class>
+                        <method>initControllerRouters</method>
+                    </bss_socialfeeds>
+                </observers>
+            </controller_front_init_routers>
+        </events>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Bss_Socialfeeds before="Mage_Adminhtml">Bss_Socialfeeds_Adminhtml</Bss_Socialfeeds>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <frontend>
+        <routers>
+            <bss_socialfeeds>
+                <use>standard</use>
+                <args>
+                    <module>Bss_Socialfeeds</module>
+                    <frontName>bss_socialfeeds</frontName>
+                </args>
+            </bss_socialfeeds>
+        </routers>
+        <layout>
+            <updates>
+                <bss_socialfeeds>
+                    <file>bss_socialfeeds.xml</file>
+                </bss_socialfeeds>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Bss_Socialfeeds>
+                    <files>
+                        <default>Bss_Socialfeeds.csv</default>
+                    </files>
+                </Bss_Socialfeeds>
+            </modules>
+        </translate>
+    </frontend>
+    <default>
+        <bss_socialfeeds>
+            <socialfeed>
+                <breadcrumbs>1</breadcrumbs>
+            </socialfeed>
+        </bss_socialfeeds>
+    </default>
+</config>

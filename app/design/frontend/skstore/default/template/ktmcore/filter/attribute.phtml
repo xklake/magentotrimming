@@ -1,0 +1,25 @@
+<ol>
+	<?php
+	$selection = FALSE;
+	$items = $this->getItems();
+	foreach ($this->getItems() as $_item){
+		if ($_item->isSelected()){
+			$selection = TRUE;
+			$removal_url=$_item->getRemoveUrl();
+			break;
+		}
+	}
+	?>
+	<?php foreach ($this->getItems() as $_item): ?>
+		<li class="attribute">
+		<?php if( $_item->isSelected() ) : ?>
+			<span class="checkbox-img checked"></span>
+			<a style="color: #666633" class="multi-select isselected" href="<?php echo $removal_url ?>"><?php echo $_item->getLabel() ?></a>
+		<?php else : ?>
+			<span class="checkbox-img"></span>
+			<a style="color: #666633" class="multi-select unselected" href="<?php echo $this->urlEscape($_item->getUrl()) ?>"><?php echo $_item->getLabel() ?></a>
+		<?php endif; ?>
+		(<?php echo $_item->getCount() ?>)
+		</li>
+	<?php endforeach ?>
+</ol>

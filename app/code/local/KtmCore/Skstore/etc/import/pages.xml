@@ -1,0 +1,83 @@
+<root><pages><cms_block><title>SK Home page 1</title><identifier>home</identifier><root_template>one_column</root_template><content><![CDATA[<!-- Home page -->]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>About Us</title><identifier>about-us</identifier><root_template>one_column</root_template><content><![CDATA[<div class="about-us-container">
+<div class="about-us-top clearfix">
+<div class="col-xs-12 col-sm-6">
+<h2 class="title pt-50 pb-40 fs-40 upp fw-8">Who we are</h2>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+<p>standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also</p>
+<p>the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia.</p>
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some</p>
+</div>
+<div class="col-xs-12 col-sm-6">
+<div class="row">
+<div class="about-img"><img alt="" src="{{media url='wysiwyg/skstore/about-img-1.png'}}" /></div>
+<div class="about-img"><img alt="" src="{{media url='wysiwyg/skstore/about-img-2.png'}}" /></div>
+</div>
+</div>
+</div>
+<div class="about-us-middle clearfix">
+<div class="about-us-clearbox parallax-section" data-parallax="scroll" data-image-src="{{skin url='images/parallax-about-us.jpg'}}">&nbsp;</div>
+<div class="about-middle-content col-xs-12 col-sm-7 pull-right">
+<h3 class="title pt-50 pb-40 fs-40 upp fw-8">Why choose us</h3>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+<p>standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also</p>
+<p>the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia.</p>
+<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some</p>
+<div class="about-img"><img alt="" src="{{media url='wysiwyg/skstore/about-img-3.jpg'}}" /></div>
+</div>
+</div>
+<div class="about-us-bottom clearfix">
+<div class="about-us-our-team-title">
+<h3 class="title fs-40 upp fw-8">Our Team</h3>
+<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span></div>
+<div class="our-team-wrap">
+<div class="row">
+<div class="col-xs-12 col-sm-6">
+<div class="out-info">
+<div class="our-job fw-8 fs-24 mt-50 upp">Founder</div>
+<div class="our-name fs-16 upp fw-6 mb-30">Lucy Mary</div>
+<div class="our-des">
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+<p>standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type Virginia.</p>
+</div>
+</div>
+<div class="our-img"><img alt="" src="{{media url='wysiwyg/skstore/Mary.jpg'}}" /></div>
+</div>
+<div class="col-xs-12 col-sm-6">
+<div class="out-info">
+<div class="our-job fw-8 fs-24 mt-50 upp">Sales Director</div>
+<div class="our-name fs-16 upp fw-6 mb-30">Alex Kim</div>
+<div class="our-des">
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+<p>standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type Virginia.</p>
+</div>
+</div>
+<div class="our-img"><img alt="" src="{{media url='wysiwyg/skstore/Kim.jpg'}}" /></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="{{skin url=''}}js/parallax.min.js"></script>
+<script type="text/javascript">// <![CDATA[
+jQuery(".parallax-section").parallax({
+		imageSrc: jQuery(".parallax-section").attr('data-image-src'),
+	});
+// ]]></script>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Contact us</title><identifier>contact-us</identifier><root_template>one_column</root_template><content><![CDATA[<div class="contact-content clearfix">
+	<div class="contact-info col-sm-push-8 col-xs-12 col-sm-4">
+		<div class="address pl-20 pr-20">
+			<h4 class="fs-16 fw-7 upp"><i class="fa fa-map-marker mr-10">&nbsp;</i>ADDRESS</h4>
+			<p>PO Box CT16122 Collins Street West, <br />Victoria 8007, Australia.</p>
+		</div>
+		<div class="mobile pl-20 pr-20">
+			<h4 class="fs-16 fw-7 upp"><i class="fa fa-mobile mr-10">&nbsp;</i>Mobile</h4>
+			<p>+1 (2) 345 6789 - +1 (2) 345 5486</p>
+		</div>
+		<div class="email pl-20 pr-20">
+			<h4 class="fs-16 fw-7 upp"><i class="fa fa-envelope mr-10">&nbsp;</i>Email</h4>
+			<p><a href="mailto:contact@yourdomain.com">contact@yourdomain.com</a></p>
+		</div>
+	</div>
+	<div class="form-container col-sm-pull-4 col-xs-12 col-sm-8">{{block type="core/template" name="contact-form" template="contacts/form.phtml}}</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>SK Home page 2</title><identifier>home</identifier><root_template>one_column</root_template><content><![CDATA[<!--Home-->]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block></pages></root>

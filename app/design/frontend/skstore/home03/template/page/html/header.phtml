@@ -1,0 +1,189 @@
+<?php
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+?>
+<?php
+$theme = $this->helper('skstore');
+$compareHeader = $theme->getCfg('header/compare');
+$headerLayout = $theme->getCfg('header/layout');
+$stickyEnable = $theme->getCfg('header/sticky_enable');
+$mobileCart = $theme->getCfg('header/hide_on_mobile');
+$logo = $theme->getCfg('header/logo_upload');
+$logoAlt = $theme->getCfg('header/logo_alt');
+$logo_retina = $theme->getCfg('header/logo_retina_upload');
+$mediaUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+$class = $mobileCart ? 'hidden-xs' : '';
+require_once 'app/Mage.php';
+umask(0);
+Mage::app('default');
+Mage::getSingleton('core/session', array('name' => 'frontend'));
+$sessionCustomer = Mage::getSingleton("customer/session");
+?>
+<?php
+$header_class = "";
+if ($headerLayout == "layout1") {
+    $header_class = "header-layout-1 header-layout-default";
+} elseif ($headerLayout == "layout2") {
+    $header_class = "header-layout-2";
+} elseif ($headerLayout == "layout4") {
+    $header_class = "header-layout-4";
+} else {
+    $header_class = "header-layout-3";
+}
+?>
+<header class="header-container <?php echo $header_class; ?>">
+    <?php if ($headerLayout == "layout1"): ?>
+    <!--Begin Header Layout 1-->
+    <div class="header">
+        <div class="header-content">
+            <div class="container">
+                <div class="header-inner">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="logo-home">
+                                <?php if ($this->getIsHomePage()): ?>
+                                    <h1 class="logo">
+                                        <strong><?php echo $logoAlt ?></strong><a href="<?php echo $this->getUrl('', $theme->checkSSL()) ?>" title="<?php echo $logoAlt ?>">
+                                            <img class="img-responsive" src="<?php echo $mediaUrl . 'wysiwyg/ktmcore/skstore/logo/' . $logo; ?>" alt="<?php echo $logoAlt ?>"/></a>
+                                    </h1>
+                                <?php else: ?>
+                                    <a href="<?php echo $this->getUrl('', $theme->checkSSL()) ?>" title="<?php echo $logoAlt ?>" class="logo"><strong><?php echo $logoAlt ?></strong>
+                                        <img class="img-responsive" src="<?php echo $mediaUrl . 'wysiwyg/ktmcore/skstore/logo/' . $logo; ?>" alt="<?php echo $logoAlt ?>"/>
+                                    </a>
+                                <?php endif ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="menu-full" id="ktm-sticky-header">
+        <div class="header-menu">
+            <div class="btn-group-left">
+                <div class="menu-bar-btn">
+                    <button class="btn-nav"><i class="icon-list icons"></i></button>
+                </div>
+                <div class="settings">
+                    <i class="icon-user icons"></i>
+                    <div class="settings-inner">
+                        <div class="setting-content">
+                            <div class="setting-option">
+                                <ul>
+                                    <li>
+                                        <?php if ($sessionCustomer->isLoggedIn()) : ?>
+                                            <a href="<?php echo Mage::getUrl('customer/account/logout', $theme->checkSSL()); ?>"><i class="icon-logout icons"></i><span><?php echo $this->__('Logout'); ?></span></a>
+                                        <?php else: ?>
+                                            <a href="<?php echo Mage::getUrl('customer/account/login', $theme->checkSSL()); ?>"><i class="icon-lock-open icons"></i><span><?php echo $this->__('Login'); ?> / <?php echo $this->__('Register') ?></span></a>
+                                        <?php endif; ?>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo $this->getUrl('customer/account', $theme->checkSSL()) ?>"><i class="icon-user icons"></i><span><?php echo $this->__('My Account') ?></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo $this->getUrl('wishlist', $theme->checkSSL()) ?>"><i class="icon-heart icons"></i><span><?php echo $this->__('My Wishlist') ?></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo $this->getUrl('checkout/cart', $theme->checkSSL()) ?>"><i class="icon-basket icons"></i><span><?php echo $this->__('My Cart') ?></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo $this->getUrl('checkout', $theme->checkSSL()) ?>"><i class="icon-calculator icons"></i><span><?php echo $this->__('Checkout'); ?></span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <?php if ($this->getChildHtml('store_language')) : ?>
+                            <div class="setting-language clearfix">
+                                <div class="title"><?php echo $this->__('Your language') ?></div>
+                                <?php echo $this->getChildHtml('store_language'); ?>
+                            </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php if ($compareHeader) : ?>
+                    <div class="compare-topbar">
+                        <?php $_helper = $this->helper('catalog/product_compare'); ?>
+                        <div class="compare-btn">
+                            <i class="icon-chart icons"></i>
+                        </div>
+                        <div class="compare-list block-top-compare">
+                            <?php echo $this->getChildHtml('compareajax') ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="nav-top">
+                <div class="container box-menu">
+                    <div class="nav-top-inner clearfix">
+                        <?php echo $this->getChildHtml('topMenu') ?>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-group-right">
+                <div class="quick-top-search">
+                    <i class="icon-magnifier"></i>
+                    <div class="top-search">
+                        <?php echo $this->getChildHtml('topSearch') ?>
+                    </div>
+                </div>
+                <div class="ktm-top-cart <?php echo $class; ?>">
+                    <div class="ktm-maincart">
+                        <?php echo $this->getChildHtml('ajaxcart'); ?>
+                    </div>
+                    <div id="notification"></div>
+                </div>
+                <?php if ($this->getChildHtml('currency')) : ?>
+                <div class="setting-currency">
+                    <?php echo $this->getChildHtml('currency') ?>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+        <!--End Header Layout 1-->
+    <?php endif ?>
+
+    <?php if ($headerLayout == "layout2"): ?>
+        <!--Begin Header Layout 2-->
+        <div class="header">
+                <h2>HeaderLayout2</h2>
+        </div>
+        <!--End Header Layout 2-->
+    <?php endif ?>
+
+    <?php if ($headerLayout == "layout3"): ?>
+        <!--Begin Header Layout 3-->
+        <div class="header">
+            <h2>HeaderLayout3</h2>
+        </div>
+        <!--End Header Layout 3-->
+    <?php endif ?>
+
+    <?php if ($headerLayout == "layout4"): ?>
+        <!--Begin Header Layout 4-->
+        <div class="header">
+            <h2>HeaderLayout4</h2>
+        </div>
+        <!--End Header Layout 4-->
+    <?php endif ?>
+
+    <?php if ($stickyEnable) { ?>
+        <script type="text/javascript">
+            var showPopupCart = '<?php echo Mage::getStoreConfig('ajaxcart/ajaxcart_config/enable_popupcart');?>';
+            $ktm(window).load(function () {
+                $ktm("#ktm-sticky-header").sticky({topSpacing: 0});
+                var $logoImg = $ktm('.ktm-wrapper .header .logo img');
+                if ($logoImg.css('min-height') == '1px') {
+                    $logoImg.attr('src', $logoImg.attr('src').replace('<?php echo $logo;?>', '<?php echo $logo_retina;?>'));
+                }
+            });
+            function isRetina() {
+                return ((window.matchMedia && (window.matchMedia('only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx), only screen and (min-resolution: 75.6dpcm)').matches || window.matchMedia('only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min--moz-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2)').matches)) || (window.devicePixelRatio && window.devicePixelRatio > 2)) && /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
+            }
+            jQuery(document).ready(function ($) {
+                // alert(isRetina());
+            });
+        </script>
+    <?php } ?>
+</header>

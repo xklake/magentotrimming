@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<widgets>
+     <ktmwidget>
+     	<parameters>
+     		<template translate="label">
+                <label>Template</label>
+                <visible>1</visible>
+                <type>select</type>
+                <values> 
+					<!-- <position01 translate="label">
+                        <value>ktmcore/widget/position01.phtml</value>
+                        <label>Product Style 1</label>
+                    </position01> -->
+					
+					<position02 translate="label">
+                        <value>ktmcore/widget/position02.phtml</value>
+                        <label>Product Style</label>
+                    </position02>
+					
+					<!-- <position03 translate="label">
+                        <value>ktmcore/widget/position03.phtml</value>
+                        <label>Product Style 3</label>
+                    </position03> -->
+					
+					<tab translate="label">
+                        <value>ktmcore/widget/tab.phtml</value>
+                        <label>Product Tabs</label>
+                    </tab>
+					
+					<!-- <attribute translate="label">
+                        <value>ktmcore/widget/attribute.phtml</value>
+                        <label>Product Brands</label>
+                    </attribute> -->
+					
+					<product-upsell translate="label">
+                        <value>ktmcore/widget/product-upsell.phtml</value>
+                        <label>Upsell Products</label>
+                    </product-upsell>
+					
+					<related translate="label">
+                        <value>ktmcore/widget/related.phtml</value>
+                        <label>Related Products</label>
+                    </related>
+
+                    <positionrightdetail translate="label">
+                        <value>ktmcore/widget/positionrightdetail.phtml</value>
+                        <label>Product Detail Block</label>
+                    </positionrightdetail> 
+					
+					<block translate="label">
+                        <value>ktmcore/widget/block.phtml</value>
+                        <label>Block Static</label>
+                    </block>
+
+					<blog translate="label">
+                        <value>ktmcore/widget/blog.phtml</value>
+                        <label>Blog Style</label>
+                    </blog>
+					
+                </values>
+            </template>
+     	</parameters>
+     </ktmwidget>
+</widgets>

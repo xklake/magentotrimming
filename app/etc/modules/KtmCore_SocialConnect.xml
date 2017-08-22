@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+-->
+
+<config>
+    <modules>
+        <KtmCore_SocialConnect>
+            <active>true</active>
+            <codePool>local</codePool>
+        </KtmCore_SocialConnect>
+    </modules>
+</config>

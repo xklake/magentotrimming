@@ -1,0 +1,65 @@
+<?php
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+?>
+<?php
+/* @var $this KtmCore_Widget_Block_Widget */
+$_id                = $this->getConfig('id');
+$_title             = $this->getConfig('widget_title');
+$t                  = microtime();
+$pricePrefixId      = $_id;
+$layout = $this->getConfig("layout_type");
+if ($layout == 'box')	{
+	$box = true;
+} else {
+	$box=false;
+}
+?>
+<?php if ($box) : ?>
+<div class="container">
+<div class="main-container-inner">
+<?php else: ?>
+<div class="clearfix">
+<?php endif ?>
+<div class="<?php echo $this->getConfig('classes') ?>" id="<?php echo $_id ?>">
+	
+    <div class="main-heading">
+        <div class="heading-title style2">
+            <?php if ($_title): ?>
+                <h3><span><?php echo $_title ?></span></h3>
+            <?php endif ?>
+        </div>
+    </div>
+	<?php if ($this->getConfig('widget_description')): ?>
+		<div class="widget-description">
+			<?php echo $this->getConfig('widget_description');	?>
+		</div>
+	<?php endif; ?>
+    <?php echo $this->renderCollection('collection', $this->getData('mode'), 'ktmcore/widget/collection/collection_position02.phtml', $pricePrefixId) ?>
+	<?php if ($this->getConfig('widget_custom_html_bottom')): ?>
+	<div class="widget-custom-bottom">
+		<?php echo $this->getConfig('widget_custom_html_bottom');	?>	
+	</div>
+	<?php endif; ?>
+</div>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl('js') ?>ktmcore/widget/ktmwidget.min.js"></script>
+<script type="text/javascript">
+    new Ktm.Widget('<?php echo $_id ?>', {
+        carousel: <?php echo $this->getConfig('carousel') ?>,
+        carouselConfig: null,
+        animation: <?php echo $this->getConfig('animation') ?>,
+        parallax: <?php echo $this->getConfig('parallax') ?>,
+        countdown: <?php echo $this->getConfig('countdown') ?>,
+        countdownConfig: null,
+        countdownTemplate: '<div class="day"><span class="no">%d</span><span class="text">days</span></div><div class="hours"><span class="no">%h</span><span class="text">hours</span></div><div class="min"><span class="no">%i</span><span class="text">min</span></div><div class="second"><span class="no">%s</span><span class="text">secs</span></div>',
+        kenburns: <?php echo $this->getConfig('kenburns') ?>
+    });
+</script>
+<?php //Mage::log(microtime() - $t) ?>
+<?php if ($box) : ?>
+</div>
+</div>
+<?php else: ?>
+</div>
+<?php endif ?>

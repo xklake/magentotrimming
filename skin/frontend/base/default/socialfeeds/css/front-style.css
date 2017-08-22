@@ -1,0 +1,675 @@
+/*=======================front style start======================*/
+
+/*=======================LIST MODE CSS START======================*/
+.fb-feed-list-view li {
+    /*border-bottom: 1px dotted #ccc;*/
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    margin: 0 0 14px !important;
+    padding: 14px 0;
+    width: 100%;
+}
+
+.fb-feed-list-view li .img_box {
+    float: right;
+    height: 210px;
+    width: 30%;
+}
+
+.fb-feed-list-view li .img_box img {
+    height: 100%;
+    width: 100%;
+}
+
+.fb-feed-list-view li .product_box {
+    padding: 0 15px;
+}
+
+.product_box .img_box a img{
+	box-shadow:none;
+}
+
+
+.fb-feed-list-view li .product_box .content {
+    float: left;
+    width: 65%;
+}
+
+.fb-feed-list-view li .product_box .contant_box1 {
+    font-size: 13px;
+}
+
+/*=======================LIST MODE CSS END======================*/
+
+/*=======================GRID CSS START======================*/
+.col-main > ul#gridfbfeed {
+    margin:25px auto 0;
+    max-width: 1167px;
+    min-height: 960px;
+	position:relative;
+    
+    overflow-y: auto;
+}
+.col-main > ul#fbfeed {
+    clear: both;
+    float: left;
+    width: 100%;
+}
+#gridfbfeed .product_box {
+    /*border: 1px solid #ccc;*/
+    display: inline-block;
+    padding: 15px;
+}
+
+#gridfbfeed li {
+    border: 1px solid #ccc;
+    display: inline-block;
+    margin: 0;
+    max-width: 220px;
+    vertical-align: top;
+    width: 220px;
+}
+#gridfbfeed li:nth-child(4){margin-right:0;}
+.product_box {
+    /*border: 1px solid #ccc;*/
+}
+#gridfbfeed li .img_box img {
+    width: 100%;
+}
+
+#gridfbfeed .content .contant_box1 {
+    font-size: 13px;
+}
+#gridfbfeed .product_box .img_box a {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.fb-feed-grid-view {
+    position: relative;
+}
+
+.fb-feed-grid-view {
+    display: block;
+    height: 850px;
+    min-height: 100%; 
+    position: relative;
+}
+
+
+.tab_container {
+	position: relative;
+    overflow: auto;
+}
+
+/*=======================GRID CSS END======================*/
+/*=======================front style end======================*/
+
+
+
+
+
+
+
+/*=======================13-August-2015 Start======================*/
+
+.all-in-one::after, .all-in-one::before {
+    clear: both;
+    content: "";
+    display: block;
+    overflow: hidden;
+}
+
+.all-in-one ul.tabs li a{
+	text-indent:-999999px;
+	line-height:41px;
+	border-bottom:1px solid #999;
+}
+
+.all-in-one ul.tabs li {
+    background: rgba(0, 0, 0, 0) linear-gradient(#f2f2f2, #f2f2f2, #d3d3d3) repeat scroll 0 0;
+    width: 14%;
+}
+
+.all-in-one ul.tabs li.aiosf-facebook a {
+    background: rgba(0, 0, 0, 0) url("../images/facebook.png") no-repeat scroll center center !important;
+}
+
+.all-in-one ul.tabs li.aiosf-twitter a {
+    background: rgba(0, 0, 0, 0) url("../images/twitter.png") no-repeat scroll center center !important ;
+}
+
+.all-in-one ul.tabs li.aiosf-instagram a {
+    background: rgba(0, 0, 0, 0) url("../images/instra.png") no-repeat scroll center center !important;
+}
+
+.all-in-one ul.tabs li.aiosf-pintrest a {
+    background: rgba(0, 0, 0, 0) url("../images/pin.png") no-repeat scroll center center !important;
+}
+
+.all-in-one ul.tabs li.aiosf-youtube a {
+    background: rgba(0, 0, 0, 0) url("../images/youtube.png") no-repeat scroll center center !important;
+}
+
+
+/*===============LI-HOVER-IMG======================*/
+
+/*
+.all-in-one ul.tabs li:nth-child(1) a:hover {
+    background: rgba(0, 0, 0, 0) url("../images/facebook-icon-hover.png") no-repeat scroll 0 0 / 100% auto;
+}
+
+.all-in-one ul.tabs li:nth-child(2) a:hover {
+    background: rgba(0, 0, 0, 0) url("../images/twitter-icon-hover.png") no-repeat scroll 0 0 / 100% auto;
+}
+
+.all-in-one ul.tabs li:nth-child(3) a:hover {
+    background: rgba(0, 0, 0, 0) url("../images/instagram-icon-hover.png") no-repeat scroll 0 0 / 100% auto;
+}
+
+.all-in-one ul.tabs li:nth-child(4) a:hover {
+    background: rgba(0, 0, 0, 0) url("../images/pinstrest-icon-hover.png") no-repeat scroll 0 0 / 100% auto;
+}
+
+.all-in-one ul.tabs li:nth-child(5) a:hover {
+    background: rgba(0, 0, 0, 0) url("../images/youtube-icon-hover.png") no-repeat scroll 0 0 / 100% auto;
+}
+
+*/
+
+
+
+
+/*===============LI-HOVER-IMG======================*/
+
+.all-in-one ul.tabs li{
+	height:42px;
+}
+
+.all-in-one ul.tabs li.active {
+    border-bottom: 1px solid #999 !important;
+    border-top: 3px solid;
+}
+
+.all-in-one ul.tabs{
+	border-bottom:none;
+	height:auto;
+}
+
+.all-in-one .tab_content h4 {
+    padding-left: 10px;
+}
+
+
+.ins-feeds::after, .ins-feeds::before {
+    clear: both;
+    content: "";
+    display: block;
+    overflow: hidden;
+}
+
+.all-in-one .tab_container .ins-feeds {
+    padding: 0 10px;
+}
+
+.all-in-one .tab_container ul {
+    padding: 0 22px;
+}
+
+.all-in-one .tab_container .ins-feeds a img {
+    margin: 0;
+    width: 100%;
+}
+
+.all-in-one .tab_container .ins-feeds a {
+    display: inline-block;
+    height: 62px;
+    margin: 0 4px 0 0;
+    width: 62px;
+}
+
+
+.all-in-one .tab_container .ins-feeds a:nth-child(4n) {
+    margin: 0;
+}
+
+/***popup css***/
+.box {
+  height: 50px;
+  width: 50px;
+  float: left;
+  margin: 20px;
+  border: 1px solid green;
+  cursor: pointer
+}
+
+.pop2 { display: none }
+
+/*  popup box  */
+
+#popupBox {
+  background: #fff;
+  display: none;
+  border: 3px solid #ccc
+}
+
+#popupBox2,
+#popupBox3 {
+  background: #fff;
+  display: none;
+}
+
+#popupBox2 td,
+#popupBox3 td {
+  background: #fff;
+  padding: 0
+}
+
+#popupBox2 .popupContent { }
+
+.contentBox {
+  overflow-y: scroll;
+  height: 270px
+}
+
+.popupContent { background: #fff; }
+
+.popupContent .popClose {
+  float: right;
+  display: block;
+  height: 16px;
+  width: 16px;
+  background: url(img/closeBut.jpg) no-repeat;
+  text-indent: -9000px
+}
+
+.popupClose {
+  display: block;
+  position: absolute;
+  top: 5px;
+  right: 0px;
+  height: 30px;
+  width: 30px;
+  text-indent: -9000px;
+  background: url(img/closeBut.png) no-repeat
+}
+
+.galleryTitle {
+  font-size: 1.3em;
+  text-align: center;
+}
+
+.popupContent .pop2 {
+  font-size: 1.2em;
+  text-align: center;
+  padding: 30px
+}
+
+.popupContent .galleryTitle {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.galleryControls {
+  overflow: hidden;
+  line-height: 40px
+}
+
+.galleryControls a {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  text-transform: uppercase
+}
+
+.galleryControls .prev {
+  float: left;
+  margin-left: 20px
+}
+
+.galleryControls .next {
+  float: right;
+  margin-right: 20px
+}
+
+.galleryControls p { text-align: center; }
+
+.imageDesc {
+    color: #fff;
+    line-height: 15px;
+    min-height: 50px;
+    padding: 8px 15px 0;
+    text-align: left;
+	display:none;
+}
+
+.imageDesc p {
+  padding: 5px 10px;
+  color: #fff;
+  font-size: 12px
+}
+
+.popupBtns { padding: 20px }
+
+.popupBtns input {
+  margin-right: 20px;
+  font-size: 14px;
+}
+
+#fixedGallery .popupContent { background: #f3f3f3 }
+
+#fixedGallery .popupTL {
+  background: url(img/popupTL.png) no-repeat;
+  _background: none
+}
+
+#fixedGallery .popupTR {
+  background: url(img/popupTR.png) no-repeat;
+  _background: none
+}
+
+#fixedGallery .popupBL {
+  background: url(img/popupBL.png) no-repeat;
+  _background: none
+}
+
+#fixedGallery .popupBR {
+  background: url(img/popupBR.png) no-repeat;
+  _background: none
+}
+
+#fixedGallery .popupTM {
+  background: url(img/popupGT.png) repeat-x;
+  _background: none
+}
+
+#fixedGallery .popupBM {
+  background: url(img/popupGB.png) repeat-x;
+  _background: none
+}
+
+#fixedGallery .popupML {
+  background: url(img/popupGL.png) repeat-y;
+  _background: none
+}
+
+#fixedGallery .popupMR {
+  background: url(img/popupGR.png) repeat-y;
+  _background: none
+}
+
+#fixedGallery .popupTL div {
+  _background: url(img/popupTL.png) no-repeat;
+  width: 100%;
+  height: 100%
+}
+
+#fixedGallery .popupTR div {
+  _background: url(img/popupTR.png) no-repeat;
+  width: 100%;
+  height: 100%
+}
+
+#fixedGallery .popupBL div {
+  _background: url(img/popupBL.png) no-repeat;
+  width: 100%;
+  height: 100%
+}
+
+#fixedGallery .popupBR div {
+  _background: url(img/popupBR.png) no-repeat;
+  width: 100%;
+  height: 100%
+}
+
+#fixedGallery .popupTM div {
+  _background: url(img/popupGT.png) repeat-x;
+  width: 100%;
+  height: 100%
+}
+
+#fixedGallery .popupBM div {
+  _background: url(img/popupGB.png) repeat-x;
+  width: 100%;
+  height: 100%
+}
+
+#fixedGallery .popupML div {
+  _background: url(img/popupGL.png) repeat-y;
+  width: 100%;
+  height: 100%
+}
+
+#fixedGallery .popupMR div {
+  _background: url(img/popupGR.png) repeat-y;
+  width: 100%;
+  height: 100%
+}
+
+
+/****frontend tabs ***/
+ul.tabs {
+    margin: 0;
+    padding: 0;
+    float: left;
+    list-style: none;
+    height: 32px;
+    border-bottom: 1px solid #999;
+    border-left: 1px solid #999;
+    width: 100%;
+}
+ul.tabs li {
+     
+    float: left;
+    margin: 0;
+    padding: 0;
+    height: 31px;
+    line-height: 31px;
+    border: 1px solid #999;
+    border-left: none;
+    margin-bottom: -1px;
+    background: #F0F0F0;
+    overflow: hidden;
+    position: relative;
+}
+ul.tabs li a {
+    text-decoration: none;
+    color: #000;
+    display: block;
+    font-size: 1.2em;
+    padding: 0 18px;
+    border: 1px solid #fff;
+    outline: none;
+}
+ul.tabs li a:hover {
+    background: #ccc;
+}   
+html ul.tabs li.active, html ul.tabs li.active a:hover  {
+    background: #fff;
+    border-bottom: 1px solid #fff;
+}
+.tab_container {
+	width: 99%;
+    border: 1px solid #999;
+    border-top: none;
+    clear: both;
+    float: left;  
+    background: #fff;
+    -moz-border-radius-bottomright: 5px;
+    -khtml-border-radius-bottomright: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -khtml-border-radius-bottomleft: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+}
+.tab_content {
+    padding: 2px;
+    font-size: 12px;
+}
+.tab_content h2 {
+    font-weight: normal;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #ddd;
+    font-size: 1.8em;
+}
+.tab_content h3 a{
+    color: #254588;
+}
+.tab_content img {
+    float: left;
+    margin: 0 3% 3% 0;
+    width: 29%;
+    height: auto;
+    max-width: 110px;
+}
+
+/*===================17-August======================*/
+
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+    background: #b6b2b0 none repeat scroll 0 0 !important;
+    border-radius: 16px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    width: 4px;
+}
+
+
+.mCS-minimal.mCSB_scrollTools .mCSB_draggerRail, .mCS-minimal-dark.mCSB_scrollTools .mCSB_draggerRail {
+    background-color: #999 !important;
+}
+
+
+
+
+/*==================================FB-WALL-POST-ABOUT================================*/
+
+
+
+.bss-facebook-post-about .form-table td:first-child {
+    position: relative;
+    width: auto !important;
+}
+
+
+.popupContent {
+    background: #fff none repeat scroll 0 0;
+    border-top: medium none;
+    padding: 0;
+}
+
+#popupBox{
+	width:668px !important;
+	height:auto !important;
+}
+
+
+#popupBox .popupBot {
+    display: none;
+}
+
+.popupMid .popupContent .galleryControls, .popupContent .imgPane{
+	height:auto !important;
+}
+	
+
+
+/*===================17-August======================*/
+
+		
+
+/*===================18-August======================*/
+
+.mCSB_container li {
+    background: rgba(0, 0, 0, 0) url("../images/border-img-shadow1.png") no-repeat scroll center bottom;
+    margin-bottom: 7px;
+    padding: 0 0 7px;
+}
+
+
+
+.mCSB_container li::after {
+    clear: both;
+    content: "";
+    display: block;
+    overflow: hidden;
+}
+
+
+.mCustomScrollbar .fb-feed-grid-view li .date_box, .mCSB_container li .tw-date {
+    float: right;
+	background: rgba(0, 0, 0, 0) url("../images/date-celender.png") no-repeat scroll 0 center;
+	padding-left:20px;
+}
+
+.mCSB_container li .tw-date{
+	margin:3px 0 0;
+}
+
+.mCustomScrollbar .tab_content {
+    box-shadow: -12px 0px 13px 0 #e9e7e7 inset;
+}
+
+
+.mCSB_container .tab_content h4 {
+    text-indent: -1e+10px;
+	margin:0px;
+}
+
+
+.mCSB_container ul#fbfeed li {
+    background: url("../images/list-style-fb.png") no-repeat scroll 0 4px, url("../images/border-img-shadow1.png") no-repeat scroll center bottom;
+    padding-left: 16px;
+}
+
+.mCSB_container ul{
+	list-style:none;
+}
+
+.mCSB_container .tw-feeds li{
+	background: url("../images/list-style-tw.png") no-repeat scroll 0 4px, url("../images/border-img-shadow1.png") no-repeat scroll center bottom;
+    padding-left: 16px;
+}
+
+.mCSB_container .tab_content {
+	overflow:hidden;
+}
+
+.mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
+    overflow: hidden;
+}
+
+.imgPane span {
+    display: inherit !important;
+    height: auto !important;
+    line-height: normal !important;
+}
+
+.pin-feeds table tr td em, .pin-feeds table tr td h2 {
+    display: none !important;
+}
+
+.pin-feeds::after {
+    clear: both;
+    content: "";
+    display: block;
+    overflow: hidden;
+}
+.pin-feeds {
+    padding: 0 0 0 10px;
+}
+
+.all-in-one .container {
+    width: 300px;
+}
+
+.mCSB_container ul{
+	padding:0 10px !important;
+}
+
+
+
+
+/*===================18-August======================*/

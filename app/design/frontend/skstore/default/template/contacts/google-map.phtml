@@ -1,0 +1,78 @@
+<?php
+/**
+* Sk Store 
+*/
+?>
+
+<?php 
+	$condinates = $this->getData('position');
+	if (!$condinates) 
+		$condinates = '-37.8138212,144.96953009999993';
+	$description = $this->getData('description');
+	if (!$description) 
+		$description = 'PO Box CT16122 Collins Street West,<br /> Victoria 8007, Australia';
+	$title = $this->getData('title');
+	if(!$title) 
+		$title = "SK Store";
+?>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<div class="google-map">
+<div class="gmap_wraper">
+<div id="gmap_canvas" style="height:100%;width: 100%;">&nbsp;</div>
+<div><small> <a href="http://embedgooglemaps.com"> embed google maps </a> </small></div>
+<div><small> <a href="https://privacypolicygenerator.info">privacy policy generator</a> </small></div>
+<style><!--
+#gmap_canvas img{max-width:none!important;background:none!important}
+--></style>
+</div>
+<p>
+
+<script type="text/javascript">// <![CDATA[
+function initialize() {
+	var iconMedia = '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);?>wysiwyg/skstore/gm-icon.png';
+    var myLatlng = new google.maps.LatLng(<?php echo $condinates; ?>);
+    var mapOptions = {
+        zoom: 15,
+        center: myLatlng,
+		scrollwheel: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,scrollwheel: false,draggable: "true",styles: [
+        {"featureType": "landscape","stylers": [{"hue": "#FFB300"},{"saturation": -54.385964912280784},{"lightness": 21.64705882352939},{"gamma": 1}]},
+        {"featureType": "road.highway","stylers": [{"hue": "#FF0300"},{"saturation": -100},{"lightness": 61.39999999999998},{"gamma": 1}]},
+        {"featureType": "road.arterial","stylers": [{"hue": "#FF0300"},{"saturation": -100},{"lightness": 51.19999999999999},{"gamma": 1}]},
+        {"featureType": "road.local","stylers": [{"hue": "#FF0300"},{"saturation": -100},{"lightness": 52},{"gamma": 1}]},
+        {"featureType": "water","stylers": [{"hue": "#0078FF"},{"saturation": 0},{"lightness": 0},{"gamma": 1}]}],
+    };
+
+    var map = new google.maps.Map(document.getElementById('gmap_canvas'), mapOptions);
+
+    var contentString = '<div id="div-main-infoWindow"><p>'+ '<?php echo $description; ?> '+'</p></div>';
+
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString,
+        maxWidth: 291
+    });
+    google.maps.event.addListener(infowindow, 'domready', function () {
+        jQuery('#div-main-infoWindow').closest('.gm-style-iw').parent().addClass('custom-iw');
+    });
+
+
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+		draggable:true,
+        title: '<?php echo $title; ?>',
+		icon:iconMedia,
+    });
+    google.maps.event.addListener(marker, 'click', function () {
+        infowindow.open(map, marker);
+    });
+
+    setTimeout(function () {
+        google.maps.event.trigger(marker, 'click');
+    }, 1000);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+// ]]></script>
+</p>
+</div>

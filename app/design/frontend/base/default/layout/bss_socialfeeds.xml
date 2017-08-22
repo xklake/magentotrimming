@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Bss_Socialfeeds extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Bss
+ * @package        Bss_Socialfeeds
+ * @copyright      Copyright (c) 2015
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<layout>
+    <default>		
+		<reference name="head">
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>socialfeeds/js/popup2.2.js</name>
+				<params/>
+			</action>
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>socialfeeds/js/scroller/jquery.mCustomScrollbar.concat.min.js</name>
+				<params/>
+			</action>
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>socialfeeds/js/init.js</name>
+				<params/>
+			</action>
+			<action method="addItem">
+				<type>skin_css</type>
+				<name>socialfeeds/css/front-style.css</name>
+			</action>
+			<action method="addItem">
+				<type>skin_css</type>
+				<name>socialfeeds/js/scroller/jquery.mCustomScrollbar.css</name>
+			</action>
+		</reference> 
+
+		<!-- <reference name="left">
+            <block type="bss_socialfeeds/socialfeed_socialfeeds" name="socialfeed_view" template="bss_socialfeeds/socialfeed/socialfeeds.phtml" />
+        </reference>
+
+		<reference name="right">
+            <block type="bss_socialfeeds/socialfeed_socialfeeds" name="socialfeed_view" template="bss_socialfeeds/socialfeed/socialfeeds.phtml" />
+        </reference> -->
+    </default>	
+	
+    <bss_socialfeeds_socialfeed_index translate="label" module="bss_socialfeeds">
+        <label>Socialfeeds list</label>
+        <update handle="page_two_columns_left" />
+        <reference name="content">
+            <block type="bss_socialfeeds/socialfeed_list" name="socialfeed_list" template="bss_socialfeeds/socialfeed/list.phtml" />
+        </reference>
+    </bss_socialfeeds_socialfeed_index>
+    
+    <bss_socialfeeds_socialfeed_view translate="label" module="bss_socialfeeds">
+        <label>Socialfeed view page</label>
+        <update handle="page_two_columns_left" />
+        <reference name="content">
+            <block type="bss_socialfeeds/socialfeed_view" name="socialfeed_view" template="bss_socialfeeds/socialfeed/view.phtml" />
+        </reference>
+    </bss_socialfeeds_socialfeed_view>
+</layout>

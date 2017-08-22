@@ -1,0 +1,281 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ */
+?>
+
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+<?php $theme = $this->helper('skstore');?>
+<?php
+$currentUrl = Mage::helper('core/url')->getCurrentUrl();
+$_prev = Mage::helper('skstore')->getPreviousProduct();
+$_next = Mage::helper('skstore')->getNextProduct();
+?>
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="product-view clearfix">
+    <div class="product-essential">
+    <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+        <div class="no-display">
+            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+            <input type="hidden" name="related_product" id="related-products-field" value="" />
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="product-img-box">
+                    <?php echo $this->helper('skstore')->getLabel($_product);  ?>
+                    <?php echo $this->getChildHtml('media') ?>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="product-shop">
+                    <div class="top-product-name">
+                        <div class="product-name col-xs-10 col-md-10 col-lg-11">
+                            <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+                        </div>
+                        
+                    </div>
+                    <?php if ($_product->getShortDescription()):?>
+                        <div class="short-description">
+                            <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+                        </div>
+                    <?php endif;?>
+                    <div class="rating-product clearfix">
+                        <?php //echo $this->getReviewsSummaryHtml($_product, false, true)?>
+                    </div>
+                    
+                    <?php echo $this->getChildHtml('alert_urls') ?>
+                    <?php echo $this->getChildHtml('product_type_data') ?>
+                    <?php echo $this->getChildHtml('extrahint') ?>
+                    <?php echo $this->getTierPriceHtml() ?>
+
+                    
+
+
+                    <?php if (!$this->hasOptions()):?>
+                        <div class="add-to-box clearfix">
+                            <?php if($_product->isSaleable()): ?>
+                                <?php echo $this->getChildHtml('addtocart') ?>
+                                <?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
+                                    <!--<span class="or"><?php //echo $this->__('OR') ?></span>-->
+                                <?php endif; ?>
+                            <?php endif; ?>
+                            <div class="product-add-to-links">
+                               <?php echo $this->getChildHtml('addto') ?>
+                            </div>
+                        </div>
+                        <?php echo $this->getChildHtml('extra_buttons') ?>
+                    <?php elseif (!$_product->isSaleable()): ?>
+                        <div class="add-to-box">
+                            <?php echo $this->getChildHtml('addto') ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php echo $this->getChildHtml('other');?>
+
+                    <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                        <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                    <?php endif;?>
+
+                    <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                        <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+                    <?php endif;?>
+					
+					<?php echo $this->getChildHtml('share'); ?>
+                    <div class="product-attribute">
+						<?php echo $this->getChildHtml('additional_info'); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+
+
+            </div>
+        </div>
+    <?php //endif;?>
+</div>
+
+
+<div class="container">
+    <div class="main-content-inner">
+        <div class="col-main">
+            <div class="product-view clearfix">
+                <div class="product-essential">
+
+                    
+
+                    <div class="review-detail mb-65 clearfix">
+                        <div class="review-comment-detail col-md-6">
+                                       
+                        <?php echo $this->getChildHtml('reviews'); ?>
+                        </div>
+                        <div class="review-form-detail col-md-6">
+                        <?php echo $this->getChildHtml('review_form'); ?>
+                        </div>
+                    </div>
+
+                    <div class="product-collateral clearfix">
+                        <?php echo $this->getChildHtml('info_tabs') ?>
+                        <?php //echo $this->getChildHtml('product_additional_data') ?>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+<script type="text/javascript">
+    //<![CDATA[
+        var productAddToCartForm = new VarienForm('product_addtocart_form');
+        productAddToCartForm.submit = function(button, url) {
+            if (this.validator.validate()) {
+                var form = this.form;
+                var oldUrl = form.action;
+
+                if (url) {
+                   form.action = url;
+                }
+                var e = null;
+                try {
+                    this.form.submit();
+                } catch (e) {
+                }
+                this.form.action = oldUrl;
+                if (e) {
+                    throw e;
+                }
+
+                if (button && button != 'undefined') {
+                    button.disabled = true;
+                }
+            }
+        }.bind(productAddToCartForm);
+        <?php if($theme->getCfg('product_page/product_social')):?>
+        // (function(d, s, id) {
+        //     var js, fjs = d.getElementsByTagName(s)[0];
+        //     if (d.getElementById(id)) return;
+        //     js = d.createElement(s);
+        //     js.id = id;
+        //     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=115245961994281";
+        //     fjs.parentNode.insertBefore(js, fjs);
+        // }(document, 'script', 'facebook-jssdk'));
+        // !function(d,s,id){
+        //     var js,fjs=d.getElementsByTagName(s)[0];
+        //     if(!d.getElementById(id)){
+        //         js=d.createElement(s);
+        //         js.id=id;
+        //         js.src="//platform.twitter.com/widgets.js";
+        //         fjs.parentNode.insertBefore(js,fjs);
+        //     }
+        // }(document,"script","twitter-wjs");
+        <?php endif;?>
+        productAddToCartForm.submitLight = function(button, url){
+            if(this.validator) {
+                var nv = Validation.methods;
+                delete Validation.methods['required-entry'];
+                delete Validation.methods['validate-one-required'];
+                delete Validation.methods['validate-one-required-by-name'];
+                // Remove custom datetime validators
+                for (var methodName in Validation.methods) {
+                    if (methodName.match(/^validate-datetime-.*/i)) {
+                        delete Validation.methods[methodName];
+                    }
+                }
+
+                if (this.validator.validate()) {
+                    if (url) {
+                        this.form.action = url;
+                    }
+                    this.form.submit();
+                }
+                Object.extend(Validation.methods, nv);
+            }
+        }.bind(productAddToCartForm);
+    //]]>
+
+    function getWidthImg() {
+         WidthContainer = jQuery('.des-pos-2').width();
+         paddingNum = parseInt((jQuery(this).width() - WidthContainer)/2);
+         WidthText = jQuery('.des-pos-1').width();
+
+         return parseInt(jQuery(this).width() - (WidthText + paddingNum + 60));
+    }
+    //alert(getWidthImg());
+
+    function getHeightImg() {
+        return getWidthImg()/2.1;
+    }
+
+    //alert(getHeightImg());
+
+    function getSpaceImg2() {
+
+        heightTextDes1 = jQuery('.des-pos-1').height();
+        if(heightTextDes1 <= getHeightImg()/(4/3)) {
+            return parseInt(getHeightImg()/(4/3) - heightTextDes1);
+        }else {
+            return parseInt(0);
+        }
+    }
+    function getSpaceText2() {
+        heightTextDes1 = jQuery('.des-pos-1').height();
+        if(heightTextDes1 <= getHeightImg()) {
+            return parseInt(getHeightImg() - heightTextDes1);
+        }else {
+            return parseInt(0);
+        }
+    }
+   
+
+    jQuery(document).ready(function() {
+        if(jQuery(window).width() > 992) {
+            jQuery('.first-des-img img').css({'width': getWidthImg(), 'height': getHeightImg()});
+            jQuery('.secord-des-img img').css({'width': getWidthImg(), 'height': getHeightImg()});
+            jQuery('.secord-des-inner').css('padding-top', getSpaceImg2());
+            jQuery('.des-pos-3').css('padding-top', getSpaceText2());
+        }
+        jQuery(window).resize(function() {
+            if(jQuery(this).width() > 992) { 
+                jQuery('.first-des-img img').css({'width': getWidthImg(), 'height': getHeightImg()});
+                jQuery('.secord-des-img img').css({'width': getWidthImg(), 'height': getHeightImg()});
+                jQuery('.secord-des-inner').css('padding-top', getSpaceImg2());
+                jQuery('.des-pos-3').css('padding-top', getSpaceText2());
+            }
+        });
+        
+    });
+    </script>

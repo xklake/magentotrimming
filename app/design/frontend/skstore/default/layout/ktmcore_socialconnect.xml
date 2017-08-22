@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+-->
+
+<layout>
+    <default>
+        <reference name="head">
+            <action method="addItem"
+                ifconfig="customer/css/ktmcore/socials/_google/enabled">
+                <type>skin_css</type>
+                <name>css/ktmcore/socials/google/css/button.css</name>
+            </action>
+            <action method="addItem"
+                ifconfig="customer/css/ktmcore/socials/_facebook/enabled">
+                <type>skin_css</type>
+                <name>css/ktmcore/socials/facebook/css/button.css</name>
+            </action>
+            <action method="addItem"
+                ifconfig="customer/css/ktmcore/socials/_twitter/enabled">
+                <type>skin_css</type>
+                <name>css/ktmcore/socials/twitter/css/button.css</name>
+            </action>
+        </reference>
+    </default>
+
+    <customer_account_login>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>css/ktmcore/socials/css/styles.css</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="css/ktmcore/socials/login" name="css/ktmcore/socials/_login">
+                <block type="css/ktmcore/socials/google_button" name="css/ktmcore/socials/_google_login_button" />
+                <block type="css/ktmcore/socials/facebook_button" name="css/ktmcore/socials/_facebook_login_button" />
+                <block type="css/ktmcore/socials/twitter_button" name="css/ktmcore/socials/_twitter_login_button" />
+            </block>
+        </reference>
+    </customer_account_login>
+    
+    <customer_account_create>        
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>css/ktmcore/socials/css/styles.css</name>
+            </action>
+        </reference>
+        <reference name="customer_form_register">
+            <action method="setTemplate" >
+                <template>ktmcore/socialconnect/customer/form/register.phtml</template>
+            </action>
+            <block type="css/ktmcore/socials/register" name="css/ktmcore/socials/_register">
+                <block type="css/ktmcore/socials/google_button" name="css/ktmcore/socials/_checkout_google_button" />
+                <block type="css/ktmcore/socials/facebook_button" name="css/ktmcore/socials/_checkout_facebook_button" />
+                <block type="css/ktmcore/socials/twitter_button" name="css/ktmcore/socials/_checkout_twitter_button" />
+            </block>
+        </reference>        
+    </customer_account_create>    
+
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="css/ktmcore/socials/"
+                ifconfig="customer/css/ktmcore/socials/_google/enabled">
+                <name>css/ktmcore/socials/_google</name>
+                <path>socialconnect/account/google</path>
+                <label>Google Connect</label>
+            </action>
+            <action method="addLink" translate="label" module="css/ktmcore/socials/"
+                ifconfig="customer/css/ktmcore/socials/_facebook/enabled">
+                <name>css/ktmcore/socials/_facebook</name>
+                <path>socialconnect/account/facebook</path>
+                <label>Facebook Connect</label>
+            </action>
+            <action method="addLink" translate="label" module="css/ktmcore/socials/"
+                ifconfig="customer/css/ktmcore/socials/_twitter/enabled">
+                <name>css/ktmcore/socials/_twitter</name>
+                <path>socialconnect/account/twitter</path>
+                <label>Twitter Connect</label>
+            </action>
+        </reference>
+    </customer_account>
+
+    <css/ktmcore/socials/_account_google translate="label">
+        <label>Customer My Account Google Connect</label>
+        <update handle="customer_account"/>
+        <reference name="head">
+            <action method="setTitle" translate="title" module="css/ktmcore/socials/">
+                <title>Google Connect</title>
+            </action>
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>css/ktmcore/socials/css/styles.css</name>
+            </action>
+        </reference>
+        <reference name="my.account.wrapper">
+            <block type="css/ktmcore/socials/google_account" name="css/ktmcore/socials/_google_account">
+                <block type="css/ktmcore/socials/google_button" name="css/ktmcore/socials/_account_google_button" />
+            </block>
+        </reference>
+        <reference name="customer_account_navigation">
+            <action method="setActive" module="css/ktmcore/socials/">
+                <path>socialconnect/account/google</path>
+            </action>
+        </reference>
+    </css/ktmcore/socials/_account_google>
+
+   <css/ktmcore/socials/_account_facebook translate="label">
+        <label>Customer My Account Facebook Connect</label>
+        <update handle="customer_account"/>
+        <reference name="head">
+            <action method="setTitle" translate="title" module="css/ktmcore/socials/">
+                <title>Facebook Connect</title>
+            </action>
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>css/ktmcore/socials/css/styles.css</name>
+            </action>
+        </reference>
+        <reference name="my.account.wrapper">
+            <block type="css/ktmcore/socials/facebook_account" name="css/ktmcore/socials/_facebook_account">
+                <block type="css/ktmcore/socials/facebook_button" name="css/ktmcore/socials/_account_facebook_button" />
+            </block>
+        </reference>
+        <reference name="customer_account_navigation">
+            <action method="setActive" module="css/ktmcore/socials/">
+                <path>socialconnect/account/facebook</path>
+            </action>
+        </reference>
+    </css/ktmcore/socials/_account_facebook>
+
+   <css/ktmcore/socials/_account_twitter translate="label">
+        <label>Customer My Account Twitter Connect</label>
+        <update handle="customer_account"/>
+        <reference name="head">
+            <action method="setTitle" translate="title" module="css/ktmcore/socials/">
+                <title>Twitter Connect</title>
+            </action>
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>css/ktmcore/socials/css/styles.css</name>
+            </action>
+        </reference>
+        <reference name="my.account.wrapper">
+            <block type="css/ktmcore/socials/twitter_account" name="css/ktmcore/socials/_twitter_account">
+                <block type="css/ktmcore/socials/twitter_button" name="css/ktmcore/socials/_account_twitter_button" />
+            </block>
+        </reference>
+        <reference name="customer_account_navigation">
+            <action method="setActive" module="css/ktmcore/socials/">
+                <path>socialconnect/account/twitter</path>
+            </action>
+        </reference>
+    </css/ktmcore/socials/_account_twitter>
+
+    <checkout_onepage_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>css/ktmcore/socials/css/styles.css</name>
+            </action>
+        </reference>
+        <reference name="checkout.onepage.login">
+            <action method="setTemplate" >
+                <template>ktmcore/socialconnect/checkout/onepage/login.phtml</template>
+            </action>
+            <block type="css/ktmcore/socials/checkout" name="css/ktmcore/socials/_checkout">
+                <block type="css/ktmcore/socials/google_button" name="css/ktmcore/socials/_checkout_google_button" />
+                <block type="css/ktmcore/socials/facebook_button" name="css/ktmcore/socials/_checkout_facebook_button" />
+                <block type="css/ktmcore/socials/twitter_button" name="css/ktmcore/socials/_checkout_twitter_button" />
+            </block>
+        </reference>
+    </checkout_onepage_index>
+</layout>

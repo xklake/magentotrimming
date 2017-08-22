@@ -1,0 +1,71 @@
+<?php
+    $helper = Mage::helper('ktmwidget');
+?>
+<div class="sidebar blog">  
+
+    <div class="block block-nav">
+        <?php
+        $countPost = 0;
+        ?>
+        <?php if ($posts = $this->getRecent()): ?>
+        
+            <div class="block-title">
+                <strong><span><?php echo Mage::helper('blog')->__('LASTEST POSTS'); ?></span></strong>
+            </div>
+            <div class="block-content">
+              
+                    
+                        <?php foreach ($posts as $post) if ($tmp++ < 3) { ?>
+                        <?php $countPost++; ?>
+
+                        <div class="menu-recent col-md-12 clearfix">
+                            <?php if($countPost % 2) { ?>
+                            <div class="col-md-6 col-sm-12 col-xs-4 blog-left">
+                                <?php $img = $helper->getImgBlog($post->getShortContent()); ?>
+                                <?php if ($img) : ?>
+                                    <a href="<?php echo $post->getAddress(); ?>" ><img class="img-responsive lazy" data-src="<?php echo $img; ?>" src="<?php echo $this->getSkinUrl('images/loader.gif') ?>" alt="<?php echo $post->getTitle(); ?>"/></a>
+                                <?php endif; ?>
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-8 blog-right pt-25">
+                                <a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a>
+                                <p>
+                                <?php
+                                $previousTimeStamp = strtotime($post->getCreatedTime());
+                                echo $this->call_in_sidebar($previousTimeStamp);
+
+                                 ?>
+                                </p>
+                            </div>
+                            <?php }else { ?>
+                                <div class="col-md-6 col-sm-12 col-xs-4 blog-right blog-right-plus">
+                                <?php $img = $helper->getImgBlog($post->getShortContent()); ?>
+                                <?php if ($img) : ?>
+                                    <a href="<?php echo $post->getAddress(); ?>" ><img class="img-responsive lazy" data-src="<?php echo $img; ?>" src="<?php echo $this->getSkinUrl('images/loader.gif') ?>" alt="<?php echo $post->getTitle(); ?>"/></a>
+                                <?php endif; ?>
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-8 blog-left pt-25">
+                                <a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a>
+                                <p>
+                                <?php
+                                $previousTimeStamp = strtotime($post->getCreatedTime());
+                                echo $this->call_in_sidebar($previousTimeStamp);
+
+                                 ?>
+                                </p>
+                            </div>
+
+                            <?php } ?>
+                        </div>
+                        <?php } ?>
+                   
+                
+            </div>
+        <?php endif; ?>
+    </div>
+	<?php $last_content = $this->getLayout()->createBlock('cms/block')->setBlockId('blog_sidebar_last')->toHtml(); ?>
+	<?php if ($last_content) : ?>
+    <div class="banner-r">
+      <?php echo $last_content; ?> 
+    </div>
+	<?php endif; ?>
+</div>

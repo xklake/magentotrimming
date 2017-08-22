@@ -1,0 +1,336 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+?>
+<?php
+$_productCollection=$this->getLoadedProductCollection();
+$_helper = $this->helper('catalog/output');
+$theme = $this->helper('skstore');
+$masonryhelper= Mage::helper('masonry');
+$helpImg = $this->helper('skstore/image');
+$imgWidth = $theme->getCfg('category/image_width') ? $theme->getCfg('category/image_width') : 295;
+$imgHeight = $theme->getCfg('category/image_height') ? $theme->getCfg('category/image_height') : 295;
+if($theme->getCfg('category/aspect_ratio')){
+    $imgHeight = 0;
+}
+$columns_grid = $theme->getClassGridColumns();
+$cfaltimage = $theme->getCfg('category/alt_image');
+$hoveraltClass = ($cfaltimage == 1) ? 'front-img' : '';
+
+?>
+<?php if(!$_productCollection->count()): ?>
+<p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+<?php else: ?>
+<div class="category-products clearfix">
+    <div class="toolbar-top">
+        <?php //echo $this->getToolbarHtml() ?>
+    </div>
+    <?php // List mode ?>
+    <?php if($this->getMode()=='list'): ?>
+    <?php $_iterator = 0; ?>
+    <div class="products-list" id="products-list">
+    <?php foreach ($_productCollection as $_product): ?>
+        <div class="clearfix item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
+            <div class="row">
+                <?php // Product Image ?>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                   <div class="product-hover hover-opacity hover-effect07">
+                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+                            <?php echo $this->helper('skstore')->getLabel($_product);  ?>
+                            <span class="front margin-image <?php echo $althoverClass;?>">
+                                <img  data-src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight, 'small_image'); ?>" src="<?php echo $this->getSkinUrl('images/loader.gif', $theme->checkSSL()) ?>" class="img-responsive lazy" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                            </span>
+                            <?php if ($theme->getCfg('category/alt_image')): ?>
+                                <span class="product-img-additional back margin-image">
+                                    <?php echo $theme->getAltImgHtml($_product, $imgWidth, $imgHeight); ?>
+                                </span>
+                            <?php endif; ?>
+                        </a>
+						<div class="product-actions product-hover-style2">
+							<div class="ktm-actions clearfix">
+								<div class="ktm-actions-inner">
+									<div class="addtocart">
+										<?php if($_product->isSaleable()): ?>
+											<?php if ( !($_product->getTypeInstance(true)->hasRequiredOptions($_product) || $_product->isGrouped()) ) { ?>
+												<button type="button" title="<?php echo $this->__('Add To Cart') ?>" data-title='Add to cart' data-placement="top" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')">
+													<i class="icon-basket"></i> 
+												</button>
+											<?php } else { ?>
+												<button type="button" title="<?php echo $this->__('Add To Cart') ?>" data-title='Add to cart' data-placement="top" class="button btn-cart show-options" data-id="<?php echo $_product->getId(); ?>"
+													<?php if (!Mage::getStoreConfig('ajaxcart/ajaxcart_config/enable_ajaxcart')) { ?>
+														onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"
+													<?php }?> data-submit='<?php echo $this->getAddToCartUrl($_product) ?>'>
+													<i class="icon-basket"></i> 
+												</button>
+												<?php if (Mage::getStoreConfig('ajaxcart/ajaxcart_config/enable_ajaxcart')) : ?>
+												<a style="display: none;" href='<?php echo $this->getUrl('ajaxcart/index/options', array_merge($theme->checkSSL(), array('product_id'=>$_product->getId())));?>' class='options-cart' data-id='options-cart-<?php echo $_product->getId()?>'><?php echo $this->__('Option cart')?></a>
+												<?php endif; ?>
+
+											<?php }  ?>
+										<?php endif; ?>
+									</div>
+									<div class="wishlist">
+										<?php if ($this->helper('wishlist')->isAllow()) : ?>
+											<a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" data-id="<?php echo $_product->getId(); ?>" title="<?php echo $this->__('Wishlist') ?>" data-placement="top" data-toggle="tooltip" class="link-wishlist">
+												<i class="icon-heart"></i><?php //echo $this->__('Add to Wishlist') ?>
+											</a>
+										<?php endif; ?>
+									</div>
+									<div class="main-quickview hidden-xs">
+										<button type="button"  data-placement="top" data-toggle="tooltip" title="<?php echo $this->__('Quick view') ?>" class="button btn-cart show-quickview" data-id="<?php echo $_product->getId(); ?>"><i class="icon-eye"></i></button>
+										<a class="product-quickview" href="<?php echo $this->getUrl('ajaxcart/index/options/product_id/' . $_product->getId(), $theme->checkSSL()); ?>" data-id='quickview-<?php echo $_product->getId()?>' style='display:none'><?php echo $this->__('Quick view') ?></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                </div>
+                <?php // Product description ?>
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <div class="product-list-info">
+                        <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
+                        <h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped; ?>"><?php echo $_helper->productAttribute($_product, $_product->getName() , 'name'); ?></a></h3>
+                        <div class="product-list-sku"><?php echo $_product->getSku(); ?></div>
+                        <div class="desc std">
+                            <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+                        </div>
+						<div class="wrapper-product clearfix">
+                            <?php if($_product->getRatingSummary()): ?>
+                                <?php echo $this->getReviewsSummaryHtml($_product) ?>
+                            <?php endif; ?>
+                            <?php echo $this->getPriceHtml($_product, true) ?>
+                        </div>
+                        <?php if(!$_product->isSaleable()): ?> 
+							<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+						<?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+    </div>
+    <script type="text/javascript">decorateList('products-list', 'none-recursive')</script>
+
+    <?php elseif($this->getMode()=='masonry' && $masonryhelper->isEnableMansonryMode()): ?>
+	
+	<?php $_collectionSize = $_productCollection->count() ?>
+    <?php $masonry_row = $masonryhelper->getMasonryRow($_collectionSize);?>
+    <div class="products-masonry row">
+		<div class="grid-masonry clearfix">
+		<?php $i=1; foreach ($_productCollection as $_product): ?>
+			<?php if (in_array($i,array(1,6,10,15))): ?> 
+				<div class="item-masonry-sizer"></div>
+			<?php endif; ?>
+			<div class="item item-masonry <?php if($i==1 || $i==12): echo 'item-masonry-width2 item-masonry-height2' ;endif;?>">
+				<div class="item-inner">
+					<div class="product-item">
+						<div class="content products-list">
+							<div class="product-hover hover-effect07">
+								<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+									<?php echo $this->helper('skstore')->getLabel($_product);  ?>
+									<span class="front margin-image">
+										<img class="img-responsive lazy <?php echo $hoveraltClass;?>"   data-src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight, 'small_image'); ?>" src="<?php echo $this->getSkinUrl('images/loader.gif', $theme->checkSSL()) ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+									</span>
+									<?php if ($theme->getCfg('category/alt_image')): ?>
+										<span class="product-img-additional back margin-image">
+											 <?php echo $theme->getAltImgHtml($_product, $imgWidth, $imgHeight); ?>
+										</span>
+									<?php endif; ?>
+								</a>
+								<div class="top-actions-inner">
+									<?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+									<h3 class="product-name">
+										<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>">
+											<?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+										</a>
+									</h3>
+									<div class="table">
+										<?php echo $this->getPriceHtml($_product, true, '-'.$pricePrefixId) ?>
+									</div>
+								</div>
+							</div>	
+							<div class="product-actions product-hover-style2">
+								<div class="ktm-actions clearfix">
+									<div class="ktm-actions-inner">
+										<div class="addtocart">
+											<?php if($_product->isSaleable()): ?>
+												<?php if ( !($_product->getTypeInstance(true)->hasRequiredOptions($_product) || $_product->isGrouped()) ) { ?>
+													<button type="button" title="<?php echo $this->__('Add To Cart') ?>" data-title='Add to cart' data-placement="top" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')">
+														<i class="icon-basket"></i> 
+													</button>
+												<?php } else { ?>
+													<button type="button" title="<?php echo $this->__('Add To Cart') ?>" data-title='Add to cart' data-placement="top" class="button btn-cart show-options" data-id="<?php echo $_product->getId(); ?>"
+														<?php if (!Mage::getStoreConfig('ajaxcart/ajaxcart_config/enable_ajaxcart')) { ?>
+															onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"
+														<?php }?> data-submit='<?php echo $this->getAddToCartUrl($_product) ?>'>
+														<i class="icon-basket"></i> 
+													</button>
+													<?php if (Mage::getStoreConfig('ajaxcart/ajaxcart_config/enable_ajaxcart')) : ?>
+													<a style="display: none;" href='<?php echo $this->getUrl('ajaxcart/index/options', array_merge($theme->checkSSL(), array('product_id'=>$_product->getId())));?>' class='options-cart' data-id='options-cart-<?php echo $_product->getId()?>'><?php echo $this->__('Option cart')?></a>
+													<?php endif; ?>
+
+												<?php }  ?>
+											<?php else: ?>
+												<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+											<?php endif; ?>
+										</div>
+										<div class="wishlist">
+											<?php if ($this->helper('wishlist')->isAllow()) : ?>
+												<a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" data-id="<?php echo $_product->getId(); ?>" title="<?php echo $this->__('Wishlist') ?>" data-placement="top" data-toggle="tooltip" class="link-wishlist">
+													<i class="icon-heart"></i><?php //echo $this->__('Add to Wishlist') ?>
+												</a>
+											<?php endif; ?>
+										</div>
+										<div class="main-quickview hidden-xs">
+											<button type="button"  data-placement="top" data-toggle="tooltip" title="<?php echo $this->__('Quick view') ?>" class="button btn-cart show-quickview" data-id="<?php echo $_product->getId(); ?>"><i class="icon-eye"></i></button>
+											<a class="product-quickview" href="<?php echo $this->getUrl('ajaxcart/index/options/product_id/' . $_product->getId(), $theme->checkSSL()); ?>" data-id='quickview-<?php echo $_product->getId()?>' style='display:none'><?php echo $this->__('Quick view') ?></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<?php if ((in_array($i,$masonryhelper->masonryItemsPerPage())) && $i < $_collectionSize): ?>
+			</div><div class="grid-masonry clearfix">
+			<?php endif; ?>
+		<?php $i++;endforeach; ?>
+		</div>
+	</div>		
+    <script type="text/javascript">	
+		jQuery('.grid-masonry').masonry({
+			itemSelector: '.item-masonry',
+			columnWidth: '.item-masonry-sizer',
+			percentPosition: true
+		});
+	</script>
+	<?php else: ?>
+	<?php // Grid Mode ?>
+	
+    <?php $_collectionSize = $_productCollection->count() ?>
+    <?php $_columnCount = Mage::helper('skstore')->getCfg('category_grid/column_count'); ?>
+    <ul class="products-grid itemgrid row">
+		<?php $i=0; foreach ($_productCollection as $_product): ?>
+			<?php $i++; ?>
+		<li class="item <?php echo $columns_grid; ?>">
+			<div class="item-inner">
+				<div class="product-item">
+					<div class="content products-list">
+						<div class="product-hover hover-opacity hover-effect07">
+							<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+								<?php echo $this->helper('skstore')->getLabel($_product);  ?>
+								<span class="front margin-image">
+									<img class="img-responsive lazy <?php echo $hoveraltClass;?>"   data-src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight, 'small_image'); ?>" src="<?php echo $this->getSkinUrl('images/loader.gif', $theme->checkSSL()) ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+								</span>
+								<?php if ($theme->getCfg('category/alt_image')): ?>
+									<span class="product-img-additional back margin-image">
+										 <?php echo $theme->getAltImgHtml($_product, $imgWidth, $imgHeight); ?>
+									</span>
+								<?php endif; ?>
+							</a>
+						</div>	
+						<div class="product-actions product-hover-style2">
+							<div class="ktm-actions clearfix">
+								<div class="ktm-actions-inner">
+									<div class="addtocart">
+										<?php if($_product->isSaleable()): ?>
+											<?php if ( !($_product->getTypeInstance(true)->hasRequiredOptions($_product) || $_product->isGrouped()) ) { ?>
+												<button type="button" title="<?php echo $this->__('Add To Cart') ?>" data-title='Add to cart' data-placement="top" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')">
+													<i class="icon-basket"></i> 
+												</button>
+											<?php } else { ?>
+												<button type="button" title="<?php echo $this->__('Add To Cart') ?>" data-title='Add to cart' data-placement="top" class="button btn-cart show-options" data-id="<?php echo $_product->getId(); ?>"
+													<?php if (!Mage::getStoreConfig('ajaxcart/ajaxcart_config/enable_ajaxcart')) { ?>
+														onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"
+													<?php }?> data-submit='<?php echo $this->getAddToCartUrl($_product) ?>'>
+													<i class="icon-basket"></i> 
+												</button>
+												<?php if (Mage::getStoreConfig('ajaxcart/ajaxcart_config/enable_ajaxcart')) : ?>
+												<a style="display: none;" href='<?php echo $this->getUrl('ajaxcart/index/options', array_merge($theme->checkSSL(), array('product_id'=>$_product->getId())));?>' class='options-cart' data-id='options-cart-<?php echo $_product->getId()?>'><?php echo $this->__('Option cart')?></a>
+												<?php endif; ?>
+
+											<?php }  ?>
+										<?php else: ?>
+											<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+										<?php endif; ?>
+									</div>
+									<div class="wishlist">
+										<?php if ($this->helper('wishlist')->isAllow()) : ?>
+											<a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" data-id="<?php echo $_product->getId(); ?>" title="<?php echo $this->__('Wishlist') ?>" data-placement="top" data-toggle="tooltip" class="link-wishlist">
+												<i class="icon-heart"></i><?php //echo $this->__('Add to Wishlist') ?>
+											</a>
+										<?php endif; ?>
+									</div>
+									<div class="main-quickview hidden-xs">
+										<button type="button"  data-placement="top" data-toggle="tooltip" title="<?php echo $this->__('Quick view') ?>" class="button btn-cart show-quickview" data-id="<?php echo $_product->getId(); ?>"><i class="icon-eye"></i></button>
+										<a class="product-quickview" href="<?php echo $this->getUrl('ajaxcart/index/options/product_id/' . $_product->getId(), $theme->checkSSL()); ?>" data-id='quickview-<?php echo $_product->getId()?>' style='display:none'><?php echo $this->__('Quick view') ?></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="top-actions-inner">
+						<?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+						<h3 class="product-name">
+							<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>">
+								<?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+							</a>
+						</h3>
+						<div class="table">
+							<?php echo $this->getPriceHtml($_product, true, '-'.$pricePrefixId) ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+		<?php endforeach ?>
+	</ul>	
+	<?php endif; ?>
+    <div class="toolbar-bottom">
+        <?php echo $this->getToolbarHtml() ?>
+    </div>
+    <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+</div>
+<script>
+    //lazyload
+    $ktm("img.lazy").lazy({
+        bind: 'event',
+        effect : "fadeIn",
+        effectTime: 800,
+        threshold: 250,
+        retinaAttribute: "data-src-retina"
+    });
+</script>
+<?php endif; ?>

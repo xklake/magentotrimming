@@ -1,0 +1,28 @@
+<?php
+$theme = $this->helper('skstore');
+$newsLetter = $theme->getCfg('magento_blocks/footer_newsletter');
+?>
+<?php if($newsLetter):?>
+<div class="subscribe">
+    <h3><span><?php echo $this->__('Newsletter') ?></span></h3>
+    <form action="<?php echo $this->getFormActionUrl() ?>" method="post" id="newsletter-validate-detail-home02">
+        <div class="block-content">
+            <div class="form-subscribe-header">
+                <span><?php echo $this->__('Sign up to receive the coupon 15% off for your first purchase via email and get informations about bicycle, accessories, tips,... and many exclusive offers.') ?></span>
+            </div>
+            <div class="input-box">
+                <input name="email" type="text" id="newsletter-home02" value="<?php echo $this->__('Your Email...') ?>" onclick="this.value=='<?php echo $this->__('Your Email...') ?>'?this.value='':''" onblur="this.value==''?this.value='<?php echo $this->__('Your Email...') ?>':''"  class="input-text required-entry validate-email" />
+            </div>
+            <div class="actions h4">
+                <button type="submit" title="<?php echo $this->__('Subscribe') ?>" class="button"><?php echo $this->__('Subscribe') ?></button>
+            </div>
+        </div>
+    </form>
+    <div class="discount-nl"><?php echo $this->__('*Discount applies only to orders over $100') ?></div>
+    <script type="text/javascript">
+    //<![CDATA[
+        var newsletterSubscriberFormDetail = new VarienForm('newsletter-validate-detail-home02');
+    //]]>
+    </script>
+</div>
+<?php endif;?>

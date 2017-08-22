@@ -1,0 +1,308 @@
+<?php
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+?>
+<?php
+$posts = $this->getBlog();
+$id         = $this->getConfig('id');
+$title      = $this->getConfig('widget_title');
+$helper = Mage::helper('ktmwidget');
+$showtitle  = $this->getConfig('showtitle');
+$showdate = $this->getConfig('showdate');
+$showauthor = $this->getConfig('showauthor');
+$showreadmore = $this->getConfig('showreadmore');
+$text_readmore = $this->getConfig('text_readmore');
+$showintro = $this->getConfig('showintro');
+if (!$text_readmore ) $text_readmore = 'Read More...';
+$layout = $this->getConfig("layout_type");
+if ($layout == 'box')	{
+	$box = true;
+} else {
+	$box=false;
+}
+?>
+<?php if ($box) : ?>
+<div class="container">
+<div class="main-container-inner">
+<?php else: ?>
+<div class="clearfix">
+<?php endif ?>
+<div class="<?php echo $this->getConfig('classes') ?>" id="<?php echo $id ?>">
+    <?php if ($title): ?>
+        <div class="main-heading">
+			<div class="heading-title style1">
+				<?php if ($title): ?>
+					<h3><span><?php echo $title ?></span></h3>
+				<?php endif ?>
+			</div>
+		</div>
+    <?php endif ?>
+	<?php if ($this->getConfig('widget_description')): ?>
+		<div class="widget-description">
+			<?php echo $this->getConfig('widget_description');	?>
+		</div>
+	<?php endif; ?>
+    <div class="postWrap clearfix">
+		<?php $countPost = 0; ?>
+        <?php $i = 0; foreach ($posts as $post) { ?>
+		<?php $img = $helper->getImgBlog($post->getShortContent()); ?>	
+		<?php $countPost++; ?>
+                                <?php if($countPost == 1) { ?>
+                                    <div class="col-md-6 col-xs-6 display-in480">
+
+                                       
+											<div class="blog-home blog_home1_ele1" style="background-image: url(<?php echo $img; ?>);margin-top: 38px;margin-bottom: 38px;background-size: cover;height: 434px;">
+												<div class="blog-detail-bottom">
+													<?php if ($showtitle ): ?>
+													<h2><a href="<?php echo $post->getAddress(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle(); ?></a></h2>
+													<?php endif; ?>
+													<?php if ($showdate): ?>
+													<p>
+														<?php
+														$previousTimeStamp = strtotime($post->getCreatedTime());
+														echo $this->countTimeFromStart($previousTimeStamp);
+
+														 ?>
+													</p>
+													<?php endif; ?>
+													<?php if ($showauthor) :?>
+													<p class="blog-author"><?php echo $post->getAuthor;  ?>	</p>
+													<?php endif; ?>
+													
+													<?php if ($showintro):?>
+													<p class="short-content">
+														<?php
+															$content = $helper->truncate(strip_tags($post->getShortContent()), $length = 100, $etc = '...');
+															echo $content;	
+														?>
+													<p>
+													<?php endif; ?>
+													<?php if ($showreadmore):  ?>
+														<a href="<?php echo $post->getAddress(); ?>" title="<?php echo $post->getTitle(); ?>">	<?php echo $text_readmore; ?></a>
+													<?php endif; ?>
+												</div>
+												<div class="mask-style"></div>
+											</div>
+                                    </div>
+                                <?php } ?>
+                                <?php if($countPost == 2) { ?>
+                                <!-- div create in ipad screen 2-->
+                                    <div class="col-md-6 col-xs-6 visible-xs visible-sm display-in480">
+										<div class="blog-home blog_home1_ele1" style="background-image: url(<?php echo $img; ?>);margin-top: 38px;margin-bottom: 38px;background-size: cover;height: 434px;">
+											<div class="blog-detail-bottom">
+												<?php if ($showtitle ): ?>
+													<h2><a href="<?php echo $post->getAddress(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle(); ?></a></h2>
+													<?php endif; ?>
+													<?php if ($showdate): ?>
+													<p>
+														<?php
+														$previousTimeStamp = strtotime($post->getCreatedTime());
+														echo $this->countTimeFromStart($previousTimeStamp);
+
+														 ?>
+													</p>
+													<?php endif; ?>
+													<?php if ($showauthor) :?>
+													<p class="blog-author"><?php echo $post->getAuthor;  ?>	</p>
+													<?php endif; ?>
+													
+													<?php if ($showintro):?>
+													<p class="short-content">
+														<?php
+															$content = $helper->truncate(strip_tags($post->getShortContent()), $length = 100, $etc = '...');
+															echo $content;	
+														?>
+													<p>
+													<?php endif; ?>
+													<?php if ($showreadmore):  ?>
+														<a href="<?php echo $post->getAddress(); ?>" title="<?php echo $post->getTitle(); ?>">	<?php echo $text_readmore; ?></a>
+													<?php endif; ?>
+											</div>
+											<div class="mask-style"></div>
+										</div>
+                                           
+                                    </div>
+                                <?php } ?>
+
+                                <?php if($countPost == 2) { ?>
+                                    <div class="col-md-3 hidden-xs hidden-sm clearfix">
+                                        <div class="col-md-12 col-xs-6 element-full">
+                                                
+                                                <div class="blog-home blog_home1_ele2" style="background-image: url(<?php echo $img; ?>);height: 255px;background-size: cover;transition: all .3s ease-in-out">
+                                                    <div class="blog-detail-bottom">
+                                                        <?php if ($showtitle ): ?>
+													<h2><a href="<?php echo $post->getAddress(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle(); ?></a></h2>
+													<?php endif; ?>
+													<?php if ($showdate): ?>
+													<p>
+														<?php
+														$previousTimeStamp = strtotime($post->getCreatedTime());
+														echo $this->countTimeFromStart($previousTimeStamp);
+
+														 ?>
+													</p>
+													<?php endif; ?>
+													<?php if ($showauthor) :?>
+													<p class="blog-author"><?php echo $post->getAuthor;  ?>	</p>
+													<?php endif; ?>
+													
+													<?php if ($showintro):?>
+													<p class="short-content">
+														<?php
+															$content = $helper->truncate(strip_tags($post->getShortContent()), $length = 100, $etc = '...');
+															echo $content;	
+														?>
+													<p>
+													<?php endif; ?>
+													<?php if ($showreadmore):  ?>
+														<a href="<?php echo $post->getAddress(); ?>" title="<?php echo $post->getTitle(); ?>">	<?php echo $text_readmore; ?></a>
+													<?php endif; ?>
+                                                    </div>
+                                                    <div class="mask-style"></div>
+                                                </div>    
+                                                 
+                                        </div>
+                                <?php } ?>
+
+
+                                <?php if($countPost == 3) { ?>
+                                        <div class="col-md-12 col-xs-6 element-full">
+                                                
+                                                <div class="blog-home blog_home1_ele3" style="background-image: url(<?php echo $img; ?>);height: 255px;background-size: cover;">
+                                                    <div class="blog-detail-bottom">
+														<?php if ($showtitle ): ?>
+														<h2><a href="<?php echo $post->getAddress(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle(); ?></a></h2>
+														<?php endif; ?>
+														<?php if ($showdate): ?>
+														<p>
+															<?php
+															$previousTimeStamp = strtotime($post->getCreatedTime());
+															echo $this->countTimeFromStart($previousTimeStamp);
+
+															 ?>
+														</p>
+														<?php endif; ?>
+														<?php if ($showauthor) :?>
+														<p class="blog-author"><?php echo $post->getAuthor;  ?>	</p>
+														<?php endif; ?>
+														
+														<?php if ($showintro):?>
+														<p class="short-content">
+															<?php
+																$content = $helper->truncate(strip_tags($post->getShortContent()), $length = 100, $etc = '...');
+																echo $content;	
+															?>
+														<p>
+														<?php endif; ?>
+														<?php if ($showreadmore):  ?>
+															<a href="<?php echo $post->getAddress(); ?>" title="<?php echo $post->getTitle(); ?>">	<?php echo $text_readmore; ?></a>
+														<?php endif; ?>
+													</div>
+                                                    <div class="mask-style"></div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+
+                            <?php if($countPost == 3) { ?>
+                                <!-- div create in ipad screen 3-->
+                                  <div class="col-md-6 col-xs-6 visible-xs visible-sm display-in480">
+									  <div class="blog-home blog_home1_ele1" style="background-image: url(<?php echo $img; ?>);margin-top: 38px;margin-bottom: 38px;background-size: cover;height: 434px;">
+										  <div class="blog-detail-bottom">
+												<?php if ($showtitle ): ?>
+												<h2><a href="<?php echo $post->getAddress(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle(); ?></a></h2>
+												<?php endif; ?>
+												<?php if ($showdate): ?>
+												<p>
+													<?php
+													$previousTimeStamp = strtotime($post->getCreatedTime());
+													echo $this->countTimeFromStart($previousTimeStamp);
+
+													 ?>
+												</p>
+												<?php endif; ?>
+												<?php if ($showauthor) :?>
+												<p class="blog-author"><?php echo $post->getAuthor;  ?>	</p>
+												<?php endif; ?>
+												
+												<?php if ($showintro):?>
+												<p class="short-content">
+													<?php
+														$content = $helper->truncate(strip_tags($post->getShortContent()), $length = 100, $etc = '...');
+														echo $content;	
+													?>
+												<p>
+												<?php endif; ?>
+												<?php if ($showreadmore):  ?>
+													<a href="<?php echo $post->getAddress(); ?>" title="<?php echo $post->getTitle(); ?>">	<?php echo $text_readmore; ?></a>
+												<?php endif; ?>
+											</div>	
+											<div class="mask-style"></div>
+										</div>
+                                    </div>
+                                <?php } ?>
+
+                            <?php if($countPost == 4) { ?>
+                                <div class="col-md-3 col-last1 col-xs-6 display-in480">
+                                    <?php $img = $helper->getImgBlog($post->getShortContent()); ?>
+                                        <?php if ($img) : ?>
+                                            
+                                                <div class="blog-home blog_home1_ele4" style="background-image: url(<?php echo $img; ?>);margin-top: 38px;margin-bottom: 38px;background-size: cover;height: 434px;background-size: cover;">
+                                                    <div class="blog-detail-bottom">
+                                                        <?php if ($showtitle ): ?>
+													<h2><a href="<?php echo $post->getAddress(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle(); ?></a></h2>
+													<?php endif; ?>
+													<?php if ($showdate): ?>
+													<p>
+														<?php
+														$previousTimeStamp = strtotime($post->getCreatedTime());
+														echo $this->countTimeFromStart($previousTimeStamp);
+
+														 ?>
+													</p>
+													<?php endif; ?>
+													<?php if ($showauthor) :?>
+													<p class="blog-author"><?php echo $post->getAuthor;  ?>	</p>
+													<?php endif; ?>
+													
+													<?php if ($showintro):?>
+													<p class="short-content">
+														<?php
+															$content = $helper->truncate(strip_tags($post->getShortContent()), $length = 100, $etc = '...');
+															echo $content;	
+														?>
+													<p>
+													<?php endif; ?>
+													<?php if ($showreadmore):  ?>
+														<a href="<?php echo $post->getAddress(); ?>" title="<?php echo $post->getTitle(); ?>">	<?php echo $text_readmore; ?></a>
+													<?php endif; ?>
+                                                    </div>
+                                                    <div class="mask-style"></div>
+                                                </div>
+                                        <?php endif; ?>
+                                </div>
+                            <?php } ?>
+
+        <?php } ?>
+    
+	</div>
+</div>
+<?php if ($box) : ?>
+</div>
+</div>
+<?php else: ?>
+</div>
+<?php endif ?>
+
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl('js') ?>ktmcore/widget/ktmwidget.min.js"></script>
+    <script type="text/javascript">
+        new Ktm.Widget('<?php echo $id ?>', {
+            carousel: <?php echo $this->getConfig('carousel') ?>,
+            carouselConfig: null,
+            animation: <?php echo $this->getConfig('animation') ?>,
+            parallax: <?php echo $this->getConfig('parallax') ?>,
+            kenburns: <?php echo $this->getConfig('kenburns') ?>,
+            countdown: <?php echo $this->getConfig('countdown') ?>
+        });
+</script>

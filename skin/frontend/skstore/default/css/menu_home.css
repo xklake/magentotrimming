@@ -1,0 +1,21 @@
+.top-container{position:relative}
+.home-menu *{margin:0}
+.home-menu #ktmnav{position:relative;display:block}
+.top-container .main-menu-home{position:absolute;height:100%;width:100%;top:0;left:0}
+.main-menu-home .full-height{height:100%;position:relative}
+.home-menu .logo img{margin:0 auto}
+.home-menu .logo{margin-bottom:80px}
+.top-container .home-menu{width:200px;position:absolute;background:#fff;height:100%;padding-top:5%;z-index:5;left:inherit}
+.home-menu #ktmnav li.level0{line-height:44px;position:static;display:inline-block;width:100%;padding:0 0 0 27px;border-left:3px solid transparent;font-weight:600}
+.home-menu #ktmnav li.level0:hover .show-sub{left:100%;top:0;width:800px!important;min-height:100%}
+.home-menu #ktmnav li.level0:hover{border-left:3px solid #f60}
+.home-menu .social-links{padding-left:30px;margin-top:78px}
+.home-menu .social-links li{line-height:35px;font-weight:600}
+.home-menu span.fa{color:#fff;background:#000;padding:0 5px;border-radius:3px;font-size:10px;width:17px;height:17px;line-height:17px;margin-right:4px;-webkit-transition:color 350ms ease,background-color 350ms ease;transition:color 350ms ease,background-color 350ms ease}
+.home-menu a:hover > span.fa{background:#fe5d00}
+.home-menu #ktmnav .menu-static-blocks .block-img-right{position:absolute;top:0;right:-170px;width:170px;height:100%;overflow:hidden}
+.home-menu #ktmnav .sub-wrapper{padding:50px 15px 15px 40px}
+.block-img-right img{width:185%;margin-left:-30%}
+@media (max-width:1365px) {
+	.top-container .home-menu{padding-top:2%}
+}

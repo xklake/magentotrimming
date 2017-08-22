@@ -1,0 +1,164 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+$helper = $this->helper('ktmcorenewsletter');
+// $width = $helper->getCfgWidth();
+// $height = $helper->getCfgHeight();
+$backgroundColor = $helper->getCfgBackgroundColor();
+$backgroundImage = $helper->getCfgBackgroundImage();
+$NewsletterImage = $helper->getCfgNewsletterImage();
+$desc = $helper->getCfgIntro();
+$titlenewsletter = $helper->getCfgTitleNewsletter();
+$enable = $helper->getCfgEnable();
+$routeName = Mage::app()->getRequest()->getRouteName();
+
+?>
+<?php if ($routeName != 'ajaxcart' && $enable) { ?>
+    <div style="display: none">
+        <div id="ktmcore_newsletter" class="block-newsletter" style="background-color: <?php echo $backgroundColor;?>">
+            <div class="newsleter-wrap clearfix">
+                <div class="col-xs-6">
+                    <div class="popup_img">
+                        <img class="img-responsive" src="<?php echo Mage::getBaseUrl('media').'/wysiwyg/ktmcore/newsletter/'.$NewsletterImage;?>" alt="img-popup"/>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="newsletter-info">
+                        <div class="newsletter-title fs-20">
+                            <strong class="fw-8"><?php echo $titlenewsletter; ?></strong>
+                        </div>
+                        <div class="popup_message">
+                            <div class="intro">
+                                <?php echo $desc; ?>
+                            </div>
+                            <form action="<?php echo $this->getFormActionUrl() ?>" method="post" id="ktm-newsletter-validate-detail">
+                                <div class="input-box">
+                                    <input name="email" type="text" id="ktm-newsletter" value="<?php echo $this->__('Your email') ?>" onclick="this.value=='<?php echo $this->__('Your email') ?>'?this.value='':''" onblur="this.value==''?this.value='<?php echo $this->__('Your email') ?>':''" class="input-text required-entry validate-email"/>
+									<i class="fa fa-envelope-o"></i>
+								</div>
+                                <div class="actions">
+                                    <button type="submit" title="<?php echo $this->__('Subscribe') ?>" class="button fs-14">
+                                        <span><span><?php echo $this->__('Subscribe') ?></span></span></button>
+                                </div>
+                            </form>
+                        </div>
+						<?php $emailus = Mage::getStoreConfig('trans_email/ident_general/email');?>
+						<div class="email-us">	
+							<?php echo $this->__("Questions? E-mail us at ").$emailus."."; ?>
+						</div>
+                        <div class="not-show-popup">
+                            <input type="checkbox" id="discheck"/>
+                            <label class="subcriber_label" for="discheck"><?php echo $this->__('Don’t show this popup'); ?></label>
+                        </div>
+						
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            //<![CDATA[
+            var ktmcore_newsletter_FormDetail = new VarienForm('ktm-newsletter-validate-detail');
+            $ktm(function ($) {
+                isSuccess = $('ul.messages li.success-msg').length;
+                subscribeFlag = $.cookie('ktmcore_newsletter_Flag');
+                function subsSetcookie() {
+                    $.cookie('ktmcore_newsletter', 'true');
+                }
+                $('.not-show-popup input').on('click', function () {
+                    if ($(this).parent().find('input:checked').length) {
+                        subsSetcookie();
+                    } else {
+                        $.removeCookie('ktmcore_newsletter');
+                    }
+                });
+                $('#ktmcore_newsletter .input-box button.button').on('click', function () {
+                    var button = $(this);
+                    setTimeout(function () {
+                        if (!button.parents('.input-box').find('input#ktm-newsletter').hasClass('validation-failed')) {
+                            $.cookie('ktmcore_newsletter_Flag', 'true');
+                        }
+                        ;
+                    }, 500);
+                });
+                if (!(subscribeFlag && isSuccess) && !$.cookie('ktmcore_newsletter')) {
+                    setTimeout(function () {
+                        $.colorbox({
+                            inline: true,
+                            href: $('#ktmcore_newsletter'),
+                            opacity: 0.8,
+                            speed: 500,
+                            width: '100%',
+                            height: '100%',
+                            maxWidth: '830px',
+                            maxHeight: '95%',
+                            close: '<i class="fa fa-times-circle-o"></i>',
+                            onOpen: function () {
+                                $('#cboxContent').addClass('newsletterbox');
+                                $('#cboxLoadingGraphic').addClass('box-loading');
+                            },
+                            onComplete: function () {
+                                setTimeout(function () {
+                                    $('#cboxLoadingGraphic').removeClass('box-loading');
+                                }, 300);
+
+                                var y = $ktm('#ktmcore_newsletter').height();
+                                var x = $ktm('#cboxOverlay').height();
+                                var z = x - 60;
+                                if (y < z) {
+                                    parent.$ktm.colorbox.resize({height: y + 60});
+                                }
+                                ;
+
+                                var cboxOptions = {
+                                    width: '100%',
+                                    height: '100%',
+                                    maxWidth: '830px',
+                                    maxHeight: '530px'
+                                };
+
+                                $(window).resize(function () {
+                                    var y = $ktm('#ktmcore_newsletter').height();
+                                    $.colorbox.resize({
+                                        width: window.innerWidth > parseInt(cboxOptions.maxWidth) ? cboxOptions.maxWidth : cboxOptions.width,
+                                        height: window.innerHeight > y + 60 ? y + 60 : cboxOptions.height
+                                    });
+                                });
+                            },
+                            onClosed: function () {
+                                $('#cboxContent').removeClass('newsletterbox');
+                            }
+                        });
+                    }, 5000);
+                } else {
+                    $.removeCookie('ktmcore_newsletter_Flag');
+                    subsSetcookie();
+                }
+            });
+            //]]>
+        </script>
+    </div>
+<?php } ?>

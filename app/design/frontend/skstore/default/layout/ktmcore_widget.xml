@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+-->
+<layout version="1.0.1">
+    <default>
+        <reference name="head">
+            <action method="addItem">
+                <type>js_css</type>
+                <name>ktmcore/lib/owl-carousel2/dist/assets/owl.carousel.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>ktmcore/lib/owl-carousel2/dist/assets/owl.theme.default.css</name>
+            </action>
+            <!-- <action method="addItem">
+                <type>js_css</type>
+                <name>ktmcore/extensions/jquery/css/animate/effects.css</name>
+            </action> -->
+        </reference>
+    </default>
+</layout>

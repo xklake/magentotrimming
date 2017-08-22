@@ -1,0 +1,183 @@
+<?php
+/**
+ * Bss_Socialfeeds extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Bss
+ * @package        Bss_Socialfeeds
+ * @copyright      Copyright (c) 2015
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * Socialfeed view template
+ *
+ * @category    Bss
+ * @package     Bss_Socialfeeds
+ * @author      Ultimate Module Creator
+ */
+ 
+$facebook = $this->initFB();
+$twitter  = $this->initTW();
+$instagram  = $this->initIN();
+$pinterest  = $this->initPI();
+$youtube_url = $this->initYT();
+$_helper = Mage::helper('bss_socialfeeds/socialfeed');
+
+if($_helper->getCheckMod()){ 
+?>
+<div class="all-in-one">
+	<div class="container-1"> 
+		<ul class="tabs">
+		<?php if($_helper->getCheckFB()){ ?>
+			<li class="aiosf-facebook"><a href="#tab1">FB</a></li>
+		<?php } ?>
+		
+		<?php if($_helper->getCheckTW()){ ?>
+			<li class="aiosf-twitter"><a href="#tab2">TW</a></li>
+		<?php } ?>
+		
+		<?php if($_helper->getCheckIN()){ ?>
+			<li class="aiosf-instagram"><a href="#tab3">In</a></li>
+		<?php } ?>
+		
+		<?php if($_helper->getCheckPI()){ ?>
+			<li class="aiosf-pintrest"><a href="#tab4">Pi</a></li> 
+		<?php } ?>
+		
+		<?php if($_helper->getCheckYT()){ ?>
+			<li class="aiosf-youtube"><a href="#tab5">YT</a></li> 
+		<?php } ?> 
+		</ul> 
+		
+		<div class="tab_container">
+			<?php if($_helper->getCheckFB()){ ?>
+				<div id="tab1" class="tab_content">
+					<h4>FaceBook</h4>
+					<div class="fb-feeds">
+						<?php 
+						try {
+							$pageid = trim(Mage::getStoreConfig('bss_socialfeeds/fb_socialfeed/fb_page_id'));
+							if(is_object($facebook)){
+								$pagefeed = $facebook->api("/" . $pageid . "/posts?fields=attachments,id,object_id,message,description,full_picture,source,created_time");
+							}	
+							?>
+							<?php
+							if(!empty($pagefeed)){ $flag=1; ?>
+							<ul id="fbfeed" class="fb-feed-grid-view">
+								<?php foreach($pagefeed['data'] as $post):	//print_r($post); ?>
+								<li  id="<?php echo $flag; ?><?php echo ($flag%4); ?>">
+									<div class="product_box">
+										<div class="img_box">
+											<?php if(isset($post['full_picture']) && $post['full_picture'] != '') { ?>
+											<a target="_blank" href="<?php echo $post['attachments']['data'][0]['url']; ?>"></a>
+											<?php } ?>
+										</div>
+										<div class="content"> 
+											<div class="contant_box1"> 
+												<?php echo  substr($post['message'], 0, 100); ?>
+											</div>
+											<div class="date_box"><?php echo date("d/M/Y H:i", (strtotime($post['created_time']))) ?>  </div>
+										</div>
+									</div>
+								</li>
+								<?php $flag++; endforeach;  ?>
+							</ul> 
+							<div style="clear:both;"></div><?php  
+							}else{
+								echo '<div class="nopost"><h3>No Post Found!</h3></div>';
+							}   
+						}catch(Exception $e) { 
+							echo '<b>Message: </b> Invalid "Facebook App Id" ,"Facebook Secret Key" or "Facebook Page Id"';
+						} 
+						?>
+					</div>	  
+				</div>
+			<?php } ?> 
+			
+			<?php if($_helper->getCheckTW()){ ?>
+				<div id="tab2" class="tab_content">
+					<h4>Twitter</h4>
+					<div class="tw-feeds">
+						<?php  
+						/*Here you will get all info from user timeline */
+						$valid_data = json_decode($twitter); 
+						if(isset($valid_data) && count($valid_data)){ 
+							$twit = "<ul class='tw-f'>";
+							foreach ($valid_data as $key=>$value) {
+								$twit .= "<li>"; 
+								$twit .=  "<div class='tw-desc'>".$value->text."<span class='tw-date'>".$value->created_at."</span></div>";
+								$twit .=  "</li>";
+							}
+							$twit .=  "</ul>"; 
+						}else{
+							$twit = "<ul class='tw-f'>";
+							$twit .= "<li><div class='nopost'><h3>No Post Found!</h3></div></li>";
+							$twit .=  "</ul>";
+						}
+						echo $twit;
+						?>
+					</div>
+				</div>
+			<?php } ?> 
+			
+			<?php if($_helper->getCheckIN()){ ?>
+			<div id="tab3" class="tab_content"> 
+				<h4>Instagram</h4>
+				<div class="ins-feeds">
+					<?php 
+					$instagram_res = json_decode($instagram);
+					if(isset($instagram_res) && count($instagram_res) > 0){
+					foreach ($instagram_res->data as $post) { ?>
+						<img src="<?php echo $post->images->thumbnail->url; ?>" alt="" data-src="<?php echo $post->images->standard_resolution->url; ?>" class="popup" title="Instagram">
+					<?php 	} ?>
+					<?php 	}else{ echo "<ul class='tw-f'><li><div class='nopost'><h3>No Post Found!</h3></div></li></ul>"; } ?>
+				</div>
+			</div>
+			<?php } ?> 
+			
+			<?php if($_helper->getCheckPI()){ ?>
+			<div id="tab4" class="tab_content">
+				<h4>Pinterest</h4>
+				<div class="pin-feeds">
+					<?php 
+					$pin = " "; 
+					if(isset($pinterest) && count($pinterest) > 0 ){
+						for($x=0;$x<count($pinterest);$x++) {  //Displays first three pins (can be changed)
+							$title = str_replace(' & ', ' &amp; ', $pinterest[$x]['title']);
+							$link = $pinterest[$x]['link'];
+							$start = strpos($pinterest[$x]['description'],"<img src") + 10;  //Find position of source image url from description
+							$length = strpos($pinterest[$x]['description'],"></a>") - 1 - $start;  //Find length of source image url from description
+							$image = substr($pinterest[$x]['description'],$start,$length);  //Extract source image url from description
+							$date = date('l F d, Y', strtotime($pinterest[$x]['date']));  //Date format can be changed							
+							$pin .= "<a href='".$link."'><img src='".$image."' border=0 alt='".$title."'></a>";
+						}
+						echo $pin;
+					}else{
+						echo "<ul class='tw-f'><li><div class='nopost'><h3>No Post Found!</h3></div></li></ul>";
+					}		
+					 ?>
+				</div>
+			</div>
+			<?php } ?> 
+			
+			<?php if($_helper->getCheckYT()){ ?>
+			<div id="tab5" class="tab_content">
+				<h4>YouTube</h4>
+				<div class="yt-video">
+					<?php if($youtube_url != ''){ ?>
+					<iframe id="ytplayer" type="text/html" src="https://www.youtube.com/embed/<?php echo $youtube_url ?>?rel=0&showinfo=0&color=white&iv_load_policy=3"
+				frameborder="0" allowfullscreen></iframe>  
+					<?php } ?>
+				</div>
+			</div>
+			<?php } ?>
+		</div> 
+	</div>				  
+</div>
+<?php } ?>

@@ -1,0 +1,337 @@
+<root><blocks><cms_block><title>Footer Links</title><identifier>footer_links</identifier><content><![CDATA[
+<ul>
+    <li><a href="{{store direct_url="about-magento-demo-store"}}">About Us</a></li>
+    <li><a href="{{store direct_url="customer-service"}}">Customer Service</a></li>
+<li class="last privacy"><a href="{{store direct_url="privacy-policy-cookie-restriction-mode"}}">Privacy Policy</a></li>
+</ul>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Footer Links Company</title><identifier>footer_links_company</identifier><content><![CDATA[
+<div class="links">
+    <div class="block-title">
+        <strong><span>Company</span></strong>
+    </div>
+    <ul>
+        <li><a href="{{store url=""}}about-magento-demo-store/">About Us</a></li>
+        <li><a href="{{store url=""}}contacts/">Contact Us</a></li>
+        <li><a href="{{store url=""}}customer-service/">Customer Service</a></li>
+        <li><a href="{{store url=""}}privacy-policy-cookie-restriction-mode/">Privacy Policy</a></li>
+    </ul>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Left top bar header block layout 1</title><identifier>left_top_bar_header_block_layout1</identifier><content><![CDATA[<div class="top-bar-phone"><span class="fa fa-phone">&nbsp;</span><span>(+84) 1556 885 66</span></div>
+<span class="sper sper-s1"> | </span>
+<div class="top-bar-email"><span class="fa fa-envelope" >&nbsp;</span><span>Sk@gmail.com</span></div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Home 01 - Slide img 1</title><identifier>slide-img-1</identifier><content><![CDATA[<div class="slider-top"><img alt="" src="{{media url="wysiwyg/skstore/home1/2.jpg"}}" />
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Home 01 - Slide img 2</title><identifier>slide-img-2</identifier><content><![CDATA[<div class="slider-top"><img alt="" src="{{media url="wysiwyg/skstore/home1/3.jpg"}}" />
+<div class="text">
+<div class="little">Wonderfull day in the city</div>
+<h2 class="large">Enjoy the ride</h2>
+<div class="button-view-all">
+	<a href="#">View Shop Now</a>
+</div>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>SK Home page 1 - Top Contents Block</title><identifier>skhome1-top-contents</identifier><content><![CDATA[<div class="service row top-block-promotions">
+<div class="col-sm-4 col-xs-12 service-ship no-padding-left">
+<div class="ic bgr-transition">&nbsp;</div>
+<div class="service-desc">
+<h3>Free Ship all order</h3>
+<p>Lorem ipsum dolor sip amet, consectetur Integer venenatis</p>
+</div>
+</div>
+<div class="col-sm-4 col-xs-12 service-moneyback">
+<div class="ic bgr-transition">&nbsp;</div>
+<div class="service-desc">
+<h3>100% Money back</h3>
+<p>Lorem ipsum dolor sip amet, consectetur Integer venenatis</p>
+</div>
+</div>
+<div class="col-sm-4 col-xs-12 service-support  no-padding-right">
+<div class="ic bgr-transition">&nbsp;</div>
+<div class="service-desc">
+<h3>24/7 Support</h3>
+<p>Lorem ipsum dolor sip amet, consectetur Integer venenatis</p>
+</div>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Custom Menu</title><identifier>custom_menu</identifier><content><![CDATA[<p>test</p>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Custom Menu 2</title><identifier>custom_menu_2</identifier><content><![CDATA[
+<li class="level0 featred level-top"><a class="level-top" href="#"><span>Other Homepages</span></a>
+<div class="level0 sub-wrapper show-sub" style="width: 828px; height: auto;">
+<div class="ktmmenu-block ktmmenu-block-center menu-items grid12-12 itemgrid itemgrid-3col">
+<ul class="level0">
+<li class="level1 groups item nav-1-1 first"><a href="{{store url=''}}?___store=default"> <span class="title_group">SK Home Page 1</span> </a></li>
+<li class="level1 groups item nav-1-1"><a href="{{store url=''}}?___store=skstore2"> <span class="title_group">SK Home Page 2</span> </a></li>
+</ul>
+</div>
+</div>
+</li>
+<li class="level0 blog level-top"><a class="level-top" href="{{store url='blog'}}"><span>Blog</span></a></li>
+<li class="level0 contacts level-top last"><a class="level-top" href="{{store url='contact-us'}}"><span>Contact</span></a></li>
+]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>SK Home 1- Sale Up Block</title><identifier>sale-up-block-1</identifier><content><![CDATA[<div class="sale-up-container clearfix">
+<div class="col-xs-12 col-sm-6 sale-left">
+<div class="sale-left-inner">
+<h3>Bikes and Accessories</h3>
+<h4>Sale up <span>45%</span></h4>
+<ul class="disc mt-20">
+<li class="mb-10">Bambooyah Core</li>
+<li class="mb-10">Tweekend Freestyle Rocker</li>
+<li class="mb-10">Ollie-Bar</li>
+<li class="mb-10">Carbon Web</li>
+</ul>
+<div class="custom-action">{{block type="catalog/product_list" template="ktmcore/catalog/product/list/custom-actions.phtml" product_sku="City Bikes"}}</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 sale-right">
+<div class="sale-right-inner">
+<h3>Women Jacket</h3>
+<h4>Sale up <span>45%</span></h4>
+<ul class="disc mt-20">
+<li class="mb-10">Bambooyah Core</li>
+<li class="mb-10">Tweekend Freestyle Rocker</li>
+<li class="mb-10">Ollie-Bar</li>
+<li class="mb-10">Carbon Web</li>
+</ul>
+<div class="custom-action">{{block type="catalog/product_list" template="ktmcore/catalog/product/list/custom-actions.phtml" product_sku="City Bikes"}}</div>
+</div>
+</div>
+<div class="sale-middle"><img src="{{media url="wysiwyg/deal.png"}}" alt="" /></div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>SK Home page 1 - Promotions Block</title><identifier>skhome1-promotion</identifier><content><![CDATA[<div class="promotion-image col-sm-6 col-xs-12">
+<div class="image-promotion"><a href="#"> <img title="Promotion" alt="" src="{{media url=''}}wysiwyg/skstore/promotion_medium.png" /> </a></div>
+</div>
+<div class="promotion-content col-sm-6 col-xs-12">
+<ul class="owl-promotion owl-carousel">
+<li class="item">
+<h2 class="promotion-title upp">WINTER HOLIDAY</h2>
+<h3 class="promotion-subtitle upp">Promotion <br /> Sale up 45%</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer venenatis consequat justo, sed lobortis magna semper ac. Fusce purus metus, elementum in magna a, efficitur ornare lorem. Praesent scelerisque tristiqtue turpis ac ornare. Duis ut magna viverra velit tristique sagittis.</p>
+</li>
+<li class="item">
+<h2 class="promotion-title upp">New Arrivals</h2>
+<h3 class="promotion-subtitle upp">New Items <br /> Skate</h3>
+<p>We love new things, don&rsquo;t you? Shop Skateboards New Arrivals at our stores, and see our entire selection of freestyle, vert, street, park, cruising, downhill skateboarding and more. We always update the new collections on our website, fanpage. Let&rsquo;s follow to receive newest information</p>
+</li>
+<li class="item">
+<h2 class="promotion-title upp">SUMMER 2016</h2>
+<h3 class="promotion-subtitle upp">Best selling <br /> Items</h3>
+<p>We prowled the floor of Interbike, the largest cycling trade show in the United States, United Kingdom, last week in search of the coolest mountain bikes for summner 2016 season. All of them are the most favourite products in our new collection. If you love them, don&rsquo;t hesitate let&rsquo;s try it now!</p>
+</li>
+</ul>
+<div class="clearfix">&nbsp;</div>
+<div class="view-all-button"><a class="upp fs-12" title="Buy Now" href="#">Buy Now</a></div>
+</div>
+<script type="text/javascript">// <![CDATA[
+jQuery(document).ready(function(){
+        jQuery('.owl-promotion').owlCarousel({
+    margin:0,
+    nav:false,
+    items:1,
+dots:true,
+        })
+})
+// ]]></script>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>SK Home page 1 - About Us</title><identifier>about-us</identifier><content><![CDATA[<div class="home-about-us-container">
+<h3>SK STORE</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing 1992 elit London, do tempor incididunt ut labore et dolore magna aliqua. <br/>
+SK renim ad 2015 minim veniam, quis nostrud exercitation ullamco. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+<br/>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco  <br/>
+Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla.  <br/>
+Sed ut perspiciatis unde omnis iste natus.</p>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>cms-cateogry-product</title><identifier>cms-cateogry-product</identifier><content><![CDATA[<div class="block-img-right"><img alt="" src="{{media url="wysiwyg/categoryblock/img-mainmenu.png"}}" /></div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Block Footer </title><identifier>block-footer</identifier><content><![CDATA[<div class="row">
+<div class="accodion col-xs-12 col-sm-6 col-md-6 col-lg-6">
+<div class="mobile-collapsible block-footer col-xs-12 col-sm-4">
+<div class="row">
+<h3 class="title-block"><span>Information</span></h3>
+<div class="text-block">
+<ul>
+<li><a href="#">About us</a></li>
+<li><a href="#">Our stores </a></li>
+<li><a href="#">My account</a></li>
+<li><a href="#">Order history</a></li>
+<li><a href="#">Special info</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="mobile-collapsible block-footer col-xs-12 col-sm-4">
+<div class="row">
+<h3 class="title-block"><span>My Account</span></h3>
+<div class="text-block">
+<ul>
+<li><a href="#">My order</a></li>
+<li><a href="#">My credit </a></li>
+<li><a href="{{store url=''}}wishlist">My wishlist</a></li>
+<li><a href="#">Personal Info</a></li>
+<li><a href="{{store url=''}}customer/account/">Login</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="mobile-collapsible block-footer col-xs-12 col-sm-4">
+<div class="row">
+<h3 class="title-block"><span>Customer</span></h3>
+<div class="text-block">
+<ul>
+<li><a href="#">Help and FAQ</a></li>
+<li><a href="#">Order and returns </a></li>
+<li><a href="#">Shipping info</a></li>
+<li><a href="#">Search terms</a></li>
+<li><a href="#">Store location</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+<div class="row">
+<h3 class="title-block"><span>Instagram</span></h3>
+<div class="text-block">{{block type="bss_socialfeeds/socialfeed_socialfeeds" template="bss_socialfeeds/socialfeed/footer_block.phtml"}}</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+<div class="footer-contact-box row pl-40">
+<h3 class="title-block"><span>Contact</span></h3>
+<div class="text-block">
+<p>PO BOX CT16122 Colins Street West, <br /> Victoria 8007, Autralia.</p>
+<p>Phone: +1 (2) 345 6789 <br /> Fax: +1 (2) 345 6789 <br /> Email: Contact@yourdomain.com</p>
+</div>
+</div>
+</div>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Footer payment</title><identifier>footer-payment</identifier><content><![CDATA[<div class="payment">
+<div><i class="fa fa-cc-visa">&nbsp;</i></div>
+<div><i class="fa fa-cc-mastercard">&nbsp;</i></div>
+<div><i class="fa fa-cc-paypal">&nbsp;</i></div>
+<div><i class="fa fa-cc-amex">&nbsp;</i></div>
+<div><i class="fa fa-cc-jcb" aria-hidden="true">&nbsp;</i></div>
+<div><i class="fa fa-credit-card-alt">&nbsp;</i></div>
+<div><i class="fa fa-cc-stripe" aria-hidden="true">&nbsp;</i></div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Top 10 Sales Category Block</title><identifier>category_top_block</identifier><content><![CDATA[<div class="cate-top-block clearfix ">
+<div class="col-sm-7 col-xs-12 left">
+<div class="top-sale-container row">
+<div class="top-sale-list pt-50 ml-35">
+<h3>Top 10 Sale</h3>
+<p>Mountain Bike - 2016</p>
+</div>
+<div class="view-all-button ml-35"><a class="upp fs-14 fw-7" title="View Shop Now" href="#">View Shop Now</a></div>
+<div class="left-img"><img alt="" src="{{media url='wysiwyg/bannercate1.png'}}" /></div>
+</div>
+</div>
+<div class="col-sm-5 col-xs-12 right">
+<div class="top-sale-container row">
+<div class="top-sale-product">
+<h3 class="ml-35 pt-20">SNATA CRUZ</h3>
+<span class="ml-35 fs-40 fw-8 blo">SALE UP</span> <span class="sale-percent fs-40 blo ml-35">45%</span>
+<div class="view-all-button ml-35"><a class="upp fs-14 fw-7" title="View Shop Now" href="#">View Shop Now</a></div>
+</div>
+<div class="right-img"><img alt="" src="{{media url='wysiwyg/bannercate2.png'}}" /></div>
+</div>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Banner About us full width</title><identifier>banner_about_us</identifier><content><![CDATA[<div class="banner-about-us"><img alt="" src="{{media url="wysiwyg/skstore/about-us-banner.jpg"}}" /> <strong class="caption-about-us">About us</strong></div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Extend Block Contents</title><identifier>product_view_extend_block</identifier><content><![CDATA[<div class="extend-container mb-50">
+<div class="first-des-inner clearfix">
+<div class="des-pos-2">
+<div class="des-pos-1 col-md-5 col-lg-5">
+<div class="first-des-title fw-8 fs-20">TEXT DETAIL ONE</div>
+<p class="first-des-text fw-6 pl-50 pt-20 mt-50">ADescription - Road Bikes 27.5 Alloy 24 Speed MTB features a lightweight hydroformed 6061 alloy frame with a smooth weld tube, complemented by an XCT-V4 alloy crown suspension with lock out and a 24 speed Shimano drivetrain for a super smooth ride and shifting. The Supra 27.5 doesn't stop at that, as it also features a 36 hole alloy double wall rim, with eyelets and black stainless steel spokes, as well as front and rear Tektro Draco disc brakes. The Bauer Supra 27.5 Alloy 24 Speed MTB is available in two tone white and black and is designed to let you ride on and off the trail in total style and comfort.</p>
+</div>
+</div>
+<div class="first-des-img"><img alt="" src="{{media url='wysiwyg/skstore/extend-banner-1.png'}}" /></div>
+</div>
+<div class="secord-des-inner clearfix">
+<div class="des-pos-3 col-md-5 col-lg-5 pull-right">
+<div class="secord-des-title fw-8 fs-20">TEXT DETAIL TWO</div>
+<p class="secord-des-text fw-6 pl-50 ml-10 pt-20 mt-50">ADescription - Road Bikes 27.5 Alloy 24 Speed MTB features a lightweight hydroformed 6061 alloy frame with a smooth weld tube, complemented by an XCT-V4 alloy crown suspension with lock out and a 24 speed Shimano drivetrain for a super smooth ride and shifting. The Supra 27.5 doesn't stop at that, as it also features a 36 hole alloy double wall rim, with eyelets and black stainless steel spokes, as well as front and rear Tektro Draco disc brakes. The Bauer Supra 27.5 Alloy 24 Speed MTB is available in two tone white and black and is designed to let you ride on and off the trail in total style and comfort.</p>
+</div>
+<div class="secord-des-img"><img alt="" src="{{media url='wysiwyg/skstore/extend-banner-2.png'}}" /></div>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Home 01 - Slide img 3</title><identifier>slide-img-3</identifier><content><![CDATA[<div class="slider-top"><img alt="" src="{{media url="wysiwyg/skstore/home1/2.jpg"}}" /></div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>SK Home 2 - Slide img 01</title><identifier>home-2-slide-1</identifier><content><![CDATA[<div class="slider-top"><img alt="" src="{{media url='wysiwyg/skstore/home2/banner1.jpg'}}" />
+<div class="text home2">
+<div class="s-large upp fw-8 pr-30 pl-30">2016 WAKE SURFERS</div>
+<div class="upp l-large fw-7 pb-20 pr-30 pl-30">From phase five</div>
+<div class="clearfix">&nbsp;</div>
+<div class="view-all-button b-w-200"><a class="upp fs-14" href="#"> View Shop Now <i class="fs-12 ml-20 fa fa-chevron-right">&nbsp;</i> </a></div>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>SK Home 2 - Slide img 02</title><identifier>home-2-slide-2</identifier><content><![CDATA[<div class="slider-top"><img src="{{media url='wysiwyg/skstore/home2/banner2.jpg'}}" alt="" />
+	<div class="text">
+		<div class="large">2016 WAKE SURFERS</div>
+		<h2 class="little">Enjoy the ride</h2>
+	</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>SK Home 2 - Slide img 03</title><identifier>home-2-slide-3</identifier><content><![CDATA[<div class="slider-top"><img src="{{media url='wysiwyg/skstore/home2/banner3.jpg'}}" alt="" />
+	<div class="text">
+		<div class="large">2016 WAKE SURFERS</div>
+		<h2 class="little">Enjoy the ride</h2>
+	</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Blog sidebar last</title><identifier>blog_sidebar_last</identifier><content><![CDATA[<div class="blog-right-block clearfix ">
+<div class="col-sm-12 col-xs-12 ">
+<div class="top-sale-container row">
+<div class="top-sale-product">
+<h3 class="ml-35 pt-20">SNATA CRUZ</h3>
+<span class="ml-35 fs-40 fw-8 blo">SALE UP</span> <span class="sale-percent fs-40 blo ml-35">45%</span>
+<div class="view-all-button ml-35"><a class="upp fs-14 fw-7" title="View Shop Now" href="#">View Shop Now</a></div>
+</div>
+<div class="right-img"><img alt="" src="{{media url='wysiwyg/bannercate2.png'}}" /></div>
+</div>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>SK Home 2 - Block Cate </title><identifier>sk-home-2-block-cate</identifier><content><![CDATA[<div class="block-cate-wrap mt-30 row clearfix"> 
+	<div class="cate-1st-row row">
+		<div class="cate-1st-img col-sm-9 col-xs-12">
+			<a class="cate-1st-img-link" href="#">
+				<img src="{{media url='wysiwyg/skstore/home2/home2-blocktop-img1.jpg'}}" />
+			</a>
+		</div>
+		<div class="cate-1st-details col-sm-3 col-xs-12">
+			<h3 class="cate-details-title fs-30 mt-25"><span class="part1 fw-8">Best </span><span class="part2 fw-8">2016 </span><span class="part3 fw-8">wakesuft boards</span></h3>
+			<a class="cate-details-link mt-50 mb-50 blo fs-14 fw-6" href="#">
+				What new collection?
+			</a>
+			<p class="cate-details-desc fs-14 fw-6">
+				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+			</p>
+		</div>
+	</div>
+	<div class="two-cate row mt-30">
+		<div class="cate-2nd-col col-sm-9 col-xs-12">
+			<div class="row">
+				<div class="cate-2nd-img col-sm-8 col-sm-push-4 col-xs-12">
+					<a class="cate-2nd-img-link" href="#">
+						<img src="{{media url='wysiwyg/skstore/home2/home2-blocktop-img2.jpg'}}" />
+					</a>
+				</div>
+				<div class="cate-2nd-details col-sm-4 col-sm-pull-8 col-xs-12">
+					<h3 class="cate-details-title fs-30 mt-25"><span class="part1 fw-8">Best </span><span class="part2 fw-8">2016 </span><span class="part3 fw-8">wakesuft boards</span></h3>
+					<a class="cate-details-link mt-50 mb-50 blo fs-14 fw-6" href="#">
+						What new collection?
+					</a>
+					<p class="cate-details-desc fs-14 fw-6">
+						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="cate-3rd-col col-sm-3 col-xs-12">
+			<div class="cate-3rd-img">
+				<a class="cate-3rd-img-link" href="#">
+					<img src="{{media url='wysiwyg/skstore/home2/home2-blocktop-img3.jpg'}}" />
+				</a>
+			</div>
+			<div class="cate-details-title">
+				<h3 class="cate-title fs-30 mt-25"><span class="part1 fw-8">Top </span><span class="part2 fw-8">Buy </span><span class="part3 fw-8">Accessories</span></h3>
+				<a class="cate-details-link mt-50 mb-50 blo fs-14 fw-6" href="#">
+					What new collection?
+				</a>
+				<p class="cate-details-desc fs-14 fw-6">
+					Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>SK Home page 2 - Block Promotion</title><identifier>sk-home-2-block-promo</identifier><content><![CDATA[<div class="home-2-promotion center-block container">
+<div class="promotion-image col-sm-7 col-xs-12">
+<div class="row">
+<div class="image-promotion"><a href="#"> <img title="Promotion" alt="" src="{{media url=''}}wysiwyg/skstore/home2/promo-person.png" /> </a></div>
+</div>
+</div>
+<div class="promotion-content col-sm-5 col-xs-12">
+<div class="row">
+<h2 class="promotion-title upp mt-50 pt-10">WINTER HOLIDAY</h2>
+<h3 class="promotion-subtitle upp">Promotion <br /> Sale up 45%</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer venenatis consequat justo, sed lobortis magna semper ac. Fusce purus metus, elementum in magna a, efficitur ornare lorem. Praesent scelerisque tristiqtue turpis ac ornare. Duis ut magna viverra velit tristique sagittis.</p>
+<div class="clearfix">&nbsp;</div>
+<div class="view-all-button ml-35 mt-40 mb-5"><a class="upp fs-12" title="Buy Now" href="{{store url=''}}product.html">Buy Now</a></div>
+</div>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block></blocks></root>

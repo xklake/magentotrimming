@@ -1,0 +1,195 @@
+/*
+Hover Effect
+================================*/
+.hover-effect01 {
+  transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -webkit-transition: all 1000ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  &:before {
+    background-color: rgba(255, 255, 255, 0.15);
+    content: "";
+    height: 0;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    transition: all 0.3s ease-out 0s;
+    width: 0;
+  }
+  &:after {
+    background-color: rgba(255, 255, 255, 0.15);
+    bottom: 0;
+    content: "";
+    height: 0;
+    position: absolute;
+    right: 0;
+    transition: all 0.3s ease-out 0s;
+    width: 0;
+  }
+  &:hover:after, &:hover:before {
+    height: 100%;
+    transition: all 0.4s ease-out 0s;
+    width: 100%;
+  }
+}
+
+.hover-effect02 {
+  transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  position: relative;
+  &:before {
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    background: transparent;
+    transition: 0.3s;
+    -moz-transition: 0.3s;
+    -webkit-transition: 0.3s;
+    width: 100%;
+  }
+  &:hover:before {
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.6) inset;
+  }
+}
+
+.hover-effect03 {
+  position: relative;
+  display: inline-block;
+  transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  &:before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transform: scale(0.5) rotateY(180deg);
+    -webkit-transform: scale(0.5) rotateY(180deg);
+    -moz-transform: scale(0.5) rotateY(180deg);
+    transition: 0.4s;
+    -moz-transition: 0.4s;
+    -webkit-transition: 0.4s;
+    z-index: 99;
+    background: url(../images/plus.png) no-repeat center center #ffffff;
+  }
+  &:hover {
+    opacity: 0.35;
+    visibility: visible;
+    transform: scale(1) rotateY(0deg);
+    -webkit-transform: scale(1) rotateY(0deg);
+    -moz-transform: scale(1) rotateY(0deg);
+  }
+}
+
+.hover-effect04 {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  &:after {
+    transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -webkit-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    content: '';
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+  &:hover:after {
+    webkit-transform: translate(-100%);
+    -moz-transform: translate(-100%);
+    -ms-transform: translate(-100%);
+    -o-transform: translate(-100%);
+    transform: translate(-100%);
+  }
+}
+
+.hover-effect05 {
+  position: relative;
+  &:before {
+    content: " ";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    bottom: 5px;
+    right: 5px;
+    border: 2px solid transparent;
+    z-index: 100;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+    opacity: 0;
+  }
+  &:after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    opacity: 0;
+    transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+  }
+  &:hover:before {
+    opacity: 1;
+    top: 15px;
+    left: 15px;
+    bottom: 15px;
+    right: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+  }
+  &:hover:after {
+    opacity: 1;
+  }
+}
+
+.hover-effect06 {
+  position: relative;
+  &:before, &:after {
+    background-color: #000;
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    transition: all 0.3s ease-out 0s;
+
+    opacity: 0;
+  }
+  &:hover:before, &:hover:after {
+    transition: all 0.4s ease-out 0s;
+    opacity: 0.3;
+  }
+}
+/*
+End Hover Effect
+==============================*/

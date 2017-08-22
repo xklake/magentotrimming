@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+-->
+<layout>
+    <catalog_category_layered>
+        <reference name="head">
+            <!--action method="addJs" ifconfig="ktmcorefilter/general/bar">
+                <script>ktmcore/extensions/jquery/jquery-1.11.1.min.js</script>
+            </action-->
+            <action method="addJs" ifconfig="ktmcorefilter/general/bar">
+                <script>ktmcore/lib/nprogress/nprogress.js</script>
+            </action>
+            <action method="addItem" ifconfig="ktmcorefilter/general/bar">
+                <type>js_css</type>
+                <css>ktmcore/lib/nprogress/nprogress.css</css>
+            </action>
+            <action method="addJs" ifconfig="ktmcorefilter/catalog/enable">
+                <script>ktmcore/lib/URIjs/src/URI.min.js</script>
+            </action>
+            <action method="addJs" ifconfig="ktmcorefilter/catalog/enable">
+                <script>ktmcore/js/filter/filter.js</script>
+            </action>
+        </reference>
+        <reference name="after_body_start">
+            <block type="core/template" name="ktmcore_filter_js" as="ktmcore_filter_js">
+                <action method="setTemplate" ifconfig="ktmcorefilter/catalog/enable">
+                    <file>ktmcore/filter/js.phtml</file>
+                </action>
+            </block>
+        </reference>
+    </catalog_category_layered>
+
+    <catalogsearch_result_index>
+        <reference name="head">
+            <!--action method="addJs" ifconfig="ktmcorefilter/general/bar">
+                <script>ktmcore/extensions/jquery/jquery-1.11.1.min.js</script>
+            </action-->
+            <action method="addJs" ifconfig="ktmcorefilter/general/bar">
+                <script>ktmcore/lib/nprogress/nprogress.js</script>
+            </action>
+            <action method="addItem" ifconfig="ktmcorefilter/general/bar">
+                <type>js_css</type>
+                <css>ktmcore/lib/nprogress/nprogress.css</css>
+            </action>
+            <action method="addJs" ifconfig="ktmcorefilter/catalogsearch/enable">
+                <script>ktmcore/lib/URIjs/src/URI.min.js</script>
+            </action>
+            <action method="addJs" ifconfig="ktmcorefilter/catalogsearch/enable">
+                <script>ktmcore/js/filter/filter.js</script>
+            </action>
+        </reference>
+        <reference name="after_body_start">
+            <block type="core/template" name="ktmcore_filter_js" as="ktmcore_filter_js">
+                <action method="setTemplate" ifconfig="ktmcorefilter/catalogsearch/enable">
+                    <file>ktmcore/filter/js.phtml</file>
+                </action>
+            </block>
+        </reference>
+    </catalogsearch_result_index>
+</layout>

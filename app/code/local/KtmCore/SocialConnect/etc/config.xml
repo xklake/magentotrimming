@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+-->
+
+<config>
+    <modules>
+        <KtmCore_SocialConnect>
+            <version>0.2.3</version>
+        </KtmCore_SocialConnect>
+    </modules>
+    <default>
+        <customer>
+            <ktmcore_socialconnect_google>
+                <enabled>0</enabled>
+            </ktmcore_socialconnect_google>
+            <ktmcore_socialconnect_facebook>
+                <enabled>0</enabled>
+            </ktmcore_socialconnect_facebook>	    
+            <ktmcore_socialconnect_twitter>
+                <enabled>0</enabled>
+            </ktmcore_socialconnect_twitter>	    	    
+        </customer>
+    </default>
+    <frontend>
+        <translate>
+            <modules>
+                <KtmCore_SocialConnect>
+                     <files>
+                        <default>KtmCore_SocialConnect.csv</default>
+                     </files>
+                </KtmCore_SocialConnect>
+            </modules>
+        </translate>        
+        <layout>
+            <updates>
+                <ktmcore_socialconnect>
+                    <file>ktmcore_socialconnect.xml</file>
+                </ktmcore_socialconnect>
+            </updates>
+        </layout>
+    </frontend>    
+    <global>
+        <models>
+            <ktmcore_socialconnect>
+                <class>KtmCore_SocialConnect_Model</class>
+            </ktmcore_socialconnect>
+        </models>
+        <blocks>
+            <ktmcore_socialconnect>
+                <class>KtmCore_SocialConnect_Block</class>
+            </ktmcore_socialconnect>            
+        </blocks>
+        <helpers>
+            <ktmcore_socialconnect>
+                <class>KtmCore_SocialConnect_Helper</class>
+            </ktmcore_socialconnect>
+        </helpers>
+        <resources>
+            <ktmcore_socialconnect_setup>
+                <setup>
+                    <module>KtmCore_SocialConnect</module>
+                    <class>KtmCore_SocialConnect_Model_Resource_Setup</class>
+                </setup>
+            </ktmcore_socialconnect_setup>
+        </resources>        
+    </global>
+    <frontend>
+        <routers>
+            <ktmcore_socialconnect>
+                <use>standard</use>
+                <args>
+                    <module>KtmCore_SocialConnect</module>
+                    <frontName>socialconnect</frontName>
+                </args>
+            </ktmcore_socialconnect>
+        </routers>  
+    </frontend>    
+</config>

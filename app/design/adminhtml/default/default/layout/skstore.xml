@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+-->
+<layout>
+    <skstore_adminhtml_support_index>
+        <reference name="content">
+            <block type="skstore/adminhtml_support" name="adminhtml_support"/>
+        </reference>
+    </skstore_adminhtml_support_index>
+</layout>

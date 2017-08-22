@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <BSS_Hometabspro>
+            <active>false</active>
+            <codePool>local</codePool>
+        </BSS_Hometabspro>
+    </modules>
+</config>

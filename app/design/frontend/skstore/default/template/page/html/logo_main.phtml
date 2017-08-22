@@ -1,0 +1,20 @@
+<?php
+$theme = $this->helper('skstore');
+$mobileCart = $theme->getCfg('header/hide_on_mobile');
+$logo = $theme->getCfg('header/logo_upload');
+$logoAlt = $theme->getCfg('header/logo_alt');
+$logo_retina = $theme->getCfg('header/logo_retina_upload');
+$mediaUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+?>
+<div class="logo-home">
+    <?php if ($this->getIsHomePage()): ?>
+        <h1 class="logo">
+            <strong><?php echo $logoAlt ?></strong><a href="<?php echo $this->getUrl('', $theme->checkSSL()) ?>" title="<?php echo $logoAlt ?>">
+                <img class="img-responsive" src="<?php echo $mediaUrl . 'wysiwyg/ktmcore/skstore/logo/' . $logo; ?>" alt="<?php echo $logoAlt ?>"/></a>
+        </h1>
+    <?php else: ?>
+        <a href="<?php echo $this->getUrl('', $theme->checkSSL()) ?>" title="<?php echo $logoAlt ?>" class="logo"><strong><?php echo $logoAlt ?></strong>
+            <img class="img-responsive" src="<?php echo $mediaUrl . 'wysiwyg/ktmcore/skstore/logo/' . $logo; ?>" alt="<?php echo $logoAlt ?>"/>
+        </a>
+    <?php endif ?>
+</div>

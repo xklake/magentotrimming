@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+-->
+<config>
+    <modules>
+        <KtmCore_Filter>
+            <version>1.1.0</version>
+        </KtmCore_Filter>
+    </modules>
+
+    <frontend>
+        <routers>
+            <catalog>
+                <args>
+                    <modules>
+                        <KtmCore_Filter before="Mage_Catalog">KtmCore_Filter_Catalog</KtmCore_Filter>
+                    </modules>
+                </args>
+            </catalog>
+            <catalogsearch>
+                <args>
+                    <modules>
+                        <KtmCore_Filter before="Mage_CatalogSearch">KtmCore_Filter_CatalogSearch</KtmCore_Filter>
+                    </modules>
+                </args>
+            </catalogsearch>
+        </routers>
+        <layout>
+            <updates>
+                <ktmcorefilter>
+                    <file>ktmcore_filter.xml</file>
+                </ktmcorefilter>
+            </updates>
+        </layout>
+    </frontend>
+
+    <global>
+        <blocks>
+            <ktmcorefilter>
+                <class>KtmCore_Filter_Block</class>
+            </ktmcorefilter>
+            <catalog>
+                <rewrite>
+                    <layer_filter_price>KtmCore_Filter_Block_Catalog_Layer_Filter_Price</layer_filter_price>
+                    <layer_filter_attribute>KtmCore_Filter_Block_Catalog_Layer_Filter_Attribute</layer_filter_attribute>
+                </rewrite>
+            </catalog>
+        </blocks>
+        <helpers>
+            <ktmcorefilter>
+                <class>KtmCore_Filter_Helper</class>
+            </ktmcorefilter>
+        </helpers>
+        <models>
+            <ktmcorefilter>
+                <class>KtmCore_Filter_Model</class>
+                <resourceModel>ktmcorefilter_resource</resourceModel>
+            </ktmcorefilter>
+            <ktmcorefilter_resource>
+                <class>KtmCore_Filter_Model_Resource</class>
+            </ktmcorefilter_resource>
+            <catalog_resource>
+                <rewrite>
+                    <product_collection>KtmCore_Filter_Model_Resource_Product_Collection</product_collection>
+                    <layer_filter_attribute>KtmCore_Filter_Model_Resource_Layer_Filter_Attribute</layer_filter_attribute>
+                </rewrite>
+            </catalog_resource>
+            <catalog>
+                <rewrite>
+                    <layer_filter_item>KtmCore_Filter_Model_Layer_Filter_Item</layer_filter_item>
+                </rewrite>
+            </catalog>
+            <catalogsearch_resource>
+                <rewrite>
+                    <fulltext_collection>KtmCore_Filter_Model_Resource_Fulltext_Collection</fulltext_collection>
+                </rewrite>
+            </catalogsearch_resource>
+        </models>
+        <events>
+            <core_block_abstract_prepare_layout_after>
+                <observers>
+                    <ktmcorefilter>
+                        <type>singleton</type>
+                        <class>ktmcorefilter/observer</class>
+                        <method>coreBlockAbstractPrepareLayoutAfter</method>
+                    </ktmcorefilter>
+                </observers>
+            </core_block_abstract_prepare_layout_after>
+        </events>
+    </global>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <ktmcorefilter>
+                    <file>ktmcore_filter.xml</file>
+                </ktmcorefilter>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <default>
+		<ktmcorefilter>
+            <general>
+                <bar>1</bar>
+            </general>
+		    <catalog>
+		    	<price>1</price>
+                <enable>1</enable>
+                <main_selector>.col-main</main_selector>
+                <layer_selector>.block-layered-nav</layer_selector>
+		    </catalog>
+            <catalogsearch>
+                <price>1</price>
+                <enable>1</enable>
+                <main_selector>.col-main</main_selector>
+                <layer_selector>.block-layered-nav</layer_selector>
+            </catalogsearch>
+		</ktmcorefilter>
+    </default>
+</config>

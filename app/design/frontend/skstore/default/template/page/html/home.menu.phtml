@@ -1,0 +1,43 @@
+<?php
+$theme = $this->helper('skstore');
+$compareHeader = $theme->getCfg('header/compare');
+$headerLayout = $theme->getCfg('header/layout');
+$stickyEnable = $theme->getCfg('header/sticky_enable');
+$mobileCart = $theme->getCfg('header/hide_on_mobile');
+$logo = $theme->getCfg('header/logo_upload');
+$logoAlt = $theme->getCfg('header/logo_alt');
+$logo_retina = $theme->getCfg('header/logo_retina_upload');
+$mediaUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+?>
+<h1 class="logo">
+        <a href="<?php echo $this->getUrl('', $theme->checkSSL()) ?>" title="<?php echo $logoAlt ?>">
+            <img class="img-responsive" src="<?php echo $mediaUrl . 'wysiwyg/ktmcore/skstore/logo/' . $logo; ?>" alt="<?php echo $logoAlt ?>"/>
+        </a>
+</h1>
+<nav class="main-mennu">
+    <?php echo $this->getChildHtml('topMenu') ?>
+</nav>
+<div class="social-links">
+	<ul>
+		<li>
+			<a class="btn-block btn-social btn-twitter" href="#">
+				<span class="fa fa-twitter"></span> Twitter
+			</a>
+		</li>
+		<li>
+			<a class="btn-block btn-social btn-facebook" href="#">
+				<span class="fa fa-facebook"></span> Facebook
+			</a>
+		</li>
+		<li>
+			<a class="btn-block btn-social btn-instagram" href="#">
+				<span class="fa fa-instagram"></span> Instagram
+			</a>
+		</li>
+		<li>
+			<a class="btn-block btn-social btn-google-plus" href="#">
+				<span class="fa fa-google-plus"></span> Google-plus
+			</a>
+		</li>
+	</ul>
+</div>

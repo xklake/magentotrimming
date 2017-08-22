@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+ -->
+<config>
+    <modules>
+        <KtmCore_Export>
+            <version>1.0.1</version>
+        </KtmCore_Export>
+    </modules>
+    <global>
+        <models>
+            <export>
+                <class>KtmCore_Export_Model</class>
+            </export>
+        </models>
+        <blocks>
+            <export>
+                <class>KtmCore_Export_Block</class>
+            </export>
+        </blocks>
+        <helpers>
+            <export>
+                <class>KtmCore_Export_Helper</class>
+            </export>
+        </helpers>
+    </global>
+    <frontend>
+        <routers>
+            <export>
+                <use>standard</use>
+                <args>
+                    <module>KtmCore_Export</module>
+                    <frontName>export</frontName>
+                </args>
+            </export>
+        </routers>
+    </frontend>
+    <admin>
+        <routers>
+            <export>
+                <use>admin</use>
+                <args>
+                    <module>KtmCore_Export</module>
+                    <frontName>export</frontName>
+                </args>
+            </export>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <export>
+                    <file>ktmcore_export.xml</file>
+                </export>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>

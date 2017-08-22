@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+-->
+<config>
+    <modules>
+        <KtmCore_AttributeImage>
+            <version>1.0</version>
+        </KtmCore_AttributeImage>
+    </modules>
+
+    <global>
+        <helpers>
+            <attributeimage>
+                <class>KtmCore_AttributeImage_Helper</class>
+            </attributeimage>
+        </helpers>
+        <blocks>
+            <adminhtml>
+                <rewrite>
+                    <catalog_product_attribute_edit_tab_options>KtmCore_AttributeImage_Block_Adminhtml_Catalog_Product_Attribute_Edit_Tab_Options</catalog_product_attribute_edit_tab_options>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        <resources>
+            <attributeimage_setup>
+                <setup>
+                    <module>KtmCore_AttributeImage</module>
+                </setup>
+            </attributeimage_setup>
+        </resources>
+        <models>
+            <attributeimage>
+                <class>KtmCore_AttributeImage_Model</class>
+            </attributeimage>
+            <catalog_resource>
+                <rewrite>
+                    <attribute>KtmCore_AttributeImage_Model_Resource_Attribute</attribute>
+                </rewrite>
+            </catalog_resource>
+        </models>
+    </global>
+
+    <adminhtml>
+        <events>
+            <controller_action_layout_render_before_adminhtml_catalog_product_attribute_edit>
+                <observers>
+                    <attributeimage>
+                        <class>KtmCore_AttributeImage_Model_Observer</class>
+                        <method>updateLayout</method>
+                    </attributeimage>
+                </observers>
+            </controller_action_layout_render_before_adminhtml_catalog_product_attribute_edit>
+        </events>
+    </adminhtml>
+
+    <default>
+        <attributeimage>
+            <general>
+                <show>1</show>
+            </general>
+        </attributeimage>
+    </default>
+</config>

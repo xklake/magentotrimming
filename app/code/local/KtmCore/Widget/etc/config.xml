@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+-->
+<config>
+    <modules>
+        <KtmCore_Widget>
+            <version>1.0.1</version>
+        </KtmCore_Widget>
+    </modules>
+
+    <frontend>
+        <routers>
+            <ktmwidget>
+                <use>standard</use>
+                <args>
+                    <module>KtmCore_Widget</module>
+                    <frontName>ktmwidget</frontName>
+                </args>
+            </ktmwidget>
+        </routers>
+        <layout>
+            <updates>
+                <ktmwidget>
+                    <file>ktmcore_widget.xml</file>
+                </ktmwidget>
+            </updates>
+        </layout>
+    </frontend>
+
+    <global>
+        <models>
+            <ktmwidget>
+                <class>KtmCore_Widget_Model</class>
+            </ktmwidget>
+        </models>
+        <blocks>
+            <ktmwidget>
+                <class>KtmCore_Widget_Block</class>
+            </ktmwidget>
+        </blocks>
+        <helpers>
+            <ktmwidget>
+                <class>KtmCore_Widget_Helper</class>
+            </ktmwidget>
+        </helpers>
+    </global>
+
+    <admin>
+        <routers>
+            <ktmwidget>
+                <use>admin</use>
+                <args>
+                    <module>KtmCore_Widget</module>
+                    <frontName>ktmwidget</frontName>
+                </args>
+            </ktmwidget>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <ktmwidget>
+                    <file>ktmcore_widget.xml</file>
+                </ktmwidget>
+            </updates>
+        </layout>
+        <cms>
+            <browser>
+                <extensions>
+                    <media_allowed>
+                        <mp4>1</mp4>
+                        <webm>1</webm>
+                    </media_allowed>
+                </extensions>
+            </browser>
+        </cms>
+    </adminhtml>
+</config>

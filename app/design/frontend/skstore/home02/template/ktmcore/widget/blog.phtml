@@ -1,0 +1,126 @@
+<?php
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+?>
+<?php
+$posts = $this->getBlog();
+$id         = $this->getConfig('id');
+$title      = $this->getConfig('widget_title');
+$helper = Mage::helper('ktmwidget');
+$showtitle  = $this->getConfig('showtitle');
+$showdate = $this->getConfig('showdate');
+$showauthor = $this->getConfig('showauthor');
+$showreadmore = $this->getConfig('showreadmore');
+$text_readmore = $this->getConfig('text_readmore');
+if (!$text_readmore ) $text_readmore = 'Read More...';
+$showintro = $this->getConfig('showintro');
+$layout = $this->getConfig("layout_type");
+if ($layout == 'box')	{
+	$box = true;
+} else {
+	$box=false;
+}
+?>
+<?php if ($box) : ?>
+<div class="container">
+<div class="main-container-inner">
+<?php else: ?>
+<div class="clearfix">
+<?php endif ?>
+<div class="<?php echo $this->getConfig('classes') ?>" id="<?php echo $id ?>">
+    <?php if ($title): ?>
+        <div class="main-heading">
+			<div class="heading-title style2">
+				<?php if ($title): ?>
+					<h3><span><?php echo $title ?></span></h3>
+				<?php endif ?>
+			</div>
+		</div>
+    <?php endif ?>
+	<?php if ($this->getConfig('widget_description')): ?>
+		<div class="widget-description">
+			<?php echo $this->getConfig('widget_description');	?>
+		</div>
+	<?php endif; ?>
+    <div class="postWrap clearfix">
+    <?php $i = 0; ?>
+	<?php	foreach ($posts as $post) { ?>
+		<?php $i++; ?>
+		
+			<div class="item-post col-md-4 col-xs-12 no-padding">
+				<?php //echo "<pre>";var_dump($post->getData()); ?>
+				<?php  $img = $helper->getImgBlog($post->getShortContent()); ?> 
+				<div class="upper-row-blog<?php if($i%2 == 0) echo ' row-pos-bottom'; ?>">
+					<a class="img-row" href="<?php echo $post->getAddress();  ?>">
+						<?php  if ($img): ?>
+						<img class="img-responsive owl-lazy" src="<?php echo $img; ?>" title="<?php echo $post->getTitle(); ?>" alt="<?php echo $post->getTitle();?> "/>
+						<?php else: ?>
+						<img class="img-responsive owl-lazy" src="" title="<?php echo $post->getTitle(); ?>" alt="<?php echo $post->getTitle();?> "/>
+						<?php endif; ?>
+						
+					</a>
+				</div>
+				<div class="lower-row-blog<?php if($i%2 == 0) echo ' row-pos-top'; ?>">
+					<div class="details-row">
+						<?php if ($showtitle):?>
+						<h2>
+							<a href="<?php echo $post->getAddress(); ?>" alt="<?php echo $post->getTitle(); ?>" title="<?php echo $post->getTitle(); ?>">
+								<?php echo $post->getTitle(); ?>
+							</a>
+						</h2>
+						<?php endif; ?>
+						<?php if ($showdate):	?>
+						<p class="time-from-start">
+							<?php
+							$previousTimeStamp = strtotime($post->getCreatedTime());
+							echo $this->countTimeFromStart($previousTimeStamp);
+							 ?>
+						</p>
+						<?php endif; ?>
+						<?php if ($showintro):?>
+						<div class="short-content">
+							 <?php
+	                            $content = $helper->truncate(strip_tags($post->getShortContent()), $length = 150, $etc = '...');
+	                            echo $content;
+	                        ?>
+						</div>
+						<?php endif; ?>
+						<?php if ($showauthor) :?>
+							<p class="blog-author"><?php echo 'Posted by: '.$post->getData("user");  ?>	</p>
+						<?php endif; ?>
+						<?php if ($showreadmore):  ?>
+							<a href="<?php echo $post->getAddress(); ?>" title="<?php echo $post->getTitle(); ?>">	<?php echo $text_readmore; ?></a>
+						<?php endif; ?>
+					</div>
+				</div>
+			</div>
+		
+		<?php  	
+	} ?>
+                                
+     </div>
+                            
+
+        
+    
+	</div>
+</div>
+<?php if ($box) : ?>
+</div>
+</div>
+<?php else: ?>
+</div>
+<?php endif ?>
+
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl('js') ?>ktmcore/widget/ktmwidget.min.js"></script>
+    <script type="text/javascript">
+        new Ktm.Widget('<?php echo $id ?>', {
+            carousel: <?php echo $this->getConfig('carousel') ?>,
+            carouselConfig: null,
+            animation: <?php echo $this->getConfig('animation') ?>,
+            parallax: <?php echo $this->getConfig('parallax') ?>,
+            kenburns: <?php echo $this->getConfig('kenburns') ?>,
+            countdown: <?php echo $this->getConfig('countdown') ?>
+        });
+</script>

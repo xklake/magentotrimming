@@ -1,0 +1,63 @@
+<?php
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+?>
+<?php
+$attributes = $this->getAttibuteOptions();
+$id         = $this->getConfig('id');
+$scroll     = $this->getConfig('scroll');
+$title      = $this->getConfig('widget_title');
+?>
+<div class="<?php echo $this->getConfig('classes') ?>" id="<?php echo $id ?>">
+    <div class="container">
+        <div class="main-heading">
+            <div class="heading-title">
+                <?php if ($title): ?>
+                    <h3><span><?php echo $title ?></span></h3>
+                <?php endif ?>
+            </div>
+        </div>
+		<?php if ($this->getConfig('widget_description')): ?>
+		<div class="widget-description">
+			<?php echo $this->getConfig('widget_description');	?>
+		</div>
+		<?php endif; ?>
+        <ul class="<?php echo $scroll==1 ? 'owl-carousel ' : '' ?>">
+            <?php foreach ($attributes as $attribute): ?>
+                <li>
+                    <?php if (isset($attribute['link'])): ?>
+                        <a href="<?php //echo $attribute['link'] ?>" title="<?php echo $attribute['label'] ?>">
+                    <?php endif ?>
+                    <?php if ($attribute['image']): ?>
+                        <?php if ($scroll == 1): ?>
+                            <img class="owl-lazy img-responsive" data-src="<?php echo $attribute['image'] ?>" alt="<?php echo $attribute['label'] ?>" src="<?php echo $attribute['image'] ?>" />
+                        <?php else: ?>
+                            <img src="<?php echo $attribute['image'] ?>" alt="<?php echo $attribute['label'] ?>" />
+                        <?php endif ?>
+                    <?php else: ?>
+                        <span><?php echo $attribute['label'] ?></span>
+                    <?php endif ?>
+                    <?php if (isset($attribute['link'])): ?>
+                        </a>
+                    <?php endif ?>
+                </li>
+            <?php endforeach ?>
+        </ul>
+    </div>
+	<?php if ($this->getConfig('widget_custom_html_bottom')): ?>
+	<div class="widget-custom-bottom">
+		<?php echo $this->getConfig('widget_custom_html_bottom');	?>	
+	</div>
+	<?php endif; ?>
+    <script type="text/javascript" src="<?php echo Mage::getBaseUrl('js') ?>ktmcore/widget/ktmwidget.min.js"></script>
+    <script type="text/javascript">
+        new Ktm.Widget('<?php echo $id ?>', {
+            animation: <?php echo $this->getConfig('animation') ?>,
+            parallax: <?php echo $this->getConfig('parallax') ?>,
+            carousel: <?php echo $this->getConfig('carousel') ?>,
+            carouselConfig: null,
+            kenburns: <?php echo $this->getConfig('kenburns') ?>
+        });
+    </script>
+</div>

@@ -1,0 +1,12 @@
+<?php
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+?>
+<?php
+    /* @var $this Mage_ConfigurableSwatches_Block_Catalog_Media_Js_Abstract */
+    $catViewKeepFrame = Mage::registry('catViewKeepFrame'); //KtmCore: added for list/grid view support
+?>
+<?php foreach ($this->getProductImageFallbacks($catViewKeepFrame) as $imageFallback): ?>
+<?php echo $imageFallback['image_fallback']; ?>
+<?php endforeach; ?>

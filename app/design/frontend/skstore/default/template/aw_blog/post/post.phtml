@@ -1,0 +1,208 @@
+<?php
+    $helper = Mage::helper('ktmwidget');
+
+    //get collecttion of comments
+    $comments = $this->getComment();
+?>
+
+<?php $post = $this->getPost(); ?>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="post-detail-wrap">
+        
+    <?php $img = $helper->getImgBlog($post->getShortContent()); ?>
+    <?php if ($img) : ?>
+        <img class="img-responsive lazy" data-src="<?php echo $img; ?>" src="<?php echo $this->getSkinUrl('images/loader.gif') ?>" alt="<?php echo $post->getTitle(); ?>"/>
+    <?php endif; ?>
+
+    <div class="title-blog">
+        <h2><?php echo $post->getTitle(); ?></h2>
+    </div>
+
+    <div class="detail-blog mb-50 clearfix">
+        <div class="dayUpload-blog2">
+        <?php
+            $previousTimeStamp = strtotime($post->getCreatedTime());
+            echo $this->prepare_time($previousTimeStamp);
+            //echo $this->timeShowing($previousTimeStamp);
+
+        ?>
+        </div>
+        <div class="count-comment-like">
+            <a href="#commentBox" class="move-cm pr-10"><i class="fa fa-comment-o pr-2" aria-hidden="true"></i><?php echo sizeof($comments); ?></a>
+            <i class="fa fa-heart-o pr-2" aria-hidden="true"></i><?php echo sizeof($comments); ?>
+        </div>
+    </div>
+
+    <div class="postContent"><?php echo $post->getPostContent(); ?></div>
+
+    <div class="tags clearfix">
+        <div class="col-md-6 tags-detail">
+        <?php echo Mage::getBlockSingleton('blog/blog')->getTagsHtml($post) ?>
+        </div>
+        <div class="col-md-6 social-share-more">
+        <a href="https://twitter.com/home?status=<?php echo $currentUrl = Mage::helper('core/url')->getCurrentUrl(); ?>" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+        class="icon-button twitter"><i class="fa fa-twitter" aria-hidden="true"></i><span></span></a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $currentUrl = Mage::helper('core/url')->getCurrentUrl(); ?>" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+        class="icon-button facebook"><i class="fa fa-facebook" aria-hidden="true"></i><span></span></a>
+        <a href="https://plus.google.com/share?url=<?php echo $currentUrl = Mage::helper('core/url')->getCurrentUrl(); ?>" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+        class="icon-button google-plus"><i class="fa fa-google" aria-hidden="true"></i><span></span></a>
+        <a id="onmenu-share" class="icon-button-share share-more"><i class="fa fa-share-alt" aria-hidden="true"></i></i><span></span></a>
+        </div>
+    </div>
+
+    <?php echo $this->getBookmarkHtml($post) ?>
+</div>
+
+<!-- Comment Section -->
+
+<?php if ($this->getCommentsEnabled()): ?>
+<div class="comment-wrap-fix">
+    
+    <div class="post-form-title"><a href="#commentBox" id="commentBox" ></a>
+        <h2>
+            <?php echo $this->__('COMMENT') ?>
+            <?php echo "(".sizeof($comments).")"; ?>
+        </h2>
+    </div>
+
+   
+        <?php foreach ($comments as $comment) : ?>
+            <div class="commentWrapper clearfix">
+                <div class="conmment-avatar mr-30">
+                    <img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/skstore/default/images/default-avatar.jpg"/>
+                </div>
+                <div class="col-md-10 commentDetails">
+                    
+                    <h4 class="username"><?php echo $comment->getUser(); ?></h4>
+                    <div class="commentContent pt-8"><?php echo nl2br($comment->getComment()); ?></div>
+                </div>
+                <div class="col-md-10 comment-line-bot" style="height: 1px; background-color: #c5c5c5; margin-top: 25px;">
+                </div>
+            </div>
+        <?php endforeach; ?>
+  
+
+
+    <?php if ($post->getComments()): ?>
+        <div class="postError"><?php echo Mage::helper('blog')->__('Comments are Closed for this post') ?></div>
+    <?php else: ?>
+        <?php if ($this->getLoginRequired()): ?>
+            <?php if ($this->helper('customer')->isLoggedIn()): ?>
+                <form id="postComment" method="post">
+                    <fieldset class="group-select">
+                        <ul class="form-list">
+                            <li>
+
+                                <div class="input-box aw-blog-comment-area">
+                                    <label for="comment" class="required"><?php echo Mage::helper('blog')->__('Comment') ?><em>*</em></label>
+                                    <textarea name="comment" id="comment" title="<?php echo $this->__('Comment') ?>" class="required-entry input-text" cols="50" rows="5"><?php echo $this->getCommentText(); ?></textarea>
+                                </div>
+                            </li>
+                        </ul>
+                    </fieldset>
+                    <div class="button-set">
+                        <input name="post_id" type="hidden" value="<?php echo $post->getPostId(); ?>" />
+                        <input name="email" type="hidden" value="<?php echo $this->htmlEscape($this->helper('blog')->getUserEmail()) ?>"/>
+                        <input name="user" type="hidden" value="<?php echo $this->htmlEscape($this->helper('blog')->getUserName()) ?>"/>
+                        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+                        <button class="form-button button" type="submit"><span><span><?php echo Mage::helper('blog')->__('Submit Comment') ?></span></span></button>
+                    </div>
+                </form>
+
+                <script type="text/javascript">
+                    var contactForm = new VarienForm('postComment', false);
+                </script>
+
+            <?php else: ?>
+                <p><?php echo Mage::helper('blog')->__('You must be logged in to post a comment.'); ?></p>
+                <p><a href="<?php echo Mage::helper('customer')->getLoginUrl(); ?>"><?php echo Mage::helper('blog')->__('click here'); ?></a> <?php echo Mage::helper('blog')->__('to log in'); ?></p>
+            <?php endif ?>
+
+        <?php else: ?>
+            <div class="postComment-title">
+                <h2><?php echo $this->__('leave a reply') ?></h2>
+            </div>
+            <form id="postComment" method="post">
+                <fieldset class="group-select">
+                   
+                    <ul class="form-list">
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pb-40">
+                                    <div class="input-box input-comm">
+                                        
+                                        <input name="user" id="user" value="<?php echo $this->getCommentName(); ?>" title="<?php echo $this->__('Name') ?>" class="required-entry input-text" type="text" placeholder="Your Name"/>
+                                        <i class="icon-user icons"></i>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pb-40">
+                                    <div class="input-box input-comm">
+                                        
+                                        <input name="email" id="email" value="<?php echo $this->getCommentEmail(); ?>" title="<?php echo $this->__('Email') ?>" class="required-entry input-text validate-email" type="text" placeholder="Your Email*"/>
+                                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-box aw-blog-comment-area pb-40">
+                                
+                                <textarea name="comment" id="comment" title="<?php echo Mage::helper('blog')->__('Comment') ?>" class="required-entry input-text" placeholder="Your Review*" cols="50" rows="5"><?php echo $this->getCommentText(); ?></textarea>
+                                <i class="fa fa-comments-o" aria-hidden="true"></i>
+                            </div>
+                        </li>
+
+                        <?php
+                        if (Mage::getStoreConfig('blog/recaptcha/enabled') && !$this->helper('customer')->isLoggedIn()) {
+                            ?><li><?php
+                require_once 'recaptcha/recaptchalib-aw.php';
+
+                // Get a key from http://recaptcha.net/api/getkey
+                $publickey = Mage::getStoreConfig('blog/recaptcha/publickey');
+                $privatekey = Mage::getStoreConfig('blog/recaptcha/privatekey');
+                $error = null;
+
+                echo recaptcha_get_html($publickey, $error);
+                            ?></li><?php
+            }
+                        ?>
+                    </ul>
+                </fieldset>
+
+                <div class="button-set">
+                    <input name="post_id" type="hidden" value="<?php echo $post->getPostId(); ?>" />
+                    <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+                    <button class="button-parent-tag" type="submit">
+                        <div class="submit-button">
+                            <a class="upp fs-12" title="submit comment"><?php echo $this->__('Submit Comment') ?></a>
+                        </div>
+                    </button>
+                    
+                </div>
+            </form>
+
+            <script type="text/javascript">
+                var contactForm = new VarienForm('postComment', false);
+            </script>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>
+<?php endif; ?>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery(".bg1").css('display', 'none');
+        jQuery("#onmenu-share").click(function(){
+            jQuery(".bg1").removeClass('fadeOutUp');
+            jQuery(".bg1").css('display', 'block').addClass('fadeInDown');
+        });
+        jQuery("#onmenu-close").click(function(){
+            jQuery(".bg1").removeClass('fadeInDown');
+            jQuery(".bg1").css('display', 'none').addClass('fadeOutUp');
+        });
+        jQuery(".move-cm").click(function(){
+            jQuery('html, body').animate({
+                scrollTop: jQuery("#commentBox").offset().top
+            }, 1500);
+        });
+    });
+
+</script>

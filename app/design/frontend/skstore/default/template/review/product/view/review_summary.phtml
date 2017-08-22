@@ -1,0 +1,23 @@
+<?php
+    $_items = $this->getReviewsCollection()->getItems();
+?>
+<div class="post-form-title"><a href="#commentBox" id="commentBox" ></a>
+    <h2 class="upp">
+		<?php echo $this->__('Reviews') ?>
+		<?php echo " (".sizeof($_items).")"; ?>
+	</h2>
+</div>
+        <?php foreach ($_items as $_review) if($tmp++ < 3) { ?>
+            <div class="commentWrapper clearfix">
+                <div class="conmment-avatar mr-30">
+                    <img src="<?php echo $this->getSkinUrl("images/default-avatar.jpg"); ?>" />
+                </div>
+                <div class="col-md-8 commentDetails">
+                    
+                    <h4 class="username"><?php echo $this->htmlEscape($_review->getTitle()); ?></h4>
+                    <div class="commentContent pt-8"><?php echo nl2br($_review->getDetail()); ?></div>
+                </div>
+                <div class="col-md-8 comment-line-bot">
+                </div>
+            </div>
+        <?php } ?>

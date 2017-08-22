@@ -1,0 +1,91 @@
+<?php
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+?>
+<?php
+/* @var $this KtmCore_Widget_Block_Widget */
+$_id                = $this->getConfig('id');
+$_title             = $this->getConfig('widget_title');
+$pricePrefixId      = $_id;
+$layout = $this->getConfig("layout_type");
+if ($layout == 'box')	{
+	$box = true;
+} else {
+	$box=false;
+}
+?>
+<?php if ($box) : ?>
+<div class="container">
+<div class="main-container-inner">
+<?php endif;	?>
+<?php if ($this->checkCollectionSize('collection', $this->getData('mode'))): ?>
+<div class="<?php echo $this->getConfig('classes') ?>category-products  related-product" id="<?php echo $_id ?>">
+    <div class="main-heading">
+        <div class="heading-title">
+            <?php if ($_title): ?>
+                <h3><span><?php echo $_title ?></span></h3>
+            <?php endif ?>
+        </div>
+    </div>
+	<?php if ($this->getConfig('widget_description')): ?>
+		<div class="widget-description">
+			<?php echo $this->getConfig('widget_description');	?>
+		</div>
+	<?php endif; ?>
+    <?php echo $this->renderCollection('collection', $this->getData('mode'), 'ktmcore/widget/collection/related-collection.phtml', $pricePrefixId) ?>
+	<?php if ($this->getConfig('widget_custom_html_bottom')): ?>
+	<div class="widget-custom-bottom">
+		<?php echo $this->getConfig('widget_custom_html_bottom');	?>	
+	</div>
+	<?php endif; ?>
+</div>
+<script type="text/javascript">
+    $$('.related-checkbox').each(function(elem){
+        Event.observe(elem, 'click', addRelatedToProduct)
+    });
+
+    var relatedProductsCheckFlag = false;
+    function selectAllRelated(txt){
+        if (relatedProductsCheckFlag == false) {
+            $$('.related-checkbox').each(function(elem){
+                elem.checked = true;
+            });
+            relatedProductsCheckFlag = true;
+            txt.innerHTML = "<?php echo $this->__('unselect all') ?>";
+        } else {
+            $$('.related-checkbox').each(function(elem){
+                elem.checked = false;
+            });
+            relatedProductsCheckFlag = false;
+            txt.innerHTML = "<?php echo $this->__('select all') ?>";
+        }
+        addRelatedToProduct();
+    }
+
+    function addRelatedToProduct(){
+        var checkboxes = $$('.related-checkbox');
+        var values = [];
+        for (var i=0; i<checkboxes.length; i++){
+            if (checkboxes[i].checked) values.push(checkboxes[i].value);
+        }
+        if ($('related-products-field')){
+            $('related-products-field').value = values.join(',');
+        }
+    }
+</script>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl('js') ?>ktmcore/widget/ktmwidget.min.js"></script>
+<script type="text/javascript">
+    new Ktm.Widget('<?php echo $_id ?>', {
+        carousel: <?php echo $this->getConfig('carousel') ?>,
+        carouselConfig: null,
+        animation: <?php echo $this->getConfig('animation') ?>,
+        parallax: <?php echo $this->getConfig('parallax') ?>,
+        kenburns: <?php echo $this->getConfig('kenburns') ?>
+    });
+</script>
+<?php endif ?>
+<?php if ($box) : ?>
+</div>
+</div>
+<?php endif;	?>

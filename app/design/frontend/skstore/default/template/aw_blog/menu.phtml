@@ -1,0 +1,23 @@
+<?php
+    $helper = Mage::helper('ktmwidget');
+?>
+<div class="sidebar blog">    
+    <div class="block block-nav">
+        <?php if ($this->getCategories()->count() && Mage::getStoreConfig('blog/menu/category')): ?>
+                <div class="block-title">
+                    <strong><span><?php echo Mage::helper('blog')->__('Categories'); ?></span></strong>
+                </div>
+                <div class="block-content">
+                    <div class="menu-categories">
+                        <ul>
+                            <?php $cats = $this->getCategories(); ?>
+                            <?php foreach ($cats as $cat): ?>
+                                <li><a href="<?php echo $cat->getAddress(); ?>" ><span aria-hidden="true" class="icon_plus"></span> <?php echo $cat->getTitle(); ?></a></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+        <?php endif; ?>
+    </div>
+    <?php //echo $this->getChildHtml('blog_tags'); ?>
+</div>

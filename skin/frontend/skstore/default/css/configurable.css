@@ -1,0 +1,200 @@
+.swatch-link,
+.swatch-label {
+  display: block;
+  font-size: 14px;
+  color: #636363;
+  text-decoration: none;
+  box-sizing: content-box;
+
+}
+.swatch-link {
+  border: 1px solid #cccccc;
+  margin: 0 0 3px;
+}
+
+.swatch-link .x {
+  display: none;
+  text-indent: -999em;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: url(../images/bg_x.png) center no-repeat transparent;
+  z-index: 10;
+}
+.swatch-link:hover {
+  text-decoration: none;
+}
+.swatch-link:hover .swatch-label {
+  background-color: #404040;
+  color: #fff;
+}
+.swatch-link.has-image .swatch-label {
+  position: relative;
+  box-shadow: 0 0 1px 0px;
+}
+.swatch-link.has-image img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.swatch-label {
+  border: 1px solid #444;
+  white-space: nowrap;
+  background: #fff;
+}
+.product-shop .wapper-view.in-stock {
+  display: none;
+}
+.configurable-swatch-list {
+  margin-left: -3px;
+  zoom: 1;
+  clear: both;
+  -webkit-transform: translateZ(0px);
+}
+.block-layered-nav dd ol.configurable-swatch-list {
+  margin-left: -16px; 
+}
+.configurable-swatch-list li {
+  zoom: 1;
+  margin: 0 30px 0 0;
+  display: block;
+  float: left;
+}
+.configurable-swatch-list .not-available .x {
+  display: block;
+}
+.configurable-swatch-list .not-available .swatch-link {
+  border-color: #ededed;
+  position: relative;
+}
+.configurable-swatch-list .not-available .swatch-link.has-image img {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}
+.configurable-swatch-list .not-available .swatch-label {
+  color: #aaa;
+  background: #fff;
+}
+.configurable-swatch-list .not-available a:focus {
+  outline: 0;
+}
+.configurable-swatch-list .wide-swatch .swatch-label {
+  padding: 0 6px;
+}
+.products-grid .configurable-swatch-list li {
+  display: inline-block;
+  float: none;
+  margin: 0;
+  vertical-align: top;
+}
+#narrow-by-list dd .configurable-swatch-list li {
+    margin-left: 16px;
+    margin-bottom: 16px;
+    width: 40px;
+    height: 40px;
+    line-height: 38px;
+}
+
+
+#narrow-by-list dd .swatch-link {
+  border: none;
+  text-align: left;
+      font-weight: 700;
+}
+#narrow-by-list dd .swatch-link .count {
+  display: none;
+}
+#narrow-by-list dd .swatch-link.has-image {
+  line-height: inherit;
+}
+#narrow-by-list dd .swatch-link:hover .swatch-label {
+  border-color: #ff6600;
+}
+#narrow-by-list dd .swatch-label {
+  white-space: nowrap;
+  text-align: center;
+}
+#narrow-by-list dd .swatch-label img {
+  border: 1px solid #fff;
+  box-sizing: content-box;
+}
+#narrow-by-list dd .has-image .swatch-label {
+  padding: 0;
+}
+.currently .swatch-current {
+  position: relative;
+}
+.currently .swatch-current .btn-remove {
+  margin-top: -10px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+}
+.currently .swatch-current span {
+  display: block;
+  float: left;
+}
+.currently .swatch-link {
+  display: inline-block;
+  margin: 0 0 0 3px;
+}
+.currently .swatch-link:hover {
+  border-color: #cccccc;
+  cursor: default;
+}
+.configurable-swatch-list .hover .swatch-link,
+.configurable-swatch-list .selected .swatch-link,
+.swatch-link:hover {
+  border-color: #3399cc;
+}
+.configurable-swatch-box {
+  background: none !important;
+}
+.configurable-swatch-box select.swatch-select {
+  display: none;
+}
+.configurable-swatch-box .validation-advice {
+  margin: 0 0 5px;
+  background: #df280a;
+  padding: 2px 5px !important;
+  font-weight: bold;
+  color: #fff !important;
+  float: left;
+  display: block;
+  border-radius: 3px;
+}
+
+.catalog-product-view .swatch-link,
+.catalog-product-view .swatch-label {
+  display: block;
+  border-radius: 50%;
+  font-size: 14px;
+  overflow: hidden;
+  color: #636363;
+  text-decoration: none;
+  box-sizing: content-box;
+
+}
+.catalog-product-view .swatch-label {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border: none;
+}
+.catalog-product-view .swatch-link {
+  border: 1px solid #cccccc;
+  margin: 0 0 3px;
+}
+
+.catalog-product-view .configurable-swatch-list .hover .swatch-link,
+.catalog-product-view .configurable-swatch-list .selected .swatch-link,
+.catalog-product-view .swatch-link:hover {
+  border-color: #313131;
+}
+.catalog-product-view .configurable-swatch-list .wide-swatch .swatch-label {
+    position: relative;
+    line-height: 36px !important;
+    height: 36px !important;
+}

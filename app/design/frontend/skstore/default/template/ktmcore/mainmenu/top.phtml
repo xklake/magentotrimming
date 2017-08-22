@@ -1,0 +1,54 @@
+<?php
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+?>
+<!-- navigation BOF -->
+<?php 
+$theme = $this->helper('skstore');
+$sticky_logo = $theme->getCfg('header/sticky_logo');
+$_menu = $this->renderCategoriesMenuHtml(0, FALSE, 0, 'level-top', 'sub-wrapper', False );
+$routeName = Mage::app()->getRequest()->getRouteName();
+$identifier = Mage::getSingleton('cms/page')->getIdentifier(); 
+ 
+?> 
+<?php if($_menu): ?>
+<div class="ktm-navigation hidden-xs">
+    <?php  
+        $logoSrc = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'wysiwyg/ktmcore/skstore/logo/' . $sticky_logo;
+        $logoAlt = $theme->getCfg('header/logo_alt');
+    ?>
+    <div class="logo-sticky" style="display: none;">
+        <a href="<?php echo $this->getUrl('', $theme->checkSSL()) ?>" title="<?php echo $logoAlt; ?>">
+            <span><img class="img-sticky img-responsive" src="<?php echo $logoSrc; ?>" alt="<?php echo $logoAlt; ?>" /></span>
+        </a>
+    </div>
+    <div class="ktm-main-menu">
+        <ul id="ktmnav" class="megamenu clearfix">
+            <?php if($theme->getCfg('menu/home')){?>
+            <li class="level0 home level-top <?php if($routeName == 'cms' && $identifier == 'home') {echo " active";}?> m-dropdown parent">
+                <a href="<?php echo $this->getBaseUrl(); ?>" class="level-top"><span><?php echo $this->__('Home'); ?></span></a>
+            </li> 
+            <?php } ?>
+            <li class="level0 about-us level-top">
+                <a href="<?php echo $this->getBaseUrl().'about-us'; ?>" class="level-top"><span><?php echo $this->__('About'); ?></span></a>
+            </li> 
+            <?php
+            echo $_menu;
+            ?>
+            <?php if($this->getChildHtml('main_header_logo_default')): ?>
+                <li class="level0 level-top logo-center">
+                    <?php echo $this->getChildHtml('main_header_logo_default') ?>
+                </li>
+            <?php endif; ?>
+            <?php
+            if($theme->getCfg('menu/enable_custom')){
+                $getidentifier = trim($theme->getCfg('menu/static_identifier'));
+               
+                echo $theme->getCmsBlock($getidentifier);
+            }
+            ?>
+        </ul>
+    </div>
+</div>
+<?php endif ?>

@@ -1,0 +1,39 @@
+<?php 
+$product_sku = $this->getData('product_sku');
+$product_id = $this->getData('product_id');
+if($product_sku) {
+	$product = Mage::getModel('catalog/product')->loadByAttribute('sku', $product_sku);
+}	
+else if ($product_id) {
+	$product = Mage::getModel('catalog/product')->load($product_id);
+}
+if ($product && $product->isVisibleInSiteVisibility())  {
+?>
+<div class="detail">
+	<a href="<?php echo $product->getProductUrl(); ?>" title="<?php echo $product->getName(); ?>"><?php echo $this->__("Detail") ?></a>
+</div>
+<?php 
+}
+if ($product && $product->isSaleable())  {
+	if ( !($product->getTypeInstance(true)->hasRequiredOptions($product) || $product->isGrouped()) ) { ?>
+		<button type="button" title="<?php echo $this->__('Add To Cart') ?>" data-placement="top" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($product) ?>')">
+			<span>
+				<span><?php echo $this->__('Add To Cart') ?></span>
+			</span>
+		</button>
+<?php 
+	} else { ?>
+		<button type="button" title="<?php echo $this->__('Add To Cart') ?>" data-placement="top" class="button btn-cart show-options" data-id="<?php echo $product->getId(); ?>"
+			<?php if (!Mage::getStoreConfig('ajaxcart/ajaxcart_config/enable_ajaxcart')) { ?>
+				onclick="setLocation('<?php echo $this->getAddToCartUrl($product) ?>')"
+			<?php }?> data-submit='<?php echo $this->getAddToCartUrl($product) ?>'>
+		<span>
+			<span><?php echo $this->__('Add To Cart') ?></span>
+		</span>
+		</button>
+		<?php if (Mage::getStoreConfig('ajaxcart/ajaxcart_config/enable_ajaxcart')) : ?>
+		<a style="display: none;" href='<?php echo $this->getUrl('ajaxcart/index/options', array_merge(Mage::helper('skstore')->checkSSL(), array('product_id'=>$product->getId())));?>' class='options-cart' data-id='options-cart-<?php echo $product->getId()?>'><?php echo $this->__('Option cart')?></a>
+		<?php endif; ?>
+	<?php	
+	} 
+} 	?>

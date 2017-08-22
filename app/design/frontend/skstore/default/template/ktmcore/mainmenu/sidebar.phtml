@@ -1,0 +1,51 @@
+<!-- navigation mobile -->
+<?php 
+$theme = Mage::helper('skstore');
+$logo_canvas = $theme->getCfg('header/logo_retina_upload'); 
+$mediaUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+?>
+
+<div class="ktm-nav overlay overlay-contentscale">
+    <button type="button" class="overlay-close"><i class="icon-close icons"></i></button>
+    <?php if ($logo_canvas) : ?>
+    <div class="logo-canvas text-center col-xs-12"><p><a href="<?php echo $this->getBaseUrl(); ?>"><img class="img-responsive" src="<?php echo $mediaUrl . 'wysiwyg/ktmcore/skstore/logo/' . $logo_canvas; ?>" alt=""></a></p></div>
+    <?php endif; ?>
+    <nav class="sidebar">
+        <ul id="ktm-accordion" class="nav-accordion nav-mobile-accordion">
+            <li class="home"><a href="<?php echo $this->getBaseUrl(); ?>"><?php echo $this->__('Home') ?></a></li>
+            <?php echo $this->renderCategoriesMenuHtml(TRUE, FALSE, 0, 'level-top'); ?>
+            <?php
+            if($theme->getCfg('menu/enable_custom')){
+                $urlkey = $theme->getCfg('menu/url_key');
+                $arrayUrlKey = explode(";", $urlkey);
+                foreach($arrayUrlKey as $url){
+                    $condition = explode(':', $url);
+                    $page = Mage::getModel('cms/page')->load($condition[0], 'identifier');
+                    if(isset($condition[1])) $class = 'mobi-item-'.$condition[1];
+                    if($page->getIsActive()) {
+                ?> 
+                    <li class="level0 level-top parent custom-block-mobile <?php if($routeName == 'cms' && $identifier == $page->getIdentifier()) {echo " active";}?> <?php echo $class;?>">
+                        <a href="<?php echo Mage::helper('cms/page')->getPageUrl($condition[0]);?>" class="level-top">
+                            <span><?php echo $page->getTitle();?></span>
+                        </a> 
+                    </li> 
+                <?php 
+                    }
+                }
+            }
+            ?>
+        </ul>
+        <script type="text/javascript">
+            $ktm(document).ready(function() {
+                $ktm("#ktm-accordion").KtmAccordion({
+                    accordion:true,
+                    speed: 400,
+                    closedSign: 'collapse fa fa-angle-down',
+                    openedSign: 'expand fa fa-angle-up',
+                    mouseType: 0,
+                    easing: 'easeInOutQuad'
+                });
+            });
+        </script>
+    </nav>
+</div>

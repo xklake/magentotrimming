@@ -1,0 +1,58 @@
+<?php
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+?>
+<div class="ktmcore-socialconnect-login">
+    <div class="account-login">
+        <div class="<?php echo $this->_getColSet(); ?> ktmcore-socialconnect-login-upper">
+            <?php if($this->_googleEnabled()): ?>
+            <div class="<?php echo $this->_getDescCol(); ?> new-users ktmcore-socialconnect-login-upper-google">
+                <div class="content">
+                    <h2><?php echo $this->__('Google Connect'); ?></h2>
+                    <p><?php echo $this->__('You can login using your Google account.'); ?></p>
+                </div>
+            </div>
+            <?php endif; ?>
+            <?php if($this->_facebookEnabled()): ?>
+            <div class="<?php echo $this->_getDescCol(); ?> new-users ktmcore-socialconnect-login-upper-facebook">
+                <div class="content">
+                    <h2><?php echo $this->__('Facebook Connect'); ?></h2>
+                    <p><?php echo $this->__('You can login using your Facebook account.'); ?></p>
+                </div>
+            </div>
+            <?php endif; ?>
+            <?php if($this->_twitterEnabled()): ?>
+            <div class="<?php echo $this->_getDescCol(); ?> new-users ktmcore-socialconnect-login-upper-twitter">
+                <div class="content">
+                    <h2><?php echo $this->__('Twitter Connect'); ?></h2>
+                    <p><?php echo $this->__('You can login using your Twitter account.'); ?></p>
+                </div>
+            </div>
+            <?php endif; ?>
+        </div>
+        <div class="<?php echo $this->_getColSet(); ?> ktmcore-socialconnect-login-lower">
+            <?php if($this->_googleEnabled()): ?>
+            <div class="<?php echo $this->_getButtCol(); ?> ktmcore-socialconnect-login-lower-google">
+                <div class="buttons-set">
+                    <?php echo $this->getChildHtml('ktmcore_socialconnect_google_login_button'); ?>
+                </div>
+            </div>
+            <?php endif; ?>
+            <?php if($this->_facebookEnabled()): ?>
+            <div class="<?php echo $this->_getButtCol(); ?> ktmcore-socialconnect-login-lower-facebook">
+                <div class="buttons-set">
+                    <?php echo $this->getChildHtml('ktmcore_socialconnect_facebook_login_button'); ?>
+                </div>
+            </div>
+            <?php endif; ?>
+            <?php if($this->_twitterEnabled()): ?>
+            <div class="<?php echo $this->_getButtCol(); ?> ktmcore-socialconnect-login-lower-twitter">
+                <div class="buttons-set">
+                    <?php echo $this->getChildHtml('ktmcore_socialconnect_twitter_login_button'); ?>
+                </div>
+            </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>

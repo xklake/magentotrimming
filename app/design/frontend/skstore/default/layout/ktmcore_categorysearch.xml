@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+-->
+
+<layout version="0.1.0">
+    <default>
+        <reference name="header">
+            <action method="unsetChild"><block>topSearch</block></action>
+            <block type="catalogcategorysearch/form" name="top.search" as="topSearch"/>
+        </reference>
+    </default>
+</layout>

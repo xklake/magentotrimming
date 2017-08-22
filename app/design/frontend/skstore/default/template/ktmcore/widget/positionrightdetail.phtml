@@ -1,0 +1,37 @@
+<?php
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+?>
+<?php
+$_id                = $this->getConfig('id');
+$_title             = $this->getConfig('widget_title');
+$t                  = microtime();
+$pricePrefixId      = $_id;
+?>
+
+    <div class="<?php echo $this->getConfig('classes') ?>" id="<?php echo $_id ?>">
+        <div class="main-heading">
+            <div class="heading-title">
+                <?php if ($_title): ?>
+                    <h3><span><?php echo $_title ?></span></h3>
+                <?php endif ?>
+            </div>
+        </div>
+		<?php if ($this->getConfig('widget_description')): ?>
+		<div class="widget-description">
+			<?php echo $this->getConfig('widget_description');	?>
+		</div>
+		<?php endif; ?>
+		<?php echo $this->renderCollection('collection', $this->getData('mode'), 'ktmcore/widget/collection/collection_positionright_detail.phtml', $pricePrefixId) ?>
+    </div>
+    <script type="text/javascript" src="<?php echo Mage::getBaseUrl('js') ?>ktmcore/widget/ktmwidget.min.js"></script>
+    <script type="text/javascript">
+        new Ktm.Widget('<?php echo $_id ?>', {
+            animation: <?php echo $this->getConfig('animation') ?>,
+            parallax: <?php echo $this->getConfig('parallax') ?>,
+            carousel: <?php echo $this->getConfig('carousel') ?>
+        });
+    </script>
+
+<?php //Mage::log(microtime() - $t) ?>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+-->
+<layout>
+    <less_adminhtml_file_index>
+        <reference name="content">
+            <block type="less/adminhtml_file" name="less_file" />
+        </reference>
+    </less_adminhtml_file_index>
+    
+    <less_adminhtml_file_edit>
+        <reference name="content">
+            <block type="less/adminhtml_file_edit" name="less_file_edit" />
+        </reference>
+        <reference name="left">
+            <block type="less/adminhtml_file_edit_tabs" name="less_file_tabs" />
+        </reference>
+    </less_adminhtml_file_edit>
+</layout>

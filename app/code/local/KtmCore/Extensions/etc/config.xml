@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+-->
+<config>
+    <modules>
+        <KtmCore_Extensions>
+            <version>1.0</version>
+        </KtmCore_Extensions>
+    </modules>
+
+    <global>
+        <blocks>
+            <ktmext>
+                <class>KtmCore_Extensions_Block</class>
+            </ktmext>
+            <adminhtml>
+                <rewrite>
+                    <cms_wysiwyg_images_content>KtmCore_Extensions_Block_Adminhtml_Cms_Wysiwyg_Images_Content</cms_wysiwyg_images_content>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        <helpers>
+            <ktmext>
+                <class>KtmCore_Extensions_Helper</class>
+            </ktmext>
+            <cms>
+                <rewrite>
+                    <wysiwyg_images>KtmCore_Extensions_Helper_Cms_Wysiwyg_Images</wysiwyg_images>
+                </rewrite>
+            </cms>
+        </helpers>
+    </global>
+
+    <admin>
+        <routers>
+            <ktmadmin>
+                <use>admin</use>
+                <args>
+                    <module>KtmCore_Extensions</module>
+                    <frontName>ktmadmin</frontName>
+                </args>
+            </ktmadmin>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <KtmCore_Extensions before="Mage_Adminhtml">KtmCore_Extensions_Adminhtml</KtmCore_Extensions>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>

@@ -1,0 +1,182 @@
+<?php
+    $helper = Mage::helper('ktmwidget');
+?>
+<?php $posts = $this->getPosts(); ?>
+<div id="messages_product_view">
+    <?php Mage::app()->getLayout()->getMessagesBlock()->setMessages(Mage::getSingleton('customer/session')->getMessages(true)); ?>
+    <?php echo Mage::app()->getLayout()->getMessagesBlock()->getGroupedHtml(); ?>
+</div>
+
+<div class="toolbar-top">
+<?php echo $this->getChildHtml('aw_blog_comments_toolbar'); ?>
+</div>
+<div class="postContent-blog3 clearfix">
+<?php
+$countPostPer = 0;
+foreach ($posts as $post) if ($tmp++ < 4) {
+$countPostPer++;
+
+
+?>
+    <?php if($countPostPer == 1) { ?>
+        <div class="col-md-6 col-xs-6 display-in480">
+
+            <?php $img = $helper->getImgBlog($post->getShortContent()); ?>
+                <?php if ($img) : ?>
+                   
+                    <div class="blog-home blog_home1_ele1" style="background-image: url(<?php echo $img; ?>);margin-top: 38px;margin-bottom: 38px;background-size: cover;height: 434px;">
+                        <div class="blog-detail-bottom">
+                            <h2><a href="<?php echo $post->getAddress(); ?>" alt="<?php echo $post->getTitle(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle(); ?></a></h2>
+                            <p>
+                                <?php
+                                $previousTimeStamp = strtotime($post->getCreatedTime());
+                                echo $this->timeShowing($previousTimeStamp);
+
+                                 ?>
+                            </p>
+                        </div>
+                    </div>
+                      <!-- style="width: 100%; "/> -->
+                   
+                <?php endif; ?>
+        </div>
+    <?php } ?>
+
+    
+
+    <?php if($countPostPer == 2) { ?>
+    <!-- div create in ipad screen 2-->
+        <div class="col-md-6 col-xs-6 visible-xs visible-sm display-in480">
+
+            <?php $img = $helper->getImgBlog($post->getShortContent()); ?>
+                <?php if ($img) : ?>
+                   
+                    <div class="blog-home blog_home1_ele1" style="background-image: url(<?php echo $img; ?>);margin-top: 38px;margin-bottom: 38px;background-size: cover;height: 434px;">
+                        <div class="blog-detail-bottom">
+                            <h2><a href="<?php echo $post->getAddress(); ?>" alt="<?php echo $post->getTitle(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle(); ?></a></h2>
+                            <p>
+                                <?php
+                                $previousTimeStamp = strtotime($post->getCreatedTime());
+                                echo $this->timeShowing($previousTimeStamp);
+
+                                 ?>
+                            </p>
+                        </div>
+                    </div>
+                      <!-- style="width: 100%; "/> -->
+                   
+                <?php endif; ?>
+        </div>
+    <?php } ?>
+
+    
+
+
+
+
+    <?php if($countPostPer == 2) { ?>
+        <div class="col-md-3 hidden-xs hidden-sm clearfix">
+            <div class="col-md-12 col-xs-6 element-full">
+            <?php $img = $helper->getImgBlog($post->getShortContent()); ?>
+                <?php if ($img) : ?>
+                    
+                    <div class="blog-home blog_home1_ele2" style="background-image: url(<?php echo $img; ?>);height: 255px;background-size: cover;transition: all .3s ease-in-out">
+                        <div class="blog-detail-bottom">
+                            <h2><a href="<?php echo $post->getAddress(); ?>" alt="<?php echo $post->getTitle(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle(); ?></a></h2>
+                            <p>
+                                <?php
+                                $previousTimeStamp = strtotime($post->getCreatedTime());
+                                echo $this->timeShowing($previousTimeStamp);
+
+                                 ?>
+                            </p>
+                        </div>
+                    </div>    
+                     
+                <?php endif; ?>
+            </div>
+    <?php } ?>
+
+
+    <?php if($countPostPer == 3) { ?>
+            <div class="col-md-12 col-xs-6 element-full">
+            <?php $img = $helper->getImgBlog($post->getShortContent()); ?>
+                <?php if ($img) : ?>
+                    
+                    <div class="blog-home blog_home1_ele3" style="background-image: url(<?php echo $img; ?>);height: 255px;background-size: cover;">
+                        <div class="blog-detail-bottom">
+                            <h2><a href="<?php echo $post->getAddress(); ?>" alt="<?php echo $post->getTitle(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle(); ?></a></h2>
+                            <p>
+                                <?php
+                                $previousTimeStamp = strtotime($post->getCreatedTime());
+                                echo $this->timeShowing($previousTimeStamp);
+
+                                 ?>
+                            </p>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    <?php } ?>
+        
+
+    
+
+<?php if($countPostPer == 3) { ?>
+    <!-- div create in ipad screen 3-->
+        <div class="col-md-6 col-xs-6 visible-xs visible-sm display-in480">
+
+            <?php $img = $helper->getImgBlog($post->getShortContent()); ?>
+                <?php if ($img) : ?>
+                   
+                    <div class="blog-home blog_home1_ele1" style="background-image: url(<?php echo $img; ?>);margin-top: 38px;margin-bottom: 38px;background-size: cover;height: 434px;">
+                        <div class="blog-detail-bottom">
+                            <h2><a href="<?php echo $post->getAddress(); ?>" alt="<?php echo $post->getTitle(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle(); ?></a></h2>
+                            <p>
+                                <?php
+                                $previousTimeStamp = strtotime($post->getCreatedTime());
+                                echo $this->timeShowing($previousTimeStamp);
+
+                                 ?>
+                            </p>
+                        </div>
+                    </div>
+                      <!-- style="width: 100%; "/> -->
+                   
+                <?php endif; ?>
+        </div>
+    <?php } ?>
+
+<?php if($countPostPer == 4) { ?>
+    <div class="col-md-3 col-last1 col-xs-6 display-in480">
+        <?php $img = $helper->getImgBlog($post->getShortContent()); ?>
+            <?php if ($img) : ?>
+                
+                    <div class="blog-home blog_home1_ele4" style="background-image: url(<?php echo $img; ?>);margin-top: 38px;margin-bottom: 38px;background-size: cover;height: 434px;background-size: cover;">
+                        <div class="blog-detail-bottom">
+                            <h2><a href="<?php echo $post->getAddress(); ?>" alt="<?php echo $post->getTitle(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle(); ?></a></h2>
+                            <p>
+                                <?php
+                                $previousTimeStamp = strtotime($post->getCreatedTime());
+                                echo $this->timeShowing($previousTimeStamp);
+
+                                 ?>
+                            </p>
+                        </div>
+                    </div>
+            <?php endif; ?>
+    </div>
+<?php } ?>  
+
+            
+<?php } ?>
+</div>
+<div class="toolbar-bottom">
+<?php echo $this->getChildHtml('aw_blog_comments_toolbar'); ?>
+</div>
+<?php //echo $this->getChildHtml('aw_blog_comments_toolbar'); ?>
+
+
+
+

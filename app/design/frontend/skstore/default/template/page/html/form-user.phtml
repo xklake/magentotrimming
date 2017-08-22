@@ -1,0 +1,32 @@
+<?php
+/**
+ * @copyright    Copyright (C) 2016 skstore. All Rights Reserved.
+ */
+?>
+<?php $sessionCustomer = Mage::getSingleton("customer/session"); ?>
+<?php $theme = $this->helper('skstore'); ?>
+<?php $loginAction = Mage::helper('customer')->getLoginPostUrl();?>
+<form class="login-form" action="<?php echo $loginAction; ?>" method="post" id="login-form">	
+		<?php if ($sessionCustomer->isLoggedIn()) : ?>
+			<div class="buttons-set-logged clearfix">
+				<a class="setting-button" href="<?php echo Mage::getUrl('customer/account/logout', $theme->checkSSL()); ?>"><span><?php echo $this->__('Logout'); ?></span></a>
+				<a class="setting-button" href="<?php echo Mage::getUrl('customer/account/index', $theme->checkSSL()); ?>"><span><?php echo $this->__('My Account'); ?></span></a>
+			</div>
+		<?php else: ?>
+				<div class="form-fields">
+					<div class="input-box">	
+						<input type="text" name="login[username]" placeholder="<?php echo $this->__("Email Address") ?>"	class="require-entry require-email input-text"/>
+						<i class="menu-ic icon-user"></i>
+					</div>
+					<div class="input-box">
+						<input type="password" name="login[password]" placeholder="<?php echo $this->__("Password") ?>"	class="require-entry input-text" />
+						<i class="menu-ic icon-lock"></i>
+					</div>
+					<input type="hidden" name="form_key"  value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>" />
+				</div>
+				<div class="buttons-set clearfix">
+					<a class="setting-button" href="<?php echo Mage::getUrl('customer/account/create', $theme->checkSSL()); ?>"><span><?php echo $this->__('Register'); ?></span></a>
+					<button class="setting-button" type="submit"><span><?php echo $this->__('Login'); ?></span></button>
+				</div>
+		<?php endif; ?>
+</form>

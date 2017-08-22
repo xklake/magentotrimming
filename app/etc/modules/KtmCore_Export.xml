@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+-->
+<config>
+    <modules>
+        <KtmCore_Export>
+            <active>true</active>
+            <codePool>local</codePool>
+        </KtmCore_Export>
+    </modules>
+</config> 

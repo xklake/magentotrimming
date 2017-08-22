@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+-->
+
+<config>
+    <modules>
+        <KtmCore_CategorySearch>
+            <version>1.0.1</version>
+        </KtmCore_CategorySearch>
+    </modules>
+    <global>
+        <blocks>
+            <catalogcategorysearch>
+                <class>KtmCore_CategorySearch_Block</class>
+            </catalogcategorysearch>
+        </blocks>
+        <helpers>
+            <catalogcategorysearch>
+                <class>KtmCore_CategorySearch_Helper</class>
+            </catalogcategorysearch>
+        </helpers>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <catalogcategorysearch>
+                    <file>ktmcore_categorysearch.xml</file>
+                </catalogcategorysearch>
+            </updates>
+        </layout>
+    </frontend>
+    <adminhtml>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                                <children>
+                                    <config>
+                                        <children>
+                                            <catalogcategorysearch translate="title" module="catalogcategorysearch">
+                                                <title>Catalog Category Search</title>
+                                            </catalogcategorysearch>
+                                        </children>
+                                    </config>
+                                </children>
+                            </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+    <default>
+        <catalogcategorysearch>
+            <general>
+                <enabled>1</enabled>
+                <select_category_on_category_pages>1</select_category_on_category_pages>
+                <show_subcategories>1</show_subcategories>
+                <indentation_text><![CDATA[- ]]></indentation_text>
+            </general>
+        </catalogcategorysearch>
+    </default>
+</config>

@@ -1,0 +1,14 @@
+<?php
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+?>
+<tr>
+    <td class="label">
+        <?php echo $this->getElement()->getLabel()?>
+    </td>
+    <td class="value">
+        <input type="hidden" id="<?php echo $this->getElement()->getHtmlId()?>"/>
+        <?php echo $this->getElement()->getData('after_element_html')?>
+    </td>
+</tr>

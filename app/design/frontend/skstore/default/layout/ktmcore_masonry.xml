@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <catalog_category_view>
+        <reference name="head">
+            <action method="addCss" ifconfig="masonry/general/enable"><stylesheet>css/ktmcore/masonry/masonry.css</stylesheet></action>
+            <action method="addJs" ifconfig="masonry/general/enable"><script>ktmcore/js/masonry.pkgd.min.js</script></action>
+        </reference>
+    </catalog_category_view>
+</layout> 

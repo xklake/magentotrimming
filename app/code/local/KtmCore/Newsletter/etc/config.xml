@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright    Copyright (C) 2015 Skstore. All Rights Reserved.
+ */
+ -->
+<config>
+    <modules>
+        <KtmCore_Newsletter>
+            <version>1.0.1</version>
+        </KtmCore_Newsletter>
+    </modules>
+    <global>
+        <models> 
+            <ktmcorenewsletter>
+                <class>KtmCore_Newsletter_Model</class>
+            </ktmcorenewsletter>
+        </models>
+        <resources>
+            <ktmcorenewsletter_setup>
+                <setup>
+                    <module>KtmCore_Newsletter</module>
+                </setup>
+            </ktmcorenewsletter_setup>
+        </resources>
+        <blocks>
+            <ktmcorenewsletter>
+                <class>KtmCore_Newsletter_Block</class>
+            </ktmcorenewsletter>
+        </blocks>
+        <helpers>
+            <ktmcorenewsletter>
+                <class>KtmCore_Newsletter_Helper</class>
+            </ktmcorenewsletter>
+        </helpers>
+    </global>
+    <frontend>
+        <routers>
+            <ktmcorenewsletter>
+                <use>standard</use>
+                <args>
+                    <module>KtmCore_Newsletter</module>
+                    <frontName>ktmcorenewsletter</frontName>
+                </args>
+            </ktmcorenewsletter>
+        </routers>
+        <layout>
+            <updates>
+                <ktmcorenewsletter>
+                    <file>ktmcore_newsletter.xml</file>
+                </ktmcorenewsletter>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <ktmcorenewsletter>
+                    <files>
+                        <default>KtmCore_Newsletter.csv</default>
+                    </files>
+                </ktmcorenewsletter>
+            </modules>
+        </translate>
+    </frontend>
+    <admin>
+        <routers>
+            <ktmcorenewsletter>
+                <use>admin</use>
+                <args>
+                    <module>KtmCore_Newsletter</module>
+                    <frontName>ktmcorenewsletter</frontName>
+                </args>
+            </ktmcorenewsletter>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <ktmcorenewsletter>
+                    <file>ktmcore_newsletter.xml</file>
+                </ktmcorenewsletter>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <ktmcorenewsletter>
+                    <files>
+                        <default>KtmCore_Newsletter.csv</default>
+                    </files>
+                </ktmcorenewsletter>
+            </modules>
+        </translate>
+    </adminhtml>
+    <default>
+        <ktmcorenewsletter>
+            <display_options>
+                <enable>1</enable>
+                <background_color>#FFFFFF</background_color>
+                <background_image></background_image>
+                <goto_link></goto_link>
+                <title_newsletter>Be the first to know</title_newsletter>
+                <intro>Subscribe mailing list today to receive updates on new arrivals, special offers and other discount information</intro>
+                <!-- <width>700</width>
+                <height>350</height> -->
+            </display_options>
+        </ktmcorenewsletter>
+    </default>
+</config>
